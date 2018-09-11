@@ -1,15 +1,17 @@
-<template>
-  <div>
-    {{ msg }}
-  </div>
+<template lang="pug">
+div
+  h1 pecosoft
+  div {{ msg }}
 </template>
 
 <script>
+import xpug from './p.pug'
+
 export default {
   name: 'index',
   data () {
     return {
-      msg: '客户报修'
+      msg: xpug
     }
   }
 }
