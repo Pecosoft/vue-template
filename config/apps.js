@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = {
   customer: {
-    entry: './src/main.js',
+    entry: './src/main-customer.js',
     index: path.resolve(__dirname, '../dist/customer/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist/customer')
   },

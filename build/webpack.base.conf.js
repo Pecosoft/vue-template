@@ -41,6 +41,7 @@ module.exports = {
       'filters': resolve('src/filters'),
       'directives': resolve('src/directives'),
       'components': resolve('src/components'),
+      'style': resolve('src/components/style'),
       'customer': resolve('src/apps/customer'),
       'dsclerk': resolve('src/apps/dsclerk'),
       'gpleader': resolve('src/apps/gpleader'),
