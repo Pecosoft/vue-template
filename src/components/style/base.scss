@@ -1,6 +1,100 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-family;
+  background: $color-page-bg;
+  color: $color-text;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1,h2,h3 {
+  font-weight: normal;
+}
+
+h1 {
+  font-size: $font-size-h1;
+}
+
+h2 {
+  font-size: $font-size-h2;
+}
+
+h3 {
+  font-size: $font-size-h3;
+}
+
+header,nav {
+  font-size: $font-size-h3;
+}
+
+p,aside,article,details,section {
+  font-size: $font-size-primary;
+}
+
+time,a {
+  font-size: $font-size-aux;
+}
+
+footer {
+  font-size: $font-size-aux;
+}
+
+table {
+  border-collapse: collapse;
+}
+
 a {
-  font-weight: bold;
   text-decoration: none;
-  &:hover { text-decoration: underline; }
-  body.firefox & { font-weight: normal; }
+  background-color: transparent;
+  &:link,&:visited,&:hover,&:active {
+    color: $color-link;
+    text-decoration: none;
+  }
+  &:not([href]) {
+    color: inherit;
+    text-decoration: none;
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border-style: none;
+}
+
+video {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  border-radius: 0;
+}
+
+input,
+button,
+select,
+textarea {
+  margin: 0; // Remove the margin in Firefox and Safari
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+[hidden] {
+  display: none !important;
 }
