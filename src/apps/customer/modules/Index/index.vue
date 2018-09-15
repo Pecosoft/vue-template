@@ -1,22 +1,17 @@
 <template lang="pug">
 div
-  h1 pecosoft
-  div {{ msg }}
+  profile-header(:name='name' :desc='desc' :avatar='avatar')
 </template>
 
 <script>
-import xpug from './p.pug'
-
 export default {
   name: 'index',
   data () {
     return {
-      msg: xpug
+      name: '台群精机',
+      desc: '台群阳光服务，在线报修',
+      avatar: 'static/logo.png'
     }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
