@@ -3,6 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from 'customer/router'
+import 'style/pui.scss'
+
+import ProfileHeader from 'components/ProfileHeader'
+
+Vue.use(ProfileHeader)
 
 Vue.config.productionTip = false
 
