@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Play from 'components/ProfileHeader'
+import Play from 'components/Grid'
 import 'style/pui.scss'
 
 /* eslint-disable no-new */
