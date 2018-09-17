@@ -3,11 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from 'customer/router'
-import 'style/pui.scss'
+import 'style/peco-ui.scss'
 
 import ProfileHeader from 'components/ProfileHeader'
+import Grid from 'components/Grid'
 
 Vue.use(ProfileHeader)
+Vue.use(Grid)
 
 Vue.config.productionTip = false
 
