@@ -1,0 +1,40 @@
+@mixin arrow ($arrowsize: .3em, $borderColor: #C8C8CD, $borderWidth: .1em) {
+  display: inline-block;
+  height: $arrowsize;
+  width: $arrowsize;
+  border-width: $borderWidth $borderWidth 0 0;
+  border-color: $borderColor;
+  border-style: solid;
+}
+
+@mixin arrow-up {
+  @include arrow;
+
+  transform: matrix(0.71,-0.71,0.71,0.71,0,0); // rotate(-45deg)
+}
+
+@mixin arrow-down {
+  @include arrow;
+
+  transform: matrix(-0.71,0.71,-0.71,-0.71,0,0); // rotate(135deg);
+
+  position: relative;
+  top: -3px;
+}
+
+@mixin arrow-left {
+  @include arrow;
+
+  transform: matrix(-0.71,-0.71,0.71,-0.71,0,0); // rotate(-135deg);
+
+  position: relative;
+  top: -2px;
+}
+
+@mixin arrow-right ($size: .4em, $color: $color-line) {
+  @include arrow($size, $color);
+
+  transform: matrix(0.71,0.71,-0.71,0.71,0,0); // rotate(45deg);
+  position: relative;
+  top: -2px;
+}

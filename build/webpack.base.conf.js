@@ -36,6 +36,12 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'utils': resolve('src/utils'),
+      'mixins': resolve('src/mixins'),
+      'filters': resolve('src/filters'),
+      'directives': resolve('src/directives'),
+      'components': resolve('src/components'),
+      'style': resolve('src/components/style'),
       'customer': resolve('src/apps/customer'),
       'dsclerk': resolve('src/apps/dsclerk'),
       'gpleader': resolve('src/apps/gpleader'),
@@ -50,6 +56,20 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig
+      },
+      {
+        test: /\.pug$/,
+        oneOf: [
+          // this applies to `<template lang="pug">` in Vue components
+          {
+            resourceQuery: /^\?vue/,
+            use: ['pug-plain-loader']
+          },
+          // this applies to pug imports inside JavaScript
+          {
+            use: ['raw-loader', 'pug-plain-loader']
+          }
+        ]
       },
       {
         test: /\.js$/,
