@@ -1,8 +1,7 @@
 <template lang="pug">
-  .peco-grid(:style='`background:${backgroundColor}`')
-    div.peco-grid-item(:style='itemStyle' v-for='item in thisData')
-      div(style='overflow: hidden')
-        i.peco-icon(:class='`peco-icon-${item.icon}`')
+  .peco-grid.border(:style='`background:${backgroundColor}`')
+    div.peco-grid-item(:style='itemStyle' v-for='item in thisData' @click='$emit("clickgrid", item)')
+      i.peco-icon(:class='`peco-icon-${item.icon}`')
       p {{ item.name }}
 </template>
 
@@ -12,27 +11,18 @@ export default {
   props: ['data', 'colNum', 'bgColor'],
   data () {
     return {
-      thisColNum: this.colNum || 3,
+      thisColNum: this.colNum || 2,
       backgroundColor: this.bgColor || '#fff',
-      // eslint-disable-next-line
-      thisData: this.data || [
-        {id: 1, name: '报修', icon: 'repaire'},
-        {id: 2, name: '咨询', icon: 'consult'},
-        {id: 3, name: '投诉', icon: 'complain'},
-        {id: 4, name: '建议', icon: 'suggest'}
-      ]
+      thisData: this.data || []
     }
   },
   computed: {
     itemStyle () {
       return {
         width: (1 / this.thisColNum * 100) + '%',
+        padding: '20px 0'
       }
     }
-  },
-  mounted () {
-    // eslint-disable-next-line
-    let cols = this.thisColumns
   }
 }
 </script>
@@ -52,10 +42,51 @@ export default {
 }
 .peco-grid-item {
   float: left;
-  height: 5em;
   text-align: center;
-  p {
-    margin: 0;
+}
+
+.peco-grid.border {
+  position: relative;
+  &:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 200%;
+    border: 1px solid $color-border;
+    color: $color-border;
+    transform-origin: 0 0;
+    transform: scale(.5);
+  }
+  &:after {
+
+  }
+  .peco-grid-item {
+    position: relative;
+    &:before,&:after {
+      content: " ";
+      position: absolute;
+      color: $color-border;
+    }
+    &:before {
+      right: 0;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      border-right: 1px solid $color-border;
+      transform-origin: 100% 0;
+      transform: scaleX(.5);
+    }
+    &:after {
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      border-bottom: 1px solid $color-border;
+      transform-origin: 0 100%;
+      transform: scaleY(.5);
+    }
   }
 }
 </style>

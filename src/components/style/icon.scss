@@ -1,4 +1,26 @@
 .peco-icon {
-  @include size(2rem, 2rem);
+  @include size(28px, 28px);
   display: inline-block;
+  background: url('../../assets/css_sprites.png') no-repeat;
+}
+.peco-icon-repaire {
+  background-position: 0 -28px;
+}
+.peco-icon-consult {
+  background-position: -28px -28px;
+}
+.peco-icon-complain {
+  background-position: -56px 0;
+}
+.peco-icon-suggest {
+  background-position: -56px -28px;
+}
+.peco-icon-complain_old {
+  background-position: 0 0;
+}
+.peco-icon-warn {
+  background-position: 0 -56px;
+}
+.peco-icon-warn_circle {
+  background-position: -28px 0;
 }
