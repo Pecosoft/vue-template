@@ -16,7 +16,8 @@ new Vue({
   },
   methods: {
     handleOnClickList (d) {
-      this.$refs.list.remove(d)
+      console.log('click list item', d.id)
+      //this.$refs.list.remove(d)
     }
   },
   template: '<div class="page"><div class="container"><Play ref=list @clicklist="handleOnClickList" :data="listData" /></div></div>'

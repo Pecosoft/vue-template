@@ -1,15 +1,7 @@
+import data from './data'
+
 export default {
-  props: ['data'],
-  data () {
-    return {
-      thisData: this.data || []
-    }
-  },
-  watch: {
-    data (newVal) {
-      this.thisData = newVal
-    }
-  },
+  mixins: [data],
   methods: {
     append (item) {
       this.thisData.push(item)

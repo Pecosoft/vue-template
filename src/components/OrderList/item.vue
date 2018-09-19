@@ -1,20 +1,17 @@
 <template lang="pug">
-  .peco-order-list
-    item(v-for='item in thisData' :data="item" @click.native='$emit("clicklist", item)')
+  .peco-order-list-item
+    p {{ thisData.name }}
+      span(@click.stop='remove') 删除
 </template>
 
 <script>
-import list from '@/mixins/list'
-import item from './item'
+import listItem from '@/mixins/listItem'
 
 export default {
-  name: 'OrderList',
-  mixins: [list],
-  components: {
-    item
-  },
+  name: 'ListItem',
+  mixins: [listItem],
   mounted () {
-    // this.sortBy('id', 'asc')
+    //console.log(this.thisData, this.list)
   }
 }
 </script>
@@ -28,8 +25,7 @@ export default {
 @import 'style/mixin/_clearfix.scss';
 @import 'style/extend/_layout.scss';
 
-.peco-order-list {
-  @include clearfix;
-  font-size: 2rem;
+.peco-order-list-item {
+
 }
 </style>
