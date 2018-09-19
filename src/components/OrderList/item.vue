@@ -1,6 +1,13 @@
 <template lang="pug">
   .peco-order-list-item
-    p {{ thisData.name }}
+    h3 {{ thisData.sn }}
+    p {{ thisData.desc }}
+    p {{ thisData.status }}
+    div
+      img(:src='thisData.product.avatar')
+      p {{ thisData.product.name }}
+    p {{ thisData.create_time }}
+    p
       span(@click.stop='remove') 删除
 </template>
 
@@ -26,6 +33,8 @@ export default {
 @import 'style/extend/_layout.scss';
 
 .peco-order-list-item {
-
+  &+& {
+    margin-top: 20px;
+  }
 }
 </style>

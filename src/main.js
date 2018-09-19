@@ -8,10 +8,10 @@ new Vue({
   components: { Play },
   data: {
     listData: [
-      {id: 1, name: '报修', icon: 'repaire'},
-      {id: 2, name: '咨询', icon: 'consult'},
-      {id: 3, name: '投诉', icon: 'complain'},
-      {id: 4, name: '建议', icon: 'suggest'}
+      {id: 1, sn: '2018050210524290585581', status: 1, product: {name: 'T-500H', avatar: 'http://iph.href.lu/80x80?text=产品图片'}, desc: '故障', create_time: new Date().getTime()},
+      {id: 2, sn: '2017110810335533171752', status: 1, product: {name: 'T-500H', avatar: 'http://iph.href.lu/80x80?text=产品图片'}, desc: '故障', create_time: new Date().getTime()},
+      {id: 3, sn: '2017110810320688829954', status: 1, product: {name: 'T-500H', avatar: 'http://iph.href.lu/80x80?text=产品图片'}, desc: '故障', create_time: new Date().getTime()},
+      {id: 4, sn: '2017102621550936318893', status: 1, product: {name: 'T-500H', avatar: 'http://iph.href.lu/80x80?text=产品图片'}, desc: '故障', create_time: new Date().getTime()}
     ]
   },
   methods: {
