@@ -2,22 +2,22 @@
   section.peco-order-item
     .peco-order-item_hd.aux 订单号:&nbsp;
       span {{ thisData.sn }}
-      span.frt {{ thisData.status|status-text }}
+      span.frt.red {{ thisData.status|status-text }}
     .peco-order-item_bd
-      .peco-order-item_inner
+      .peco-order-item_inner.mc
         img(:src='thisData.product.avatar')
         .flex1
-          p {{ thisData.product.name }}
+          h3.link {{ thisData.product.name }}
           p {{ thisData.desc }}
-      p 所属区域:&nbsp;{{ thisData.addr||'地址' }}
-    .peco-order-item_ft
-      span {{ thisData.create_time|time-text }}
-      span.frt(@click.stop='remove') 删除
+      p.aux.gray 所属区域:&nbsp;{{ thisData.addr||'地址' }}
+    .peco-order-item_ft.aux
+      span.gray {{ thisData.create_time|time-text }}
+      span.frt.link(v-for='btn in btns' :key='btn.id' @click.stop='$parent.$emit("clickbtn", thisData, btn)') {{ btn.name }}
 </template>
 
 <script>
 import listItem from '@/mixins/listItem'
-
+/* eslint-disable */
 export default {
   name: 'ListItem',
   mixins: [listItem],
@@ -39,8 +39,14 @@ export default {
          + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
     }
   },
-  mounted () {
-    //console.log(this.thisData, this.list)
+  computed: {
+    btns () {
+      let status = parseInt(this.thisData.status)
+      let privs = this.$parent.privs
+      return privs[status]
+    }
+  },
+  methods: {
   }
 }
 </script>
@@ -80,7 +86,7 @@ export default {
   }
   .flex1 {
     padding: 0 0 0 $edge-distance;
-    p+p {
+    h3+p {
       margin-top: $edge-distance;
     }
   }
@@ -88,12 +94,49 @@ export default {
 
 .peco-order-item_ft {
   padding: 10px 0 0;
+  span.frt {
+    display: inline-block;
+    position: relative;
+    padding-left: 6px;
+    &+span.frt {
+      padding-right: 7px;
+      &:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 3px;
+        right: 0;
+        height: 12px;
+        width: 1px;
+        background: $color-border;
+      }
+    }
+  }
 }
 
 .flex1 {
   flex: 1;
 }
 
+.primary {
+  color: $color-primary;
+}
+
+.red {
+  color: $red;
+}
+
+.link {
+  color: $color-link;
+}
+
+.gray {
+  color: $gray-600;
+}
+
+.mc {
+  font-size: $font-size-primary;
+}
 .aux {
   font-size: $font-size-aux;
 }
