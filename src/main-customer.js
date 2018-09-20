@@ -7,9 +7,11 @@ import 'style/peco-ui.scss'
 
 import ProfileHeader from 'components/ProfileHeader'
 import Grid from 'components/Grid'
+import OrderList from 'components/OrderList'
 
 Vue.use(ProfileHeader)
 Vue.use(Grid)
+Vue.use(OrderList)
 
 Vue.config.productionTip = false
 
