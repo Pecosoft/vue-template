@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+page
   profile-header(:name='name' :desc='desc' :avatar='avatar')
   grid(:data='gridData' :col-num="2" bg-color="#fff" @clickgrid="handleOnClickGrid")
   pannel(:gutter="10" title="订单数（50）")
