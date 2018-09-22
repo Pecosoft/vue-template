@@ -2,7 +2,8 @@
 div
   profile-header(:name='name' :desc='desc' :avatar='avatar')
   grid(:data='gridData' :col-num="2" bg-color="#fff" @clickgrid="handleOnClickGrid")
-  order-list(style="margin: 10px 0 20px;" @clicklist="handleOnClickList" @clickbtn="handleOnClickBtn" :data="listData" :privs="privs")
+  pannel(:gutter="10" title="订单数（50）")
+    order-list(style="margin: 10px 0 20px;" @clicklist="handleOnClickList" @clickbtn="handleOnClickBtn" :data="listData" :privs="privs")
 </template>
 
 <script>
