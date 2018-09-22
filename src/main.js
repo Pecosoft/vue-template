@@ -1,6 +1,6 @@
 /* eslint-disable */
 import Vue from 'vue'
-import Play from 'components/Page'
+import Play from 'components/OrderList'
 import 'style/peco-ui.scss'
 
 new Vue({
