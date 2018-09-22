@@ -22,7 +22,8 @@
     "build:tcworker": "APP=tcworker node build/build-taikan.js",
     "build:manager": "APP=manager node build/build-taikan.js",
     "build": "npm run build:customer && npm run build:dsclerk && npm run build:gpleader && npm run build:tcworker && npm run build:manager",
-    "deploy": "./deploy.sh"
+    "deploy": "./deploy.sh",
+    "release": "npm run build && npm run deploy"
   },
   "dependencies": {
     "vue": "^2.5.2",
