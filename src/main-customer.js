@@ -5,11 +5,13 @@ import App from './App'
 import router from 'customer/router'
 import 'style/peco-ui.scss'
 
+import Page from 'components/Page'
 import ProfileHeader from 'components/ProfileHeader'
 import Grid from 'components/Grid'
 import Pannel from 'components/Pannel'
 import OrderList from 'components/OrderList'
 
+Vue.use(Page)
 Vue.use(ProfileHeader)
 Vue.use(Grid)
 Vue.use(Pannel)
