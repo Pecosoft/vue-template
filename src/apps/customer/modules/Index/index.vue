@@ -15,10 +15,10 @@ export default {
       desc: '台群阳光服务，在线报修',
       avatar: 'static/logo.png',
       gridData: [
-        {id: 1, name: '报修', icon: 'repaire', url: '/repair'},
-        {id: 2, name: '咨询', icon: 'consult', url: '/consult'},
-        {id: 3, name: '投诉', icon: 'complain', url: '/complain'},
-        {id: 4, name: '建议', icon: 'suggest', url: '/suggest'}
+        {id: 1, name: '报修', icon: 'repaire', url: '/customer/repair'},
+        {id: 2, name: '咨询', icon: 'consult', url: '/customer/consult'},
+        {id: 3, name: '投诉', icon: 'complain', url: '/customer/complain'},
+        {id: 4, name: '建议', icon: 'suggest', url: '/customer/suggest'}
       ],
       listData: [
         {id: 1, sn: '2018050210524290585581', addr: '广东省深圳市南山区', status: 0, product: {name: 'T-500H', avatar: 'http://iph.href.lu/80x80?text=产品图片'}, desc: '故障', create_time: new Date().getTime()},
