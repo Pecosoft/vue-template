@@ -1,5 +1,8 @@
 <template lang="pug">
-page 我要报修
+page
+  pannel
+    info-card(:infos='infos' :editUrl='editUrl' style='border-bottom: 3px dashed #0769ad')
+  pannel(title='填写报修' :gutter='10')
 </template>
 
 <script>
@@ -10,10 +13,17 @@ export default {
   mixins: [create],
   data () {
     return {
+      infos: [
+        {style: 'color: #606266; height: 22px; line-height: 22px; margin-bottom: 10px', row: [{style: '', value: '张三'}, {style: 'margin-left: 10px', value: '15988888888'}]},
+        {style: 'color: #606266; height: 22px; line-height: 22px; margin-bottom: 10px', row: [{style: '', value: '深圳市XXXXxxxxxxxx公司'}]},
+        {style: 'color: #606266; height: 22px; line-height: 22px; ', row: [{style: '', value: '深圳市南山区高新科技园高新南四路'}]},
+        {style: 'color: #606266; height: 22px; line-height: 22px; ', row: [{style: '', value: 'T栋XXXXXX'}]}
+      ],
+      editUrl: '/customer/1',
       model: repair
     }
   },
-  mounted() {
+  mounted () {
     console.log(this.validator.toString())
     console.log(this.form)
     console.log('verify', this.verify())
