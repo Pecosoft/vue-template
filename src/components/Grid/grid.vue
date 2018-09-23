@@ -1,8 +1,12 @@
 <template lang="pug">
   .peco-grid.border(:style='`background:${backgroundColor}`')
-    div.peco-grid-item(:style='itemStyle' v-for='item in thisData' @click='$emit("clickgrid", item)')
-      i.peco-icon(:class='`peco-icon-${item.icon}`')
-      p {{ item.name }}
+    template(v-for='item in thisData')
+      router-link.peco-grid-item(v-if='item.url' :to='item.url' :style='itemStyle')
+        i.peco-icon(:class='`peco-icon-${item.icon}`')
+        p {{ item.name }}
+      div.peco-grid-item(v-else @click='$emit("clickgrid", item)' :style='itemStyle')
+        i.peco-icon(:class='`peco-icon-${item.icon}`')
+        p {{ item.name }}
 </template>
 
 <script>
@@ -42,6 +46,7 @@ export default {
 }
 .peco-grid-item {
   float: left;
+  display: inline-block;
   text-align: center;
 }
 
@@ -58,9 +63,6 @@ export default {
     color: $color-border;
     transform-origin: 0 0;
     transform: scale(.5);
-  }
-  &:after {
-
   }
   .peco-grid-item {
     position: relative;
