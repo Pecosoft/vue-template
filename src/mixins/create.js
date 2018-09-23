@@ -4,7 +4,7 @@ import maker from '@/models/maker'
 export default {
   data () {
     return {
-      validator: null
+      validator: null,
       form: null
     }
   },
