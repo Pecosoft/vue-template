@@ -7,7 +7,7 @@ import Suggest from 'customer/modules/Suggest'
 export default [
   {
     name: 'Index',
-    path: '/',
+    path: '/customer',
     component: Index,
     meta: {
       title: '用户中心'
@@ -15,7 +15,7 @@ export default [
   },
   {
     name: 'Repair',
-    path: '/repair',
+    path: '/customer/repair',
     component: Repair,
     meta: {
       title: '报修'
@@ -23,7 +23,7 @@ export default [
   },
   {
     name: 'Consult',
-    path: '/consult',
+    path: '/customer/consult',
     component: Consult,
     meta: {
       title: '咨询'
@@ -31,7 +31,7 @@ export default [
   },
   {
     name: 'Complain',
-    path: '/complain',
+    path: '/customer/complain',
     component: Complain,
     meta: {
       title: '投诉'
@@ -39,7 +39,7 @@ export default [
   },
   {
     name: 'Suggest',
-    path: '/suggest',
+    path: '/customer/suggest',
     component: Suggest,
     meta: {
       title: '建议'
