@@ -118,3 +118,8 @@ textarea {
   background-color: rgba(0, 0, 0, .15);
   border-radius: 5rem;
 }
+
+.arrow-right {
+  display: inline-block;
+  @include arrow-right(.5em, $white);
+}

@@ -53,8 +53,4 @@ export default {
     @include size(80px);
   }
 }
-.arrow-right {
-  display: inline-block;
-  @include arrow-right(.5em, $white);
-}
 </style>

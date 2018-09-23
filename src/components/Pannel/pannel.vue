@@ -1,6 +1,6 @@
 <template lang="pug">
   .peco-pannel(:style='`background-color: ${thisBgColor}; margin: ${thisGutter}px 0;`')
-    h3.peco-pannel-hd {{ thisTitle }}
+    h3.peco-pannel-hd(v-if='thisTitle') {{ thisTitle }}
     article.peco-pannel-bd
       slot
 </template>
@@ -11,7 +11,7 @@ export default {
   props: ['title', 'bgColor', 'gutter'],
   data () {
     return {
-      thisTitle: this.title || '面板',
+      thisTitle: this.title || '',
       thisBgColor: this.bgColor || '#fff',
       thisGutter: this.gutter || 0
     }

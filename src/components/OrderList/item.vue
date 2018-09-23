@@ -2,7 +2,7 @@
   section.peco-order-item
     .peco-order-item_hd.aux 订单号:&nbsp;
       span {{ thisData.sn }}
-      span.frt.red {{ thisData.status|status-text }}
+      span.frt.red {{ thisData.status|status-to-text }}
     .peco-order-item_bd
       .peco-order-item_inner.mc
         img(:src='thisData.product.avatar')
@@ -11,33 +11,20 @@
           p {{ thisData.desc }}
       p.aux.gray 所属区域:&nbsp;{{ thisData.addr||'地址' }}
     .peco-order-item_ft.aux
-      span.gray {{ thisData.create_time|time-text }}
+      span.gray {{ thisData.create_time|timestamp-to-text }}
       span.frt.link(v-for='btn in btns' :key='btn.id' @click.stop='$parent.$emit("clickbtn", thisData, btn)') {{ btn.name }}
 </template>
 
 <script>
 import listItem from '@/mixins/listItem'
+import { timestampToText, statusToText } from '@/filters'
 /* eslint-disable */
 export default {
   name: 'ListItem',
   mixins: [listItem],
   filters: {
-    statusText (val) {
-      return val === 0 ? '未受理'
-        : val === 1 ? '已受理'
-        : val === 2 ? '已派单'
-        : val === 3 ? '维修中'
-        : val === 4 ? '已完成'
-        : val === 5 ? '已评论' : 'unknown';
-    },
-    timeText (val) {
-      if (String(val).length !== 13) val *= 1000;
-
-      let dt = new Date(val);
-
-      return dt.getFullYear() + '-' + (dt.getMonth()+1) + '-' + dt.getDate() + ' '
-         + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
-    }
+    statusToText,
+    timestampToText
   },
   computed: {
     btns () {
