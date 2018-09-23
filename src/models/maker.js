@@ -1,5 +1,5 @@
 export default class Maker {
-  constructor(model) {
+  constructor (model) {
     this.model = model
   }
 

@@ -1,14 +1,14 @@
 export default class Validator {
-  constructor(model) {
+  constructor (model) {
     this.model = model
   }
 
-  toString() {
+  toString () {
     let model = this.model
     let str = ''
     for (let field in model) {
       let fieldVal = model[field]
-      str += fieldVal.name + ':'  + field + ',' + fieldVal.type + '\n'
+      str += fieldVal.name + ':' + field + ',' + fieldVal.type + '\n'
     }
     return str
   }

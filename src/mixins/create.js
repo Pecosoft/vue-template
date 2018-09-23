@@ -1,5 +1,5 @@
-import validator from '@/models/validator'
-import maker from '@/models/maker'
+import Validator from '@/models/validator'
+import Maker from '@/models/maker'
 
 export default {
   data () {
@@ -8,9 +8,9 @@ export default {
       form: null
     }
   },
-  created() {
-    this.validator = new validator(this.model)
-    this.$set(this, 'form', new maker(this.model).make())
+  created () {
+    this.validator = new Validator(this.model)
+    this.$set(this, 'form', new Maker(this.model).make())
   },
   methods: {
     verify () {
