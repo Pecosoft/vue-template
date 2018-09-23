@@ -6,7 +6,7 @@ export default class Validator {
   toString() {
     let model = this.model
     let str = ''
-    for (field in model) {
+    for (let field in model) {
       let fieldVal = model[field]
       str += fieldVal.name + ':'  + field + ',' + fieldVal.type + '\n'
     }
@@ -28,7 +28,7 @@ export default class Validator {
     let fields = Object.keys(model)
     let unvalidField = this.unvalidField
     let unvalids = []
-    for (field of fields) {
+    for (let field of fields) {
       let unvalidTips = unvalidField(field, input[field], model[field])
       if (unvalidTips) {
         unvalids.push(unvalidTips)
