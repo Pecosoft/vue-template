@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from 'customer/modules/Index'
+import routes from './routes'
+import { beforeEach, afterEach } from '@/hooks/router'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Index',
-      component: Index
-    }
-  ]
+const router = new Router({
+  mode: 'history',
+  routes
 })
+
+router.beforeEach(beforeEach)
+router.afterEach(afterEach)
+
+export default router
