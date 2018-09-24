@@ -124,3 +124,8 @@ textarea {
   display: inline-block;
   @include arrow-right(.5em, $white);
 }
+
+.arrow-right-gray {
+  display: inline-block;
+  @include arrow-right(.5em, $gray-500);
+}
