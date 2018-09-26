@@ -1,13 +1,13 @@
 <template lang="pug">
   .peco-model-inputs
     template(v-for='(attr, field) in model')
-      p-text(v-if='attr.input==="Text"' :label='attr.name')
-      p-textarea(v-else-if='attr.input==="Textarea"' :label='attr.name' :rows='attr.rows || 3')
-      mobile(v-else-if='attr.input==="Mobile"' :label='attr.name')
-      email(v-else-if='attr.input==="Email"' :label='attr.name')
-      product-picker(v-else-if='attr.input==="ProductPicker"' :label='attr.name')
-      wx-images-picker(v-else-if='attr.input==="WxImagesPicker"' :label='attr.name')
-      wx-voice-recoder(v-else-if='attr.input==="WxVoiceRecoder"' :label='attr.name')
+      p-text(v-if='attr.input==="Text"' :label='attr.name' :attr='attr')
+      p-textarea(v-else-if='attr.input==="Textarea"' :label='attr.name' :rows='attr.rows || 3' :attr='attr')
+      mobile(v-else-if='attr.input==="Mobile"' :label='attr.name' :attr='attr')
+      email(v-else-if='attr.input==="Email"' :label='attr.name' :attr='attr')
+      product-picker(v-else-if='attr.input==="ProductPicker"' :label='attr.name' :attr='attr')
+      wx-images-picker(v-else-if='attr.input==="WxImagesPicker"' :label='attr.name' :attr='attr')
+      wx-voice-recoder(v-else-if='attr.input==="WxVoiceRecoder"' :label='attr.name' :attr='attr')
 </template>
 
 <script>

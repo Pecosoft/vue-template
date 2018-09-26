@@ -4,7 +4,9 @@
 </template>
 
 <script>
+import modelinput from '@/mixins/modelinput'
+
 export default {
-  props: ['label']
+  mixins: [modelinput]
 }
 </script>
