@@ -11,6 +11,7 @@ import Pannel from 'components/Pannel'
 import OrderList from 'components/OrderList'
 import { InfoCard } from 'components/Card'
 import { ModelInput } from 'components/ModelInput'
+import Search from 'components/Search'
 
 Vue.use(Page)
 Vue.use(ProfileHeader)
@@ -19,6 +20,7 @@ Vue.use(Pannel)
 Vue.use(OrderList)
 Vue.use(InfoCard)
 Vue.use(ModelInput)
+Vue.use(Search)
 
 Vue.config.productionTip = false
 

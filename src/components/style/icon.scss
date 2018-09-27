@@ -1,26 +1,64 @@
 .peco-icon {
-  @include size(28px, 28px);
   display: inline-block;
-  background: url('../../assets/css_sprites.png') no-repeat;
+  background-repeat: no-repeat;
 }
+
+.peco-icon-search {
+  @include size(16px);
+  background-size: 16px 16px;
+  background-image: url(../../assets/icon_search@2x.png);
+}
+
+.peco-icon-clear {
+  @include size(16px);
+  background-size: 16px 16px;
+  background-image: url(../../assets/icon_delete@2x.png);
+}
+
+.peco-icon-checked {
+  @include size(24px);
+  background-size: 24px 24px;
+  background-image: url(../../assets/checked@2x.png);
+}
+
+.peco-icon-uncheck {
+  @include size(24px);
+  background-size: 24px 24px;
+  background-image: url(../../assets/uncheck@2x.png);
+}
+
 .peco-icon-repaire {
+  @include size(28px, 28px);
+  background: url('../../assets/css_sprites.png') no-repeat;
   background-position: 0 -28px;
 }
 .peco-icon-consult {
+  @include size(28px, 28px);
+  background: url('../../assets/css_sprites.png') no-repeat;
   background-position: -28px -28px;
 }
 .peco-icon-complain {
+  @include size(28px, 28px);
+  background: url('../../assets/css_sprites.png') no-repeat;
   background-position: -56px 0;
 }
 .peco-icon-suggest {
+  @include size(28px, 28px);
+  background: url('../../assets/css_sprites.png') no-repeat;
   background-position: -56px -28px;
 }
 .peco-icon-complain_old {
+  @include size(28px, 28px);
+  background: url('../../assets/css_sprites.png') no-repeat;
   background-position: 0 0;
 }
 .peco-icon-warn {
+  @include size(28px, 28px);
+  background: url('../../assets/css_sprites.png') no-repeat;
   background-position: 0 -56px;
 }
 .peco-icon-warn_circle {
+  @include size(28px, 28px);
+  background: url('../../assets/css_sprites.png') no-repeat;
   background-position: -28px 0;
 }
