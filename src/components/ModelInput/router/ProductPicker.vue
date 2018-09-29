@@ -19,7 +19,8 @@ export default {
           children: [
             {
               id: 5,
-              name: 'aasdf'
+              name: 'aasdf',
+              avatar: 'http://iph.href.lu/60x60?text=60*60'
             },
             {
               id: 12,

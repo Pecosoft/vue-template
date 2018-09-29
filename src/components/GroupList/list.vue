@@ -4,9 +4,16 @@
       li(v-for='gp in thisData')
         h3 {{ gp.name }}
         ul
-          li(v-for='item in gp.children' :class='{checked: isChecked(item.id)}' @click='') {{ item.name }}
-            i.peco-icon.peco-icon-checked
-            i.peco-icon.peco-icon-uncheck
+          li(v-for='item in gp.children' :class='{checked: isChecked(item.id), "has-avatar": item.avatar}' @click='')
+            div(v-if='item.avatar')
+              img(:src='item.avatar' style='width: 60px; height: 60px;')
+              p {{ item.name }}
+              i.peco-icon.peco-icon-checked
+              i.peco-icon.peco-icon-uncheck
+            div(v-else)
+              p {{ item.name }}
+              i.peco-icon.peco-icon-checked
+              i.peco-icon.peco-icon-uncheck
 </template>
 
 <script>
@@ -68,6 +75,25 @@ export default {
         right: 30px;
         top: 13px;
         display: none;
+      }
+      &.has-avatar {
+        height: 80px;
+        padding-top: 10px;
+        &>div {
+          display: flex;
+        }
+        img {
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+        }
+        p {
+          flex: 1;
+          padding: 0 54px 0 10px;
+        }
+        .peco-icon {
+          top: 28px;
+        }
       }
       &.checked {
         .peco-icon-checked {
