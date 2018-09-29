@@ -1,4 +1,4 @@
-import localStorage  from 'utils/localStorage'
+import localStorage from 'utils/localStorage'
 
 const beforeEach = (to, from, next) => {
   const _to = to.path
