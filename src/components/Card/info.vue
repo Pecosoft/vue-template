@@ -55,11 +55,6 @@ export default {
   text-align: center;
 }
 
-.arrow-right-gray {
-  display: inline-block;
-  @include arrow-right(.5em, $gray-500);
-}
-
 .peco-info-row {
   @include clearfix;
 }
