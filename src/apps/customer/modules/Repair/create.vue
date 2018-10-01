@@ -3,6 +3,7 @@ page
   pannel
     info-card(:infos='infos' :editUrl='editUrl' style='border-bottom: 3px dashed #0769ad')
   pannel(title='填写报修' :gutter='10')
+    model-input(:model='model')
 </template>
 
 <script>
