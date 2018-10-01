@@ -4,9 +4,9 @@
       li(v-for='gp in thisData')
         h3 {{ gp.name }}
         ul
-          li(v-for='item in gp.children' :class='{checked: isChecked(item.id), "has-avatar": item.avatar}' @click='')
+          li(v-for='item in gp.children' :class='{checked: isChecked(item), "has-avatar": item.avatar}' @click='$emit("onchecked", item)')
             div(v-if='item.avatar')
-              img(:src='item.avatar' style='width: 60px; height: 60px;')
+              img(:src='item.avatar')
               p {{ item.name }}
               i.peco-icon.peco-icon-checked
               i.peco-icon.peco-icon-uncheck
@@ -22,22 +22,20 @@ import data from 'mixins/data'
 export default {
   name: 'GroupList',
   mixins: [data],
-  props: ['checkedId'],
+  props: ['checked'],
   data () {
     return {
-      thisChecked: this.checkedId || false
+      thisChecked: this.checked || false
     }
   },
   watch: {
-    checkedId (newVal) {
+    checked (newVal) {
       this.thisChecked = newVal
     }
   },
-  computed: {
-  },
   methods: {
-    isChecked (id) {
-      return id === this.thisChecked
+    isChecked (item) {
+      return item.id === this.thisChecked.id
     }
   }
 }
@@ -55,7 +53,7 @@ export default {
 .peco-group-list {
   background: #EEEEEE;
   h3 {
-    padding: 0 20px;
+    padding: 10px 20px 5px;
     font: 14px/24px PingFangSC-Regular,sans-serif;
     color: #999999;
   }

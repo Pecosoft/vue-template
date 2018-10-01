@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from 'components/ModelInput/router'
+import store from 'components/ModelInput/store'
 import 'style/peco-ui.scss'
 
 import Page from 'components/Page'
@@ -26,10 +27,15 @@ Vue.use(GroupList)
 
 Vue.config.productionTip = false
 
+if (process.env.NODE_ENV !== 'production') {
+  require('./services/mock').default.bootstrap();
+}
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

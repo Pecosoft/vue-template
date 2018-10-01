@@ -11,9 +11,16 @@ div
 
   .peco-search-result(v-show='searchKeyword && isSearchFocus')
     ul.peco-searchlist
-      li(v-for='item in searchResults' :class='{checked: isChecked(item.id)}' @click='') {{ item.name }}
-        i.peco-icon.peco-icon-checked
-        i.peco-icon.peco-icon-uncheck
+      li(v-for='item in searchResults' :class='{checked: isChecked(item), "has-avatar": item.avatar}' @click='$emit("onchecked", item)')
+        div(v-if='item.avatar')
+          img(:src='item.avatar')
+          p {{ item.cnPathName || item.name }}
+          i.peco-icon.peco-icon-checked
+          i.peco-icon.peco-icon-uncheck
+        div(v-else)
+          p {{ item.cnPathName || item.name }}
+          i.peco-icon.peco-icon-checked
+          i.peco-icon.peco-icon-uncheck
     div(v-show='!searchResults.length')
       .peco-search-empty
       p(style='text-align: center; font: 14px/20px PingFangSC-Regular,sans-serif;color: #C1C1C1;') 查询不到相关信息
@@ -25,16 +32,16 @@ import data from 'mixins/data'
 export default {
   name: 'Search',
   mixins: [data],
-  props: ['checkedId'],
+  props: ['checked'],
   data () {
     return {
       isSearchFocus: true,
       searchKeyword: '',
-      thisChecked: this.checkedId || false
+      thisChecked: this.checked || false
     }
   },
   watch: {
-    checkedId (newVal) {
+    checked (newVal) {
       this.thisChecked = newVal
     }
   },
@@ -49,8 +56,8 @@ export default {
     }
   },
   methods: {
-    isChecked (id) {
-      return id === this.thisChecked
+    isChecked (item) {
+      return item.id === this.thisChecked.id
     }
   }
 }
@@ -111,6 +118,25 @@ export default {
       position: absolute;
       right: 15px;
       top: 10px;
+    }
+    &.has-avatar {
+      height: 80px;
+      padding-top: 10px;
+      &>div {
+        display: flex;
+      }
+      img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+      }
+      p {
+        flex: 1;
+        padding: 0 54px 0 10px;
+      }
+      .peco-icon {
+        top: 28px;
+      }
     }
     .peco-icon-checked {
       display: none;
