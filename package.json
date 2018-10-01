@@ -22,9 +22,14 @@
     "build:tcworker": "APP=tcworker node build/build-taikan.js",
     "build:manager": "APP=manager node build/build-taikan.js",
     "build": "npm run build:customer && npm run build:dsclerk && npm run build:gpleader && npm run build:tcworker && npm run build:manager",
-    "deploy": "./deploy"
+    "deploy": "./deploy.sh",
+    "release": "npm run build && npm run deploy"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "axios-mock-adapter": "^1.15.0",
+    "js-cookie": "^2.2.0",
+    "mockjs": "^1.0.1-beta3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"

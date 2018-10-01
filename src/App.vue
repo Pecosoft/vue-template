@@ -1,7 +1,7 @@
-<template>
-  <div id="app">
-    <router-view/>
-  </div>
+<template lang="pug">
+  #app
+    transition(name='slide')
+      router-view
 </template>
 
 <script>
