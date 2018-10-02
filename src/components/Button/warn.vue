@@ -1,11 +1,18 @@
 <template lang="pug">
-  button.peco-btn.peco-btn_warn
+  btn.peco-btn_warn
     slot
 </template>
 
 <script>
+import button from 'mixins/button'
+import Btn from './button'
+
 export default {
-  name: 'BtnWarn'
+  name: 'BtnWarn',
+  mixins: [button],
+  components: {
+    Btn
+  }
 }
 </script>
 

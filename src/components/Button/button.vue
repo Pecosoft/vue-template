@@ -5,14 +5,7 @@
 
 <script>
 export default {
-  name: 'Btn',
-  props: [''],
-  data () {
-    return {
-    }
-  },
-  computed: {
-  }
+  name: 'Btn'
 }
 </script>
 

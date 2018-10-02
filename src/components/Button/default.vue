@@ -1,15 +1,19 @@
 <template lang="pug">
-  button.peco-btn.peco-btn_default(:class='{"peco-btn_loading": thisLoading, "peco-btn_plain-default": plain, "peco-btn_disabled": thisDisable, "peco-btn_plain-disabled": plain && thisDisable }')
+  btn.peco-btn_default(:class='{"peco-btn_loading": thisLoading, "peco-btn_plain-default": plain, "peco-btn_disabled": thisDisable, "peco-btn_plain-disabled": plain && thisDisable }')
     .peco-loading(v-if='thisLoading')
     slot
 </template>
 
 <script>
 import button from 'mixins/button'
+import Btn from './button'
 
 export default {
   name: 'BtnDefault',
-  mixins: [button]
+  mixins: [button],
+  components: {
+    Btn
+  }
 }
 </script>
 
