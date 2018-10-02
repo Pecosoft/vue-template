@@ -14,6 +14,7 @@ import { InfoCard } from 'components/Card'
 import { ModelInput } from 'components/ModelInput'
 import Search from 'components/Search'
 import GroupList from 'components/GroupList'
+import Button from 'components/Button'
 
 Vue.use(Page)
 Vue.use(ProfileHeader)
@@ -24,6 +25,7 @@ Vue.use(InfoCard)
 Vue.use(ModelInput)
 Vue.use(Search)
 Vue.use(GroupList)
+Vue.use(Button)
 
 Vue.config.productionTip = false
 
