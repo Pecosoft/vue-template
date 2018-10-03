@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     pannel(:title='title' :gutter='10')
-      model-input(:model='model' :form='form')
+      model-input(:model='model' v-model='formData' @input='handleOnModelInput')
     btn-area
       btn-primary(:loading='loading' @click.native='handleOnSubmit') {{ btnText || '创建' }}
 </template>

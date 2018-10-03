@@ -7,12 +7,13 @@
 </template>
 
 <script>
+import model from '@/mixins/model'
 import modelinput from '@/mixins/modelinput'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapMutations, mapActions } = createNamespacedHelpers('ProductPicker')
 
 export default {
-  mixins: [modelinput],
+  mixins: [model, modelinput],
   computed: {
     ...mapState(['picked'])
   },
@@ -22,6 +23,16 @@ export default {
   },
   mounted () {
     this.fetch()
+    // 获取路由组件的选择结果
+    if (this.picked && this.picked.id) {
+      this.thisValue = this.picked.id
+    }
+    if (this.thisValue) {
+      let pickedId = this.thisValue
+      this.$nextTick(() => {
+        this.thisValue = pickedId
+      })
+    }
   }
 }
 </script>

@@ -1,7 +1,6 @@
 <template lang='pug'>
   page
-    pannel
-      model-input(:model='model')
+    create(title='申请报修' btn-text='提交报修' resource-name='repair' :model='repair' store-module='repair')
     btn-area
       btn-primary(loading) 保存提交
       btn 保存
@@ -22,7 +21,7 @@ import repair from '@/models/repair'
 export default {
   data () {
     return {
-      model: repair
+      repair
     }
   }
 }

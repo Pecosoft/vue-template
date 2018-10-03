@@ -15,6 +15,7 @@ import { ModelInput } from 'components/ModelInput'
 import Search from 'components/Search'
 import GroupList from 'components/GroupList'
 import Button from 'components/Button'
+import Create from 'components/Create'
 
 Vue.use(Page)
 Vue.use(ProfileHeader)
@@ -26,6 +27,7 @@ Vue.use(ModelInput)
 Vue.use(Search)
 Vue.use(GroupList)
 Vue.use(Button)
+Vue.use(Create)
 
 Vue.config.productionTip = false
 
