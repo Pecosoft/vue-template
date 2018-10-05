@@ -8,6 +8,8 @@ export default {
   watch: {
     value (newVal) {
       this.thisValue = newVal
+    },
+    thisValue (newVal) {
       this.$emit('input', newVal)
     }
   }

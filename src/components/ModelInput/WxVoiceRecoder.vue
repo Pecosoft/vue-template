@@ -7,9 +7,10 @@
 </template>
 
 <script>
+import model from '@/mixins/model'
 import modelinput from '@/mixins/modelinput'
 
 export default {
-  mixins: [modelinput]
+  mixins: [model, modelinput]
 }
 </script>
