@@ -1,6 +1,8 @@
 import localStorage from 'utils/localStorage'
+import auth from '@/services/auth'
 
 const beforeEach = (to, from, next) => {
+  auth.set(to.query)
   const _to = to.path
   const _from = from.path
   const h = localStorage.get(_to)
