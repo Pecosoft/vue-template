@@ -33,39 +33,6 @@ export default {
   -webkit-overflow-scrolling: touch;
 }
 
-//page transition
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0;
-}
-
-.slide-enter-active, .slide-leave-active {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  transition: all .3s;
-}
-.slide-enter {
-  opacity: 0;
-  transform: translate3d(70%, 0, 0);
-}
-.slide-leave-active {
-  opacity: 0;
-  transform: translate3d(-70%, 0, 0);
-}
-
-.transition-reverse {
-  .slide-enter {
-    opacity: 0;
-    transform: translate3d(-70%, 0, 0);
-  }
-  .slide-leave-active {
-    opacity: 0;
-    transform: translate3d(70%, 0, 0);
-  }
-}
-
 // page content
 .page-content {
   position: absolute;
