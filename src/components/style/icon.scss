@@ -62,3 +62,9 @@
   background: url('../../assets/css_sprites.png') no-repeat;
   background-position: -28px 0;
 }
+
+.peco-icon-microphone {
+  @include size(50px, 50px);
+  background-size: 50px 50px;
+  background-image: url(../../assets/microphone.png);
+}

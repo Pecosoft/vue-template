@@ -25,7 +25,7 @@ export default {
     if (storeModule) {
       let module = this.$store.state[storeModule]
       if (module) {
-        let form = this.$store.state[storeModule].form
+        let form = this.$store.state[storeModule][this.formName || 'form']
         if (form) {
           formValid = true
           this.formData = Object.assign({}, form)

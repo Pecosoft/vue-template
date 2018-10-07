@@ -136,3 +136,44 @@ textarea {
   display: inline-block;
   @include arrow-right(.5em, $gray-500);
 }
+
+.flex1 {
+  flex: 1;
+}
+
+.primary {
+  color: $color-primary;
+}
+
+.red {
+  color: $red;
+}
+
+.link {
+  color: $color-link;
+}
+
+.text {
+  color: $color-text;
+}
+
+.gray {
+  color: $gray-600;
+}
+
+.mc {
+  font-size: $font-size-primary;
+}
+.aux {
+  font-size: $font-size-aux;
+}
+.flt {
+  float: left;
+}
+.frt {
+  float: right;
+}
+
+.gapt {
+  margin-top: 10px;
+}
