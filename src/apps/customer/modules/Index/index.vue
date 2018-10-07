@@ -41,10 +41,14 @@ export default {
       console.log('click on grid', gd.id)
     },
     handleOnClickList (d) {
-      console.log('click list item', d.id)
+      this.$router.push({name: 'RepairDetail', params: {id: d.id}})
     },
     handleOnClickBtn (d, btn) {
-      console.log('click btn', d.id, btn.id, btn.name)
+      switch (btn.id) {
+        case 0:
+          this.$router.push({name: 'RepairView', params: {id: d.id}})
+          break
+      }
     }
   }
 }
