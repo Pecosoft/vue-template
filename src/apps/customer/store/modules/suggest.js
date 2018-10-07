@@ -1,6 +1,6 @@
 /* eslint-disable */
 import updateObj from 'utils/updateObj'
-import { repair } from '@/services'
+import { suggest } from '@/services'
 
 export default {
   namespaced: true,
@@ -24,7 +24,7 @@ export default {
   actions: {
     async fetch ({ state }) {
       if (state.list.length) return state.list
-      let res = await repair.fetch()
+      let res = await suggest.fetch()
       state.list = res
       return res
     },
@@ -33,9 +33,10 @@ export default {
       let details = state.details
       let detail = details[idStr]
       if (detail) return detail
-      let res = await repair.read(id)
+      let res = await suggest.read(id)
       details[idStr] = res
       return res
     }
   }
 }
+// action context: { state, commit, dispatch, getters }

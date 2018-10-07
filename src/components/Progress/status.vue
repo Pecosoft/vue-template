@@ -48,21 +48,21 @@ export default {
       let value = this.value
       if (!value) value = 0
       let statusSets = this.statusSets
-      for (let i=0, len=statusSets.length; i<len; i++) {
+      for (let i = 0, len = statusSets.length; i < len; i++) {
         let status = statusSets[i]
         let _value = status.value
         if (isArray(_value)) {
           if (_value.indexOf(value) !== -1) {
             return i
           }
-        } else if (value == _value) {
+        } else if (value === _value) {
           return i
         }
       }
       return 0
     }
   },
-  mounted() {
+  mounted () {
     this.updateLinePosition()
   },
   methods: {
@@ -72,7 +72,7 @@ export default {
       let circles = el.querySelectorAll('.circle')
       let len = circles.length
       let first = circles[0]
-      let last = circles[len-1]
+      let last = circles[len - 1]
 
       let left = first.offsetLeft
       let right = width - last.offsetLeft
