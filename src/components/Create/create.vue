@@ -12,6 +12,12 @@ import create from '@/mixins/create'
 export default {
   name: 'Create',
   mixins: [create],
+  props: {
+    formName: {
+      type: String,
+      default: 'form'
+    }
+  },
   mounted () {
   },
   methods: {

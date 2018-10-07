@@ -1,5 +1,6 @@
 export default function (timestamp) {
-  if (String(timestamp).length !== 13) timestamp *= 1000
+  timestamp = parseInt(timestamp)
+  if (String(timestamp).length <= 11) timestamp *= 1000
 
   let dt = new Date(timestamp)
 
