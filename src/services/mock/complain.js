@@ -1,7 +1,7 @@
 // eslint-disable
 import Mock from 'mockjs'
 
-const mockList = () => Mock.mock({'data|2-10': [
+const mockList = () => Mock.mock({'data|5-10': [
   {
     id: '@increment',
     cate: '@natural(1, 2)',

@@ -9,9 +9,13 @@ page
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapActions } = createNamespacedHelpers('repair')
+
 export default {
   data () {
     return {
+      id: this.$route.params.id,
       status: 3,
       events: [
         {
@@ -34,6 +38,20 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    ...mapState(['details'])
+  },
+  methods: {
+    ...mapActions(['read'])
+  },
+  mounted () {
+    this.$peco.loading.show()
+    this.read(this.id).then(res => {
+      this.status = res.status
+      this.events = res.events
+      this.$peco.loading.hide()
+    })
   }
 }
 </script>

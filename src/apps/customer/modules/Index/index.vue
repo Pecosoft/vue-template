@@ -2,11 +2,14 @@
 page
   profile-header(:name='name' :desc='desc' :avatar='avatar')
   grid(:data='gridData' :col-num="2" bg-color="#fff" @clickgrid="handleOnClickGrid")
-  pannel(:gutter="10" title="订单数（50）")
-    order-list(style="margin: 10px 0 20px;" @clicklist="handleOnClickList" @clickbtn="handleOnClickBtn" :data="listData" :privs="privs")
+  pannel(:gutter="10" :title="`订单数（${list.length}）`")
+    order-list(style="margin: 10px 0 20px;" @clicklist="handleOnClickList" @clickbtn="handleOnClickBtn" :data="list" :privs="privs")
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapActions } = createNamespacedHelpers('repair')
+
 export default {
   name: 'index',
   data () {
@@ -20,12 +23,6 @@ export default {
         {id: 3, name: '投诉', icon: 'complain', url: '/customer/complain'},
         {id: 4, name: '建议', icon: 'suggest', url: '/customer/suggest'}
       ],
-      listData: [
-        {id: 1, sn: '2018050210524290585581', addr: '广东省深圳市南山区', status: 0, product: {name: 'T-500H', avatar: 'http://iph.href.lu/80x80?text=产品图片'}, desc: '故障', create_time: new Date().getTime()},
-        {id: 2, sn: '2017110810335533171752', addr: '广东省深圳市南山区', status: 1, product: {name: 'T-500H', avatar: 'http://iph.href.lu/80x80?text=产品图片'}, desc: '故障', create_time: new Date().getTime()},
-        {id: 3, sn: '2017110810320688829954', addr: '广东省深圳市南山区', status: 2, product: {name: 'T-500H', avatar: 'http://iph.href.lu/80x80?text=产品图片'}, desc: '故障', create_time: new Date().getTime()},
-        {id: 4, sn: '2017102621550936318893', addr: '广东省深圳市南山区', status: 3, product: {name: 'T-500H', avatar: 'http://iph.href.lu/80x80?text=产品图片'}, desc: '故障', create_time: new Date().getTime()}
-      ],
       privs: [
         [{id: 0, name: '查看'}],
         [{id: 0, name: '查看'}],
@@ -36,7 +33,11 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState(['list'])
+  },
   methods: {
+    ...mapActions(['fetch']),
     handleOnClickGrid: gd => {
       console.log('click on grid', gd.id)
     },
@@ -50,6 +51,12 @@ export default {
           break
       }
     }
+  },
+  mounted () {
+    this.$peco.loading.show()
+    this.fetch().then(data => {
+      this.$peco.loading.hide()
+    })
   }
 }
 </script>

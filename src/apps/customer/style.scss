@@ -26,10 +26,12 @@
   background: $color-primary;
   color:  #fff;
   font-size: 16px;
-  a {
+
+  a, a:active, a:hover, a:link, a:visited {
     color:  #fff;
     font-size: 16px;
   }
+
   &+& {
     position: relative;
     &:before {

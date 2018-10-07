@@ -5,7 +5,7 @@ page
     p.frt.aux.gray {{ repairDetail.status|status-to-text }}
   card(:route='{name: "RepairView", params: {id: id}}')
     p 报修状态：{{ repairDetail.status|status-to-text }}
-    p.aux.gray.gapt {{ repairDetail.logs[0] }}
+    p.aux.gray.gapt {{ topEvent }}
   card
     p {{ repairDetail.user.name }} {{ repairDetail.user.mobile }}
     p.aux.gray.gapt {{ repairDetail.user.company }}
@@ -40,8 +40,13 @@ export default {
       repairDetail: {
         order_sn: '2018050210524290585581',
         status: 1,
-        logs: [
-          '2018-05-02 10:52:42 用户已提交报修单'
+        events: [
+          {
+            id: 1,
+            who: '张三',
+            do: '受理订单',
+            datetime: new Date().getTime()
+          }
         ],
         user: {
           name: '张三',
@@ -61,9 +66,7 @@ export default {
           '/static/logo.png',
           '/static/logo.png'
         ]
-      },
-      btns: [
-      ]
+      }
     }
   },
   filters: {
@@ -71,7 +74,11 @@ export default {
     timestampToText
   },
   computed: {
-    ...mapState(['details'])
+    ...mapState(['details']),
+    topEvent () {
+      let event = this.repairDetail.events[0]
+      return timestampToText(event.datetime) + event.who + event.do
+    }
   },
   methods: {
     ...mapActions(['read'])
