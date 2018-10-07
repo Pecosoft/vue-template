@@ -100,34 +100,4 @@ export default {
     }
   }
 }
-
-.flex1 {
-  flex: 1;
-}
-
-.primary {
-  color: $color-primary;
-}
-
-.red {
-  color: $red;
-}
-
-.link {
-  color: $color-link;
-}
-
-.gray {
-  color: $gray-600;
-}
-
-.mc {
-  font-size: $font-size-primary;
-}
-.aux {
-  font-size: $font-size-aux;
-}
-.frt {
-  float: right;
-}
 </style>

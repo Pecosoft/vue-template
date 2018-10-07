@@ -1,6 +1,6 @@
 <template lang="pug">
   .peco-pannel(:style='`background-color: ${thisBgColor}; margin: ${thisGutter}px 0;`')
-    h3.peco-pannel-hd(v-if='thisTitle') {{ thisTitle }}
+    p.peco-pannel-hd(v-if='thisTitle') {{ thisTitle }}
     article.peco-pannel-bd
       slot
 </template>
@@ -35,7 +35,7 @@ export default {
 
 .peco-pannel-hd {
   padding: 10px;
-  color: $gray-500;
+  color: $color-text2;
   border-bottom: 1px solid $color-border;
 }
 </style>
