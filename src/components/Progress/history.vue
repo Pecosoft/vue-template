@@ -16,7 +16,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.updateIndex()
     this.updateLinePosition()
   },
@@ -24,7 +24,7 @@ export default {
     updateIndex () {
       let children = this.$children
       let len = children.length
-      for (let i=0; i<len; i++) {
+      for (let i = 0; i < len; i++) {
         children[i].index = i
       }
     },
@@ -34,7 +34,7 @@ export default {
       let circles = el.querySelectorAll('.circle')
       let len = circles.length
       let first = circles[0]
-      let last = circles[len-1]
+      let last = circles[len - 1]
 
       let top = first.offsetTop
       let bottom = height - last.offsetTop
