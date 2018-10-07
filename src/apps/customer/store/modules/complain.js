@@ -1,16 +1,23 @@
 /* eslint-disable */
 import updateObj from 'utils/updateObj'
-import { repair } from '@/services'
+import { complain } from '@/services'
 
 export default {
   namespaced: true,
   state: {
-    form: {
+    serviceForm: {
       user_id: 1,
-      product_id: 0,
+      cate: 2,
+      contact: 0,
+      description: ''
+    },
+    productForm: {
+      user_id: 1,
+      cate: 1,
+      contact: 0,
       description: '',
-      avatar: 0,
-      voice: 0
+      product_model: '',
+      machine_sn: ''
     },
     list: [
     ],
@@ -18,13 +25,17 @@ export default {
   },
   mutations: {
     ['CHANGE'] (state, formData) {
-      updateObj(state.form, formData)
+      if (formData.cate == 1) {
+        updateObj(state.productForm, formData)
+      } else {
+        updateObj(state.serviceForm, formData)
+      }
     }
   },
   actions: {
-    async fetch ({ state }) {
+    async fetch ({ state, commit }) {
       if (state.list.length) return state.list
-      let res = await repair.fetch()
+      let res = await complain.fetch()
       state.list = res
       return res
     },
@@ -33,7 +44,7 @@ export default {
       let details = state.details
       let detail = details[idStr]
       if (detail) return detail
-      let res = await repair.read(id)
+      let res = await complain.read(id)
       details[idStr] = res
       return res
     }
