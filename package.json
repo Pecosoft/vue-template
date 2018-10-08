@@ -9,7 +9,7 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "start": "npm run dev",
+    "start": "npm run dev:dsclerk",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "dev:customer": "APP=customer webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "dev:dsclerk": "APP=dsclerk webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
