@@ -1,5 +1,6 @@
 <template lang='pug'>
   page
+    tab(:tabs='["待受理", "已受理", "已分配", "进行中", "已完成"]' v-model='tabIndex')
     create(title='申请报修' btn-text='提交报修' resource-name='repair' :model='repair' store-module='repair')
     btn-area
       btn-primary(loading @click.native='showLoading("稍等")') 保存提交
@@ -23,6 +24,7 @@ import repair from '@/models/repair'
 export default {
   data () {
     return {
+      tabIndex: 0,
       repair,
       showDialog: false
     }
