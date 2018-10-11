@@ -37,9 +37,5 @@ export default {
 </script>
 
 <style lang="scss">
-<<<<<<< HEAD
-@import 'dsclerk/style.scss';
-=======
 @import 'dsclerk/style.scss'
->>>>>>> dsclerk
 </style>

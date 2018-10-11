@@ -57,12 +57,12 @@ export default {
 
 .peco-order-item_hd {
   padding: 0 0 10px;
-  border-bottom: 1px solid $color-border2;
+  border-bottom: 1px solid $color-border;
 }
 
 .peco-order-item_bd {
   padding: 10px 0;
-  border-bottom: 1px solid $color-border2;
+  border-bottom: 1px solid $color-border;
 }
 
 .peco-order-item_inner {
