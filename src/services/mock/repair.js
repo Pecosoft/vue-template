@@ -6,7 +6,7 @@ const mockList = () => Mock.mock({'data|5-10': [
     id: '@increment',
     sn: '@string(number, 22)',
     addr: '@county(true)',
-    status: '@natural(0, 5)',
+    status: '@natural(0, 6)',
     product: {
       name: '@word',
       avatar: 'http://iph.href.lu/80x80?text=产品图片'

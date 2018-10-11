@@ -1,26 +1,31 @@
 <template lang="pug">
   page
-    suggest-list(:data='list' style='margin-bottom: 60px')
-    .peco-fixed-bottom-area
-      ul.peco-h-flex-btns
-        li.peco-h-flex-btn
-          router-link(:to='{name: "SuggestCreate"}') 新增建议
+    talk-card(v-for='item in list' :key='item.id' :header='item.user' @click.native='handleOnClickTalkCard(item)')
+      p 产品：
+        span.gray {{ item.product_model }}
+      p 建议：
+        span.gray {{ item.description }}
+      p(style='margin-top: 15px') 联系电话：
+        span.link {{ item.contact }}
 </template>
 
 <script>
-import SuggestList from 'components/Business/SuggestList'
+import TalkCard from 'components/Business/TalkCard'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('suggest')
 
 export default {
   components: {
-    SuggestList
+    TalkCard
   },
   computed: {
     ...mapState(['list'])
   },
   methods: {
-    ...mapActions(['fetch'])
+    ...mapActions(['fetch']),
+    handleOnClickTalkCard (item) {
+      this.$router.push({ name: 'ComplainDetail', params: { id: item.id } })
+    }
   },
   mounted () {
     this.$peco.loading.show()
@@ -32,5 +37,9 @@ export default {
 </script>
 
 <style lang="scss">
+<<<<<<< HEAD
 @import 'dsclerk/style.scss';
+=======
+@import 'dsclerk/style.scss'
+>>>>>>> dsclerk
 </style>

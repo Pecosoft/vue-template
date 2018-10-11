@@ -1,6 +1,6 @@
 <template lang="pug">
 page
-  talk-card(:header='complainDetail.user' :btns='btns' @clickbtn='handleOnClickBtn')
+  talk-card(:header='complainDetail.user')
     template(v-if='complainDetail.cate==1')
       p 产品型号：
         span.gray {{ complainDetail.product_model }}
@@ -11,7 +11,7 @@ page
     p(style='margin-top: 15px') 联系电话：
       span.link {{ complainDetail.contact }}
   div(style='padding: 20px 15px 10px; font-size: 14px;') 回复：
-  talk-card(:header='complainDetail.reply.user' :btns='btns' @clickbtn='handleOnClickBtn')
+  talk-card(:header='complainDetail.reply.user')
     p 回复：
       span.gray {{ complainDetail.reply.content }}
 </template>
@@ -48,9 +48,7 @@ export default {
           },
           content: ''
         }
-      },
-      btns: [
-      ]
+      }
     }
   },
   computed: {

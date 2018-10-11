@@ -4,6 +4,12 @@ import Mock from 'mockjs'
 const mockList = () => Mock.mock({'data|5-10': [
   {
     id: '@increment',
+    user: {
+      name: '@ctitle',
+      intro: '@csentence',
+      avatar: '@image(60x60)',
+      datetime: '@date(T)'
+    },
     cate: '@natural(1, 2)',
     status: '@natural(0, 2)',
     contact: '@natural(13000000000, 18999999999)',

@@ -18,6 +18,7 @@ import GroupList from 'components/GroupList'
 import Button from 'components/Button'
 import Create from 'components/Create'
 import Dialog from 'components/Dialog'
+import Tab from 'components/Tab'
 
 // Global plugins
 import LoadingPlugin from 'plugins/loading'
@@ -35,6 +36,7 @@ Vue.use(GroupList)
 Vue.use(Button)
 Vue.use(Create)
 Vue.use(Dialog)
+Vue.use(Tab)
 
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
