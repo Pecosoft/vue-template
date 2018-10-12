@@ -5,5 +5,5 @@ export default function (status) {
         : status === 3 ? '已接单'
           : status === 4 ? '维修中'
             : status === 5 ? '已完成'
-              : status === 6 ? '已评论' : 'unknown'
+              : status === 6 ? '已评价' : 'unknown'
 }
