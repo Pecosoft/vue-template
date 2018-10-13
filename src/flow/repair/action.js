@@ -9,10 +9,13 @@ export default (action, data, { $router }) => {
     case 'rate':
       break
     case 'contact':
+      window.location.href = 'tel://' + data.user.mobile
       break
     case 'dispatch1': // 分配维修主管
+      $router.push({ name: 'RepairDispatch', params: { id: data.id } })
       break
     case 'revoke1': // 撤回已分配的维修主管
+      data.status = 0
       break
     case 'info1': // 已分配信息
       break

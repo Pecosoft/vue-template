@@ -7,11 +7,10 @@ const mockList = () => Mock.mock({'data|5-10': [
     user: {
       name: '@ctitle',
       intro: '@csentence',
-      avatar: '@image(60x60)',
-      datetime: '@date(T)'
+      avatar: '@image(60x60)'
     },
     cate: '@natural(1, 2)',
-    status: '@natural(0, 2)',
+    status: '@natural(0, 1)',
     contact: '@natural(13000000000, 18999999999)',
     description: '@cparagraph(1, 3)',
     create_time: '@date(T)',
@@ -24,19 +23,20 @@ const mockDetail = () => Mock.mock({'data':
     user: {
       name: '@ctitle',
       intro: '@csentence',
-      avatar: '@image(60x60)',
-      datetime: '@date(T)'
+      avatar: '@image(60x60)'
     },
+    status: '@natural(0, 1)',
     product_model: '@word',
     description: '@cparagraph(1, 3)',
     contact: '@natural(13000000000, 18999999999)',
+    create_time: '@date(T)',
     reply: {
       user: {
         name: '@ctitle',
         intro: '@csentence',
-        avatar: '@image(60x60)',
-        datetime: '@date(T)'
+        avatar: '@image(60x60)'
       },
+      create_time: '@date(T)',
       content: '@cparagraph(1, 3)'
     }
   }

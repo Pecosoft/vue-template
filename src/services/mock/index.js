@@ -4,6 +4,7 @@ import mockProduct from './product'
 import mockRepair from './repair'
 import mockComplain from './complain'
 import mockSuggest from './suggest'
+import mockGpleader from './gpleader'
 
 export default {
   bootstrap () {
@@ -13,5 +14,6 @@ export default {
     mockRepair(mockAdapter)
     mockComplain(mockAdapter)
     mockSuggest(mockAdapter)
+    mockGpleader(mockAdapter)
   }
 }
