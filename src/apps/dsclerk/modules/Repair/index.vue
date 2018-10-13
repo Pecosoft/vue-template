@@ -21,7 +21,7 @@ export default {
       tabs: ['未分配', '已分配', '已完成'],
       privs: [
         [{id: 'contact', name: '联系用户'}, {id: 'dispatch1', name: '分配主管'}], // status: 0 待受理
-        [{id: 'info1', name: '已分配XX'}, {id: 'revoke1', name: '撤回'}], // status: 1 已受理
+        [{id: 'info1', name: '已分配XX', template: '已分配[dispatch.name]'}, {id: 'revoke1', name: '撤回'}], // status: 1 已受理
         [{id: 'view', name: '查看报修'}], // status: 2 已派单
         [{id: 'view', name: '查看报修'}], // status: 3 已接单
         [{id: 'view', name: '查看报修'}], // status: 4 维修中
@@ -34,31 +34,40 @@ export default {
     ...mapState(['list']),
     list0 () {
       let list = this.list
-      return list.filter(item => {
+      let list0 = list.filter(item => {
         if (item.status === 0) {
           return true
         }
         return false
       })
+      return list0.sort((a, b) => {
+        return b.create_time - b.create_time
+      })
     },
     list1 () {
       let list = this.list
-      return list.filter(item => {
+      let list1 = list.filter(item => {
         let status = item.status
         if (status > 0 && status < 5) {
           return true
         }
         return false
       })
+      return list1.sort((a, b) => {
+        return a.status !== b.status ? a.status - b.status : b.create_time - a.create_time
+      })
     },
     list2 () {
       let list = this.list
-      return list.filter(item => {
+      let list2 = list.filter(item => {
         let status = item.status
         if (status >= 5) {
           return true
         }
         return false
+      })
+      return list2.sort((a, b) => {
+        return a.status !== b.status ? a.status - b.status : b.create_time - a.create_time
       })
     }
   },
