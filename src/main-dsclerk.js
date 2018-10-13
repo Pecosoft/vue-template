@@ -21,6 +21,7 @@ import Create from 'components/Create'
 import Dialog from 'components/Dialog'
 import Progress from 'components/Progress'
 import Tab from 'components/Tab'
+import List from 'components/List'
 
 // Global plugins
 import LoadingPlugin from 'plugins/loading'
@@ -42,6 +43,7 @@ Vue.use(Create)
 Vue.use(Dialog)
 Vue.use(Progress)
 Vue.use(Tab)
+Vue.use(List)
 
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
