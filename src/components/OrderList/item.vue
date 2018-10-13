@@ -12,7 +12,7 @@
       p.aux.gray 所属区域:&nbsp;{{ thisData.addr||'地址' }}
     .peco-order-item_ft.aux
       span.gray {{ thisData.create_time|timestamp-to-text }}
-      span.frt.link(v-for='btn in btns' :key='btn.id' @click.stop='$parent.$emit("clickbtn", thisData, btn)') {{ btn.name }}
+      span.frt.link(v-for='btn in btns' :key='btn.id' @click.stop='$parent.$emit("clickbtn", thisData, btn)') {{ btnTpls[btn.id] || btn.name }}
 </template>
 
 <script>
@@ -26,11 +26,36 @@ export default {
     statusToText,
     timestampToText
   },
+  data () {
+    return {
+      btnTpls: {}
+    }
+  },
   computed: {
     btns () {
       let status = parseInt(this.thisData.status)
       let privs = this.$parent.privs
-      return privs[status]
+      let privBtns = privs[status]
+      privBtns.forEach(item => {
+        if (item.template) {
+          let template = item.template
+          let templateRegx = /\[(.+)\]/
+          let matches = template.match(templateRegx)
+          let replace = matches[0]
+          let fields = matches[1]
+          if (fields.indexOf('.') === -1) {
+            this.btnTpls[item.id] = template.replace(replace, thisData[fields])
+          } else {
+            let fieldsArr = fields.split('.')
+            let d0 = this.thisData[fieldsArr[0]]
+            if (d0) {
+              let d1 = d0[fieldsArr[1]]
+              if (d1) { this.btnTpls[item.id] = template.replace(replace, d1) }
+            }
+          }
+        }
+      })
+      return privBtns
     }
   },
   methods: {

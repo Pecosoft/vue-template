@@ -14,22 +14,12 @@ export default {
     privs: {
       type: Array,
       default () {
-        return [
-          [{id: 0, name: '查看'}, {id: 1, name: '分配'}],
-          [{id: 0, name: '查看'}, {id: 2, name: '分配'}, {id: -1, name: '撤回'}, {id: -2, name: '驳回'}],
-          [{id: 0, name: '查看'}, {id: 3, name: '接单'}, {id: -3, name: '撤回'}, {id: -4, name: '驳回'}],
-          [{id: 0, name: '查看'}, {id: 4, name: '结案'}, {id: -6, name: '协助'}],
-          [{id: 0, name: '查看'}, {id: 5, name: '评论'}],
-          [{id: 0, name: '查看'}]
-        ]
+        return []
       }
     }
   },
   components: {
     item
-  },
-  mounted () {
-    // this.sortBy('id', 'asc')
   }
 }
 </script>

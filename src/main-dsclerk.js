@@ -20,10 +20,8 @@ import Button from 'components/Button'
 import Create from 'components/Create'
 import Dialog from 'components/Dialog'
 import Progress from 'components/Progress'
-<<<<<<< HEAD
-=======
 import Tab from 'components/Tab'
->>>>>>> dsclerk
+import List from 'components/List'
 
 // Global plugins
 import LoadingPlugin from 'plugins/loading'
@@ -44,10 +42,8 @@ Vue.use(Button)
 Vue.use(Create)
 Vue.use(Dialog)
 Vue.use(Progress)
-<<<<<<< HEAD
-=======
 Vue.use(Tab)
->>>>>>> dsclerk
+Vue.use(List)
 
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)

@@ -2,42 +2,68 @@
   .peco-talk-card
     .peco-talk-card__hd
       .peco-talk-card-avatar
-        img(:src='header.avatar')
+        img(:src='thisData.user.avatar')
       div(style='margin-left: 10px')
-        h3.peco-talk-card-name {{ header.name }}
-        p.peco-talk-card-intro {{ header.intro }}
+        h3.peco-talk-card-name {{ thisData.user.name }}
+        p.peco-talk-card-intro {{ thisData.user.intro }}
     .peco-talk-card__bd
       slot
     .peco-talk-card__ft(v-if='btns && btns.length')
-      span.frt.link(v-for='btn in btns' :key='btn.id' @click.stop='$emit("clickbtn", btn)') {{ btn.name }}
-    .peco-talk-card-rtfixed {{ header.datetime|timestamp-to-text }}
+      span.frt.link(v-for='btn in btns' :key='btn.id' @click.stop='$emit("clickbtn", thisData, btn)') {{ btnTpls[btn.id] || btn.name }}
+    .peco-talk-card-rtfixed {{ thisData.create_time|timestamp-to-text }}
 </template>
 
 <script>
 import { timestampToText } from '@/filters'
+import data from 'mixins/data'
 
 export default {
   name: 'TalkCard',
+  mixins: [data],
   filters: {
     timestampToText
   },
   props: {
-    header: {
-      type: Object,
-      default () {
-        return {
-          name: '',
-          avatar: '/static/logo.png',
-          intro: '',
-          datetime: new Date().getTime()
-        }
-      }
-    },
-    btns: {
+    privs: {
       type: Array,
       default () {
         return []
       }
+    }
+  },
+  data () {
+    return {
+      btnTpls: {}
+    }
+  },
+  computed: {
+    btns () {
+      let status = parseInt(this.thisData.status)
+      let privs = this.privs
+      if (!privs || !privs.length) return []
+      let privBtns = privs[status]
+      privBtns.forEach(item => {
+        if (item.template) {
+          let template = item.template
+          let templateRegx = /\[(.+)\]/
+          let matches = template.match(templateRegx)
+          let replace = matches[0]
+          let fields = matches[1]
+          if (fields.indexOf('.') === -1) {
+            // eslint-disable-next-line
+            this.btnTpls[item.id] = template.replace(replace, this.thisData[fields])
+          } else {
+            let fieldsArr = fields.split('.')
+            let d0 = this.thisData[fieldsArr[0]]
+            if (d0) {
+              let d1 = d0[fieldsArr[1]]
+              // eslint-disable-next-line
+              if (d1) { this.btnTpls[item.id] = template.replace(replace, d1) }
+            }
+          }
+        }
+      })
+      return privBtns
     }
   }
 }

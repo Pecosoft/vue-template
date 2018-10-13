@@ -1,14 +1,19 @@
 // eslint-disable
 import Mock from 'mockjs'
 
-const mockList = () => Mock.mock({'data|5-10': [
+const mockList = () => Mock.mock({'data|20-30': [
   {
     id: '@increment',
     user: {
       name: '@ctitle',
       intro: '@csentence',
-      avatar: '@image(60x60)',
-      datetime: '@date(T)'
+      avatar: '@image(60x60)'
+    },
+    dispatch: {
+      id: '@increment',
+      name: '@cname',
+      mobile: '@natural(13000000000, 18999999999)',
+      avatar: '@image(60x60)'
     },
     cate: '@natural(1, 2)',
     status: '@natural(0, 2)',
@@ -25,21 +30,22 @@ const mockDetail = () => Mock.mock({'data':
     user: {
       name: '@ctitle',
       intro: '@csentence',
-      avatar: '@image(60x60)',
-      datetime: '@date(T)'
+      avatar: '@image(60x60)'
     },
     cate: '@natural(1, 2)',
+    status: '@natural(0, 2)',
     product_model: '@word',
     machine_sn: '@string',
     description: '@cparagraph(1, 3)',
+    create_time: '@date(T)',
     contact: '@natural(13000000000, 18999999999)',
     reply: {
       user: {
         name: '@ctitle',
         intro: '@csentence',
-        avatar: '@image(60x60)',
-        datetime: '@date(T)'
+        avatar: '@image(60x60)'
       },
+      create_time: '@date(T)',
       content: '@cparagraph(1, 3)'
     }
   }

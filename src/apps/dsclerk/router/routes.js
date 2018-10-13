@@ -2,10 +2,12 @@ import Index from 'dsclerk/modules/Index'
 import Repair from 'dsclerk/modules/Repair'
 import RepairDetail from 'dsclerk/modules/Repair/detail'
 import RepairView from 'dsclerk/modules/Repair/view'
+import RepairDispatch from 'dsclerk/modules/Repair/dispatch'
 import Consult from 'dsclerk/modules/Consult'
 import Complain from 'dsclerk/modules/Complain'
 import ComplainCreate from 'dsclerk/modules/Complain/create'
 import ComplainDetail from 'dsclerk/modules/Complain/detail'
+import ComplainDispatch from 'dsclerk/modules/Complain/dispatch'
 import Suggest from 'dsclerk/modules/Suggest'
 import SuggestCreate from 'dsclerk/modules/Suggest/create'
 import SuggestDetail from 'dsclerk/modules/Suggest/detail'
@@ -44,6 +46,14 @@ export default [
     }
   },
   {
+    name: 'RepairDispatch',
+    path: '/dsclerk/repair/:id/dispatch',
+    component: RepairDispatch,
+    meta: {
+      title: '分配维修主管'
+    }
+  },
+  {
     name: 'Consult',
     path: '/dsclerk/consult',
     component: Consult,
@@ -71,6 +81,14 @@ export default [
     name: 'ComplainDetail',
     path: '/dsclerk/complain/:id',
     component: ComplainDetail,
+    meta: {
+      title: '投诉详情'
+    }
+  },
+  {
+    name: 'ComplainDispatch',
+    path: '/dsclerk/complain/:id/dispatch',
+    component: ComplainDispatch,
     meta: {
       title: '投诉详情'
     }

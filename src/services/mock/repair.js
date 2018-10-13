@@ -1,12 +1,25 @@
 // eslint-disable
 import Mock from 'mockjs'
 
-const mockList = () => Mock.mock({'data|5-10': [
+const mockList = () => Mock.mock({'data|20-30': [
   {
     id: '@increment',
     sn: '@string(number, 22)',
     addr: '@county(true)',
     status: '@natural(0, 6)',
+    user: {
+      name: '@cname',
+      mobile: '@natural(13000000000, 18999999999)',
+      company: '深圳市XXXXxxxxxxxx公司',
+      addr: '@county(true)',
+      block: 'T栋XXXXXX'
+    },
+    dispatch: {
+      id: '@increment',
+      name: '@cname',
+      mobile: '@natural(13000000000, 18999999999)',
+      avatar: '@image(60x60)'
+    },
     product: {
       name: '@word',
       avatar: 'http://iph.href.lu/80x80?text=产品图片'
