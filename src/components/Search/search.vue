@@ -3,7 +3,7 @@ div
   .peco-search-bar(:class='{focus: isSearchFocus}')
     .peco-search
       .peco-search-icon
-        i.peco-icon.peco-icon-search
+        i.peco-icon.peco-icon-searchx
       input.peco-search-input(@focus='isSearchFocus=true' v-model='searchKeyword' placeholder='输入关键字')
       .peco-clear-icon(v-show='searchKeyword' @click='searchKeyword=""')
         i.peco-icon.peco-icon-clear
@@ -23,7 +23,7 @@ div
           i.peco-icon.peco-icon-uncheck
     div(v-show='!searchResults.length')
       .peco-search-empty
-      p(style='text-align: center; font: 14px/20px PingFangSC-Regular,sans-serif;color: #C1C1C1;') 查询不到相关信息
+        p(style='text-align: center; font: 14px/20px PingFangSC-Regular,sans-serif;color: #C1C1C1;') 查询不到相关信息
 </template>
 
 <script>

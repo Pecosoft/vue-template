@@ -34,7 +34,6 @@ export default {
 @import 'style/extend/_layout.scss';
 
 .peco-card {
-  display: block;
   position: relative;
   @extend %pannel;
 }
