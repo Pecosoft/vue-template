@@ -19,6 +19,16 @@ export default {
   mutations: {
     ['CHANGE'] (state, formData) {
       updateObj(state.form, formData)
+    },
+    ['DISPATCH'] (state, { id, picked }) {
+      let list = state.list
+      for (var i = 0, len = list.length; i < len; i++) {
+        let item = list[i]
+        if (item.id === id) {
+          item.status = 1
+          item.dispatch = picked
+        }
+      }
     }
   },
   actions: {
