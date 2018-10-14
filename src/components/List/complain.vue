@@ -23,13 +23,16 @@ export default {
   components: {
     TalkCard
   },
-  data () {
-    return {
-      privs: [
-        [{id: 'contact', name: '联系用户'}, {id: 'dispatch', name: '分配'}], // status: 0 未分配
-        [{id: 'info', name: '已分配XX', template: '已分配[dispatch.name]'}, {id: 'revoke', name: '撤回'}], // status: 1 已分配
-        [] // status: 2 已完成
-      ]
+  props: {
+    privs: {
+      type: Array,
+      default () {
+        return [
+          [{id: 'contact', name: '联系用户'}, {id: 'dispatch', name: '分配'}], // status: 0 未分配
+          [{id: 'info', name: '已分配XX', template: '已分配[dispatch.name]'}, {id: 'revoke', name: '撤回'}], // status: 1 已分配
+          [] // status: 2 已完成
+        ]
+      }
     }
   },
   methods: {

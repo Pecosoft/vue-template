@@ -17,6 +17,7 @@ const mockList = () => Mock.mock({'data|20-30': [
     },
     cate: '@natural(1, 2)',
     status: '@natural(0, 2)',
+    ismy: '@natural(0, 1)',
     contact: '@natural(13000000000, 18999999999)',
     description: '@cparagraph(1, 3)',
     create_time: '@date(T)',

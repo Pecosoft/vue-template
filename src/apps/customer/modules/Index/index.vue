@@ -1,7 +1,7 @@
 <template lang="pug">
 page
   profile-header(:name='name' :desc='desc' :avatar='avatar')
-  grid(:data='gridData' :col-num="4" bg-color="#fff" @clickgrid="handleOnClickGrid")
+  grid(:data='gridData' :col-num="2" bg-color="#fff" @clickgrid="handleOnClickGrid")
   pannel(:gutter="10" :title="`订单数（${list.length}）`")
     order-list(style="margin: 10px 0 20px;" @clicklist="handleOnClickList" @clickbtn="handleOnClickBtn" :data="list" :privs="privs")
 </template>

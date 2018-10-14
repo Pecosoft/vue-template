@@ -9,7 +9,7 @@
     .peco-talk-card__bd
       slot
     .peco-talk-card__ft(v-if='btns && btns.length')
-      span.frt.link(v-for='btn in btns' :key='btn.id' @click.stop='$emit("clickbtn", thisData, btn)') {{ btnTpls[btn.id] || btn.name }}
+      span.frt.link(v-for='btn in btns' v-if='!btnHide[btn.id]' :key='btn.id' @click.stop='$emit("clickbtn", thisData, btn)') {{ btnTpls[btn.id] || btn.name }}
     .peco-talk-card-rtfixed {{ thisData.create_time|timestamp-to-text }}
 </template>
 
@@ -33,7 +33,8 @@ export default {
   },
   data () {
     return {
-      btnTpls: {}
+      btnTpls: {},
+      btnHide: {}
     }
   },
   computed: {
@@ -60,6 +61,15 @@ export default {
               // eslint-disable-next-line
               if (d1) { this.btnTpls[item.id] = template.replace(replace, d1) }
             }
+          }
+        }
+        if (item._if) {
+          let [_ifkey, _ifval] = item._if.split('=')
+          let _ifdataval = this.thisData[_ifkey]
+          // eslint-disable-next-line
+          if (_ifdataval != _ifval) {
+            // eslint-disable-next-line
+            this.btnHide[item.id] = true
           }
         }
       })

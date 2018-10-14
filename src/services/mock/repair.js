@@ -7,6 +7,7 @@ const mockList = () => Mock.mock({'data|20-30': [
     sn: '@string(number, 22)',
     addr: '@county(true)',
     status: '@natural(0, 6)',
+    tag: '@natural(0, 1)', // 0: 无标签 1:协助 2:驳回
     user: {
       name: '@cname',
       mobile: '@natural(13000000000, 18999999999)',
@@ -47,6 +48,17 @@ const mockDetail = () => Mock.mock({'data':
       company: '深圳市XXXXxxxxxxxx公司',
       addr: '@county(true)',
       block: 'T栋XXXXXX'
+    },
+    rate: {
+      user: {
+        name: '@cname',
+        avatar: '@image(80x80)'
+      },
+      sudu_stars: '@natural(0, 4)',
+      taidu_stars: '@natural(0, 4)',
+      jishu_stars: '@natural(0, 4)',
+      content: '@cparagraph(1, 3)',
+      create_time: '@date(T)'
     },
     product_model: '@word',
     product_avatar: '@image(80x80)',

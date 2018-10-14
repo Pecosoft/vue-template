@@ -7,7 +7,10 @@ export default (action, data, { $router }) => {
     case 'dispatch': // 分配
       $router.push({ name: 'ComplainDispatch', params: { id: data.id } })
       break
-    case 'revoke': // 撤回
+    case 'revoke': // 派单文员撤回
+      data.status = 0
+      break
+    case 'reject': // 维修组长和管理人员驳回
       data.status = 0
       break
     case 'info': // 已分配
