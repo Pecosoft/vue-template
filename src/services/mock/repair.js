@@ -49,6 +49,17 @@ const mockDetail = () => Mock.mock({'data':
       addr: '@county(true)',
       block: 'T栋XXXXXX'
     },
+    rate: {
+      user: {
+        name: '@cname',
+        avatar: '@image(80x80)'
+      },
+      sudu_stars: '@natural(0, 4)',
+      taidu_stars: '@natural(0, 4)',
+      jishu_stars: '@natural(0, 4)',
+      content: '@cparagraph(1, 3)',
+      create_time: '@date(T)'
+    },
     product_model: '@word',
     product_avatar: '@image(80x80)',
     description: '@cparagraph(1, 3)',
