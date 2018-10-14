@@ -2,13 +2,10 @@ import Index from 'gpleader/modules/Index'
 import Repair from 'gpleader/modules/Repair'
 import RepairDetail from 'gpleader/modules/Repair/detail'
 import RepairView from 'gpleader/modules/Repair/view'
-import Consult from 'gpleader/modules/Consult'
+import RepairDispatch from 'gpleader/modules/Repair/dispatch'
 import Complain from 'gpleader/modules/Complain'
-import ComplainCreate from 'gpleader/modules/Complain/create'
 import ComplainDetail from 'gpleader/modules/Complain/detail'
-import Suggest from 'gpleader/modules/Suggest'
-import SuggestCreate from 'gpleader/modules/Suggest/create'
-import SuggestDetail from 'gpleader/modules/Suggest/detail'
+import ComplainDispatch from 'gpleader/modules/Complain/dispatch'
 
 export default [
   {
@@ -44,11 +41,11 @@ export default [
     }
   },
   {
-    name: 'Consult',
-    path: '/gpleader/consult',
-    component: Consult,
+    name: 'RepairDispatch',
+    path: '/gpleader/repair/:id/dispatch',
+    component: RepairDispatch,
     meta: {
-      title: '咨询'
+      title: '分配维修人员'
     }
   },
   {
@@ -60,14 +57,6 @@ export default [
     }
   },
   {
-    name: 'ComplainCreate',
-    path: '/gpleader/complain/create',
-    component: ComplainCreate,
-    meta: {
-      title: '新增投诉'
-    }
-  },
-  {
     name: 'ComplainDetail',
     path: '/gpleader/complain/:id',
     component: ComplainDetail,
@@ -76,27 +65,11 @@ export default [
     }
   },
   {
-    name: 'Suggest',
-    path: '/gpleader/suggest',
-    component: Suggest,
+    name: 'ComplainDispatch',
+    path: '/gpleader/complain/:id/dispatch',
+    component: ComplainDispatch,
     meta: {
-      title: '建议'
-    }
-  },
-  {
-    name: 'SuggestCreate',
-    path: '/gpleader/suggest/create',
-    component: SuggestCreate,
-    meta: {
-      title: '新增建议'
-    }
-  },
-  {
-    name: 'SuggestDetail',
-    path: '/gpleader/suggest/:id',
-    component: SuggestDetail,
-    meta: {
-      title: '建议详情'
+      title: '投诉详情'
     }
   }
 ]
