@@ -1,3 +1,3 @@
 <template lang="pug">
-page 咨询
+  page 结案
 </template>
