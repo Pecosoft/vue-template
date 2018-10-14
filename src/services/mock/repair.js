@@ -7,6 +7,7 @@ const mockList = () => Mock.mock({'data|20-30': [
     sn: '@string(number, 22)',
     addr: '@county(true)',
     status: '@natural(0, 6)',
+    tag: '@natural(0, 1)', // 0: 无标签 1:协助 2:驳回
     user: {
       name: '@cname',
       mobile: '@natural(13000000000, 18999999999)',

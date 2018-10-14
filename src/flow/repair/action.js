@@ -18,18 +18,24 @@ export default (action, data, { $router }) => {
       data.status = 0
       break
     case 'info1': // 已分配信息
+      window.location.href = 'tel://' + data.dispatch.mobile
       break
     case 'reject1': // 维修主管驳回
+      data.status = 0
       break
     case 'dispatch2': // 分配维修师傅
+      $router.push({ name: 'RepairDispatch', params: { id: data.id } })
       break
     case 'revoke2': // 撤回已分配的维修师傅
+      data.status = 1
       break
     case 'info2': // 已分配维修师傅信息
+      window.location.href = 'tel://' + data.dispatch.mobile
       break
     case 'help1': // 维修主管协助
       break
     case 'reject2': // 维修师傅驳回
+      data.status = 1
       break
     case 'help2': // 维修师傅协助
       break
