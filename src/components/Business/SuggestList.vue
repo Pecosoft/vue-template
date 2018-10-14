@@ -43,6 +43,9 @@ export default {
   overflow: hidden;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
+  p {
+    color: $color-text;
+  }
   & + & {
     border-top: 0;
   }

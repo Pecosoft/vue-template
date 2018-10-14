@@ -1,6 +1,6 @@
 <template lang="pug">
 page
-  talk-card(:header='suggestDetail.user' :btns='btns' @clickbtn='handleOnClickBtn')
+  talk-card(:data='suggestDetail' :btns='btns' @clickbtn='handleOnClickBtn')
     p 产品：
       span.gray {{ suggestDetail.product_model }}
     p 建议：
@@ -8,7 +8,7 @@ page
     p(style='margin-top: 15px') 联系电话：
       span.link {{ suggestDetail.contact }}
   div(style='padding: 20px 15px 10px; font-size: 14px;') 回复：
-  talk-card(:header='suggestDetail.reply.user' :btns='btns' @clickbtn='handleOnClickBtn')
+  talk-card(:data='suggestDetail.reply' :btns='btns' @clickbtn='handleOnClickBtn')
     p 回复：
       span.gray {{ suggestDetail.reply.content }}
 </template>
