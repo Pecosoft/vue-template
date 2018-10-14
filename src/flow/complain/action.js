@@ -10,7 +10,7 @@ export default (action, data, { $router }) => {
     case 'revoke': // 派单文员撤回
       data.status = 0
       break
-    case 'reject': // 维修组长驳回
+    case 'reject': // 维修组长和管理人员驳回
       data.status = 0
       break
     case 'info': // 已分配
