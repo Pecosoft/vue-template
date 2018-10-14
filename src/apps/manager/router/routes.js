@@ -2,12 +2,9 @@ import Index from 'manager/modules/Index'
 import Repair from 'manager/modules/Repair'
 import RepairDetail from 'manager/modules/Repair/detail'
 import RepairView from 'manager/modules/Repair/view'
-import Consult from 'manager/modules/Consult'
 import Complain from 'manager/modules/Complain'
-import ComplainCreate from 'manager/modules/Complain/create'
 import ComplainDetail from 'manager/modules/Complain/detail'
 import Suggest from 'manager/modules/Suggest'
-import SuggestCreate from 'manager/modules/Suggest/create'
 import SuggestDetail from 'manager/modules/Suggest/detail'
 
 export default [
@@ -16,7 +13,7 @@ export default [
     path: '/manager',
     component: Index,
     meta: {
-      title: '管理中心'
+      title: '管理主页'
     }
   },
   {
@@ -44,27 +41,11 @@ export default [
     }
   },
   {
-    name: 'Consult',
-    path: '/manager/consult',
-    component: Consult,
-    meta: {
-      title: '咨询'
-    }
-  },
-  {
     name: 'Complain',
     path: '/manager/complain',
     component: Complain,
     meta: {
       title: '投诉'
-    }
-  },
-  {
-    name: 'ComplainCreate',
-    path: '/manager/complain/create',
-    component: ComplainCreate,
-    meta: {
-      title: '新增投诉'
     }
   },
   {
@@ -81,14 +62,6 @@ export default [
     component: Suggest,
     meta: {
       title: '建议'
-    }
-  },
-  {
-    name: 'SuggestCreate',
-    path: '/manager/suggest/create',
-    component: SuggestCreate,
-    meta: {
-      title: '新增建议'
     }
   },
   {
