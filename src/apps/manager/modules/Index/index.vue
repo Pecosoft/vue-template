@@ -5,9 +5,6 @@ page
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('repair')
-
 export default {
   name: 'index',
   data () {
@@ -21,12 +18,6 @@ export default {
         {id: 4, name: '建议', icon: 'suggest', url: '/manager/suggest'}
       ]
     }
-  },
-  mounted () {
-    this.$peco.loading.show()
-    this.fetch().then(data => {
-      this.$peco.loading.hide()
-    })
   }
 }
 </script>
