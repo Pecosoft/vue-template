@@ -8,34 +8,6 @@
 @import 'style/mixin/_mobile.scss';
 @import 'style/extend/_layout.scss';
 
-.peco-h-flex-btns {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  align-items: center;
-  background: $color-primary;
-}
-.peco-h-flex-btn {
-  flex: 1;
-  text-align: center;
-  height: 50px;
-  line-height: 50px;
-  background: $color-primary;
-  color:  #fff;
-  font-size: 16px;
-
-  a, a:active, a:hover, a:link, a:visited {
-    color:  #fff;
-    font-size: 16px;
-  }
-
-  &+& {
-    position: relative;
-    &:before {
-      @include setLeftLine(#fff);
-    }
-  }
+.peco-talk-card + .peco-talk-card {
+  margin-top: 10px;
 }

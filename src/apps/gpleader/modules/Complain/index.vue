@@ -1,25 +1,36 @@
 <template lang="pug">
   page
-    complain-list(:data='list' style='margin-bottom: 60px')
-    .peco-fixed-bottom-area
-      ul.peco-h-flex-btns
-        li.peco-h-flex-btn
-          router-link(:to='{name: "ComplainCreate", query: {cate: 1}}') 产品投诉
-        li.peco-h-flex-btn
-          router-link(:to='{name: "ComplainCreate", query: {cate: 2}}') 服务投诉
+    complain-list(:data='list1and2' :privs='privs')
 </template>
 
 <script>
-import ComplainList from 'components/Business/ComplainList'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('complain')
 
 export default {
-  components: {
-    ComplainList
+  data () {
+    return {
+      privs: [
+        [],
+        [{id: 'contact', name: '联系用户'}, {id: 'reject', name: '驳回'}],
+        []
+      ]
+    }
   },
   computed: {
-    ...mapState(['list'])
+    ...mapState(['list']),
+    list1and2 () {
+      let list = this.list
+      let list1 = list.filter(item => {
+        if (item.status > 0) {
+          return true
+        }
+        return false
+      })
+      return list1.sort((a, b) => {
+        return a.status !== b.status ? a.status - b.status : parseInt(b.create_time) - parseInt(a.create_time)
+      })
+    }
   },
   methods: {
     ...mapActions(['fetch'])
@@ -34,5 +45,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'gpleader/style.scss';
+@import 'gpleader/style.scss'
 </style>
