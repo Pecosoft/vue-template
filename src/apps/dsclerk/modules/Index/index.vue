@@ -9,9 +9,9 @@ export default {
   name: 'index',
   data () {
     return {
-      name: '客服XXX',
-      desc: '广东省 东莞市',
-      avatar: 'static/logo.png',
+      name: this.$store.state.user.user.name,
+      desc: this.$store.state.user.user.id,
+      avatar: this.$store.state.user.user.avatar || 'static/logo.png',
       gridData: [
         {id: 1, name: '报修', icon: 'repaire', url: '/dsclerk/repair'},
         {id: 2, name: '咨询', icon: 'consult', url: '/dsclerk/consult'},
