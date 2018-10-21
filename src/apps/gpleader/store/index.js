@@ -4,6 +4,7 @@ import ProductPicker from 'components/ModelInput/store/modules/ProductPicker'
 import repair from './modules/repair'
 import complain from './modules/complain'
 import dispatch from './modules/dispatch'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ const store = new Vuex.Store({
     ProductPicker,
     repair,
     complain,
-    dispatch
+    dispatch,
+    user
   }
 })
 
