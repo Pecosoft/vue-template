@@ -20,7 +20,7 @@ const mockDetail = () => Mock.mock({'data':
 
 export default mockAdapter => {
   // fetch
-  mockAdapter.onGet('/gpleader').reply(config => {
+  mockAdapter.onGet('/manager').reply(config => {
     // let params = JSON.parse(config.data)
     let resp = {
       errcode: 0,
@@ -36,7 +36,7 @@ export default mockAdapter => {
   })
 
   // read
-  mockAdapter.onGet(/\/gpleader\/\d+/).reply(config => {
+  mockAdapter.onGet(/\/manager\/\d+/).reply(config => {
     // let params = JSON.parse(config.data)
     let resp = {
       errcode: 0,
