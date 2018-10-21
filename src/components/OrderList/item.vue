@@ -88,18 +88,18 @@ export default {
   background: $color-pannel-bg;
   padding: $edge-distance;
   &+& {
-    border-top: 1px solid $color-border;
+    border-top: 1px solid $color-border2;
   }
 }
 
 .peco-order-item_hd {
   padding: 0 0 10px;
-  border-bottom: 1px solid $color-border2;
+  border-bottom: 1px solid $color-border;
 }
 
 .peco-order-item_bd {
   padding: 10px 0;
-  border-bottom: 1px solid $color-border2;
+  border-bottom: 1px solid $color-border;
 }
 
 .peco-order-item_inner {
