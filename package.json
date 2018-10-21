@@ -21,8 +21,9 @@
     "build:gpleader": "APP=gpleader node build/build-taikan.js",
     "build:tcworker": "APP=tcworker node build/build-taikan.js",
     "build:manager": "APP=manager node build/build-taikan.js",
-    "build": "npm run build:customer && npm run build:dsclerk && npm run build:gpleader && npm run build:tcworker && npm run build:manager",
-    "deploy": "./deploy"
+    "build": "npm run build:tcworker",
+    "deploy": "./deploy.sh",
+    "release": "npm run build && npm run deploy"
   },
   "dependencies": {
     "axios": "^0.18.0",

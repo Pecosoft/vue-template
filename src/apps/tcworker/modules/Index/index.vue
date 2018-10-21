@@ -17,9 +17,9 @@ export default {
   name: 'index',
   data () {
     return {
-      name: '维修人员',
-      desc: '台群阳光服务，在线报修',
-      avatar: 'static/logo.png',
+      name: this.$store.state.user.user.name,
+      desc: this.$store.state.user.user.id,
+      avatar: this.$store.state.user.user.avatar || 'static/logo.png',
       tabIndex: 0,
       tabs: ['待处理', '已完成'],
       privs: [
