@@ -9,9 +9,9 @@ export default {
   name: 'index',
   data () {
     return {
-      name: '管理人员',
-      desc: '广东省 东莞市',
-      avatar: 'static/logo.png',
+      name: this.$store.state.user.user.name,
+      desc: this.$store.state.user.user.id,
+      avatar: this.$store.state.user.user.avatar || 'static/logo.png',
       gridData: [
         {id: 1, name: '报修', icon: 'repaire', url: '/manager/repair'},
         {id: 3, name: '投诉', icon: 'complain', url: '/manager/complain'},
