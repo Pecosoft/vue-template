@@ -5,6 +5,7 @@ import repair from './modules/repair'
 import complain from './modules/complain'
 import suggest from './modules/suggest'
 import dispatch from './modules/dispatch'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ const store = new Vuex.Store({
     repair,
     complain,
     suggest,
-    dispatch
+    dispatch,
+    user
   }
 })
 
