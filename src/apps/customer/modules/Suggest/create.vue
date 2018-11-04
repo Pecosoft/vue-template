@@ -12,6 +12,12 @@ export default {
     return {
       suggest
     }
+  },
+  mounted () {
+    let userId = this.$store.state.user.user && this.$store.state.user.user.user_id
+    if (userId) {
+      this.$store.commit('suggest/PUT_USER_ID', userId)
+    }
   }
 }
 </script>

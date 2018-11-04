@@ -15,6 +15,12 @@ export default {
       complain1,
       cate: this.$route.query.cate
     }
+  },
+  mounted () {
+    let userId = this.$store.state.user.user && this.$store.state.user.user.user_id
+    if (userId) {
+      this.$store.commit('complain/PUT_USER_ID', userId)
+    }
   }
 }
 </script>
