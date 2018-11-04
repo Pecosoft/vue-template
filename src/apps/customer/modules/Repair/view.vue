@@ -16,25 +16,13 @@ export default {
   data () {
     return {
       id: this.$route.params.id,
-      status: 3,
+      status: 0,
       events: [
         {
           id: 1,
-          who: '张三',
-          do: '受理订单',
-          datetime: new Date().getTime()
-        },
-        {
-          id: 2,
-          who: '张三',
-          do: '受理订单',
-          datetime: new Date().getTime()
-        },
-        {
-          id: 3,
-          who: '张三',
-          do: '受理订单',
-          datetime: new Date().getTime()
+          who: '',
+          do: '',
+          datetime: ''
         }
       ]
     }

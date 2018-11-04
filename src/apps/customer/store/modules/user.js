@@ -1,26 +1,28 @@
 /* eslint-disable */
-import { customer } from '@/services'
 import auth from '@/services/auth'
-
-const user = auth.user()
+import { customer } from '@/services'
 
 export default {
   namespaced: true,
   state: {
-    user: {
-      id: user.id,
-      name: user.name,
-      avatar: user.avatar
-    }
+    user: null,
+    detail: null
   },
   mutations: {
   },
   actions: {
-    async read ({ state }, id) {
+    async read ({ state }) {
       let user = state.user
       if (user) return user
-      let res = await customer.read(id)
+      let res = await auth.user('customer')
       state.user = res
+      return res
+    },
+    async detail ({ state }, id) {
+      let detail = state.detail
+      if (detail) return detail
+      let res = await customer.read(id)
+      state.detail = res
       return res
     }
   }

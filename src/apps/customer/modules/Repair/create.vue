@@ -20,6 +20,12 @@ export default {
       ],
       editUrl: '/customer/1'
     }
+  },
+  mounted () {
+    let userId = this.$store.state.user.user && this.$store.state.user.user.user_id
+    if (userId) {
+      this.$store.commit('repair/PUT_USER_ID', userId)
+    }
   }
 }
 </script>
