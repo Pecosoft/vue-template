@@ -6,13 +6,13 @@ export default {
   namespaced: true,
   state: {
     serviceForm: {
-      user_id: 1,
+      user_id: 0,
       cate: 2,
       contact: 0,
       description: ''
     },
     productForm: {
-      user_id: 1,
+      user_id: 0,
       cate: 1,
       contact: 0,
       description: '',
@@ -30,6 +30,10 @@ export default {
       } else {
         updateObj(state.serviceForm, formData)
       }
+    },
+    ['PUT_USER_ID'] (state, user_id) {
+      state.serviceForm.user_id = user_id
+      state.productForm.user_id = user_id
     }
   },
   actions: {

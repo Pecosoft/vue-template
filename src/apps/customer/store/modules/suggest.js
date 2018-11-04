@@ -6,7 +6,7 @@ export default {
   namespaced: true,
   state: {
     form: {
-      user_id: 1,
+      user_id: 0,
       product_id: 0,
       description: '',
       avatar: 0,
@@ -19,6 +19,9 @@ export default {
   mutations: {
     ['CHANGE'] (state, formData) {
       updateObj(state.form, formData)
+    },
+    ['PUT_USER_ID'] (state, user_id) {
+      state.form.user_id = user_id
     }
   },
   actions: {
