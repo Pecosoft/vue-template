@@ -1,7 +1,8 @@
-export default (action, data, { $router }) => {
+export default (action, data, { $router, $store }) => {
   // console.log('action: %s data: %o $router: %o', action, data, $router)
   switch (action) {
     case 'cancel':
+      $store.dispatch('repair/delete', data)
       break
     case 'view':
       $router.push({ name: 'RepairView', params: { id: data.id } })

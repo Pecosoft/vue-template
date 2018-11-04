@@ -4,7 +4,7 @@
       img.avatar(:src='thisAvatar')
     .peco-profile-header_bd
       h3 {{ thisName }}
-      p {{ thisDesc }}
+      p(style='margin-top: 10px;') {{ thisDesc }}
     .peco-profile-header_ft
       i.arrow-right
 </template>
@@ -18,6 +18,17 @@ export default {
       thisName: this.name || '派客软件',
       thisDesc: this.desc || 'http://www.pecosoft.cn/',
       thisAvatar: this.avatar || 'http://iph.href.lu/80x80?text=头像'
+    }
+  },
+  watch: {
+    name (newVal) {
+      this.thisName = newVal
+    },
+    avatar (newVal) {
+      this.thisAvatar = newVal
+    },
+    desc (newVal) {
+      this.thisDesc = newVal
     }
   }
 }

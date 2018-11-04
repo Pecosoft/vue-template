@@ -1,44 +1,61 @@
+/* eslint-disable */
 import Cookie from 'js-cookie'
+import axios from 'axios'
+import { authUser, authLogin } from './resources'
 
 const auth = {
+  login () {
+    let app = location.pathname.split('/')[1]
+    let loginUrl = authLogin + app
+
+    return location.href = loginUrl
+  },
   set (query) {
-    let { uid, appid, ticket, name, avatar } = query
-    if (uid && appid && ticket) {
-      Cookie.set('peco_user_id', uid)
-      Cookie.set('peco_app_id', appid)
-      Cookie.set('peco_ticket', ticket)
-    }
-    if (name && avatar) {
-      Cookie.set('peco_user_name', name)
-      Cookie.set('peco_user_avatar', avatar)
+    let { app, access_token } = query
+
+    if (!access_token) {
+      access_token = Cookie.get('access_token')
+      if (!access_token) return auth.login()
+    } else {
+      Cookie.set('access_token', access_token)
+      if (!app) {
+        app = location.pathname.split('/')[1]
+      }
+      Cookie.set('app', app)
     }
   },
-  user () {
-    let id = Cookie.get('peco_user_id') || '-'
-    let name = Cookie.get('peco_user_name') || '-'
-    let avatar = Cookie.get('peco_user_avatar') || '-'
-    return {
-      id,
-      name,
-      avatar
+  async user (app) {
+    let access_token = Cookie.get('access_token') || '-'
+    if (app === undefined) {
+      app = location.pathname.split('/')[1]
     }
+
+    if (!access_token) {
+      return auth.login()
+    }
+
+    let res = await axios.post(authUser, { app, access_token })
+    let { errcode, data } = res.data
+
+    if (errcode == 100) {
+      return auth.login()
+    }
+    return data
   },
   get () {
-    let userid = Cookie.get('peco_user_id') || '-'
-    let appid = Cookie.get('peco_app_id') || '-'
-    let ticket = Cookie.get('peco_ticket') || '-'
+    let app = Cookie.get('app') || '-'
+    let access_token = Cookie.get('access_token') || '-'
     let timestamp = parseInt(new Date().getTime() / 1000)
-    let signature = this.signature(userid, appid, ticket, timestamp)
+    let signature = this.signature(app, access_token, timestamp)
     return {
-      userid,
-      appid,
-      ticket,
+      app,
+      access_token,
       timestamp,
       signature
     }
   },
-  signature (userid, appid, ticket, timestamp) {
-    return [userid, appid, ticket, timestamp].sort().join('')
+  signature (app, access_token, timestamp) {
+    return [app, access_token, timestamp].sort().join('')
   }
 }
 
