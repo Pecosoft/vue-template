@@ -7,6 +7,7 @@ page
 </template>
 
 <script>
+import repairAction from '@/flow/repair/action'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
@@ -14,9 +15,9 @@ export default {
   name: 'index',
   data () {
     return {
-      name: this.$store.state.user.user.name,
-      desc: this.$store.state.user.user.id,
-      avatar: this.$store.state.user.user.avatar || 'static/logo.png',
+      name: '',
+      desc: '',
+      avatar: 'static/logo.png',
       gridData: [
         {id: 1, name: '报修', icon: 'repaire', url: '/customer/repair'},
         {id: 2, name: '咨询', icon: 'consult', url: '/customer/consult'},
@@ -24,12 +25,13 @@ export default {
         {id: 4, name: '建议', icon: 'suggest', url: '/customer/suggest'}
       ],
       privs: [
-        [{id: 0, name: '查看'}],
-        [{id: 0, name: '查看'}],
-        [{id: 0, name: '查看'}, {id: 3, name: '接单'}, {id: -4, name: '驳回'}],
-        [{id: 0, name: '查看'}, {id: 4, name: '结案'}, {id: -6, name: '协助'}],
-        [{id: 0, name: '查看'}, {id: 5, name: '评论'}],
-        [{id: 0, name: '查看'}]
+        [{id: 'view', name: '查看报修'}, {id: 'cancel', name: '取消订单'}], // status: 0 待受理
+        [{id: 'view', name: '查看报修'}], // status: 1 已受理
+        [{id: 'view', name: '查看报修'}], // status: 2 已派单
+        [{id: 'view', name: '查看报修'}], // status: 3 已接单
+        [{id: 'view', name: '查看报修'}], // status: 4 维修中
+        [{id: 'view', name: '查看报修'}, {id: 'rate', name: '评价'}], // status: 5 已完成
+        [{id: 'view', name: '查看报修'}] // status: 6 已评价
       ]
     }
   },
@@ -45,17 +47,24 @@ export default {
       this.$router.push({name: 'RepairDetail', params: {id: d.id}})
     },
     handleOnClickBtn (d, btn) {
-      switch (btn.id) {
-        case 0:
-          this.$router.push({name: 'RepairView', params: {id: d.id}})
-          break
-      }
+      repairAction(btn.id, d, { $router: this.$router, $store: this.$store })
+    },
+    authUser () {
+
     }
   },
   mounted () {
     this.$peco.loading.show()
-    this.fetch().then(data => {
+    this.$store.dispatch('user/read').then((user) => {
+      // eslint-disable-next-line
+      let { user_id, name, avatar, ip } = user
+      this.name = name
+      this.avatar = avatar
+      // eslint-disable-next-line
+      this.desc = user_id + '@' + ip
+
       this.$peco.loading.hide()
+      this.fetch()
     })
   }
 }

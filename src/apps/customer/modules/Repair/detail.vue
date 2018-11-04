@@ -5,7 +5,7 @@ page
     p.frt.aux.gray {{ repairDetail.status|status-to-text }}
   card(:route='{name: "RepairView", params: {id: id}}')
     p 报修状态：{{ repairDetail.status|status-to-text }}
-    p.aux.gray.gapt {{ topEvent }}
+    p.aux.gray.gapt(v-if='topEvent') {{ topEvent }}
   card
     p {{ repairDetail.user.name }} {{ repairDetail.user.mobile }}
     p.aux.gray.gapt {{ repairDetail.user.company }}
@@ -19,7 +19,7 @@ page
     cell
       h3 报修描述：
       p.gray.gapt {{ repairDetail.description }}
-    cell
+    cell(v-if='repairDetail.imgs')
       div.img80-ftc
         img(v-for='img in repairDetail.imgs' :src='img')
     cell
@@ -38,34 +38,27 @@ export default {
     return {
       id: this.$route.params.id,
       repairDetail: {
-        order_sn: '2018050210524290585581',
-        status: 1,
+        order_sn: '',
+        status: 0,
         events: [
           {
             id: 1,
-            who: '张三',
-            do: '受理订单',
-            datetime: new Date().getTime()
+            who: '',
+            do: '',
+            datetime: ''
           }
         ],
         user: {
-          name: '张三',
-          mobile: '15888888888',
-          company: '深圳市XXXXxxxxxxxx公司',
-          addr: '深圳市南山区高新科技园高新南四路',
-          block: 'T栋XXXXXX'
+          name: '',
+          mobile: '',
+          company: '',
+          addr: '',
+          block: ''
         },
-        product_model: 'T-790',
-        product_avatar: '/static/logo.png',
-        description: '各种问题 故障 请即时处理 谢谢',
-        imgs: [
-          '/static/logo.png',
-          '/static/logo.png',
-          '/static/logo.png',
-          '/static/logo.png',
-          '/static/logo.png',
-          '/static/logo.png'
-        ]
+        product_model: '',
+        product_avatar: '',
+        description: '',
+        imgs: []
       }
     }
   },
@@ -76,6 +69,8 @@ export default {
   computed: {
     ...mapState(['details']),
     topEvent () {
+      let events = this.repairDetail.events
+      if (!events || !events.length) return ''
       let event = this.repairDetail.events[0]
       return timestampToText(event.datetime) + event.who + event.do
     }
