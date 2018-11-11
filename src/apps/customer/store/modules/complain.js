@@ -6,13 +6,11 @@ export default {
   namespaced: true,
   state: {
     serviceForm: {
-      user_id: 0,
       cate: 2,
       contact: 0,
       description: ''
     },
     productForm: {
-      user_id: 0,
       cate: 1,
       contact: 0,
       description: '',
@@ -37,8 +35,8 @@ export default {
     }
   },
   actions: {
-    async fetch ({ state, commit }) {
-      if (state.list.length) return state.list
+    async fetch ({ state, commit }, force=false) {
+      if (!force && state.list.length) return state.list
       let res = await complain.fetch()
       state.list = res
       return res

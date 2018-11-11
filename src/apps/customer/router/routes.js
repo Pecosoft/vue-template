@@ -9,6 +9,9 @@ import ComplainDetail from 'customer/modules/Complain/detail'
 import Suggest from 'customer/modules/Suggest'
 import SuggestCreate from 'customer/modules/Suggest/create'
 import SuggestDetail from 'customer/modules/Suggest/detail'
+import UserRegister from 'customer/modules/User/register'
+import UserLogin from 'customer/modules/User/login'
+import UserProfile from 'customer/modules/User/profile'
 
 export default [
   {
@@ -97,6 +100,30 @@ export default [
     component: SuggestDetail,
     meta: {
       title: '建议详情'
+    }
+  },
+  {
+    name: 'UserRegister',
+    path: '/customer/register',
+    component: UserRegister,
+    meta: {
+      title: '用户注册'
+    }
+  },
+  {
+    name: 'UserLogin',
+    path: '/customer/login',
+    component: UserLogin,
+    meta: {
+      title: '用户登录'
+    }
+  },
+  {
+    name: 'UserProfile',
+    path: '/customer/profile',
+    component: UserProfile,
+    meta: {
+      title: '完善资料'
     }
   }
 ]

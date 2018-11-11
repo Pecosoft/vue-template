@@ -1,6 +1,6 @@
 /* eslint-disable */
 import auth from '@/services/auth'
-import { customer } from '@/services'
+import { user, customer } from '@/services'
 
 export default {
   namespaced: true,
@@ -11,11 +11,23 @@ export default {
   mutations: {
   },
   actions: {
-    async read ({ state }) {
+    async read ({ state }, force=false) {
       let user = state.user
-      if (user) return user
+      if (!force && user) return user
       let res = await auth.user('customer')
       state.user = res
+      return res
+    },
+    async register ({ state }, formData) {
+      let res = await user.update(state.user.user_id, formData)
+      return res
+    },
+    async login ({ state }, formData) {
+      let res = await user.login(formData)
+      return res
+    },
+    async saveProfile ({ state }, formData) {
+      let res = await customer.update(state.user.user_id, formData)
       return res
     },
     async detail ({ state }, id) {
