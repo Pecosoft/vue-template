@@ -6,7 +6,6 @@ export default {
   namespaced: true,
   state: {
     form: {
-      user_id: 0,
       product_id: 0,
       description: '',
       avatar: 0,
@@ -25,8 +24,8 @@ export default {
     }
   },
   actions: {
-    async fetch ({ state }) {
-      if (state.list.length) return state.list
+    async fetch ({ state }, force=false) {
+      if (!force && state.list.length) return state.list
       let res = await suggest.fetch()
       state.list = res
       return res

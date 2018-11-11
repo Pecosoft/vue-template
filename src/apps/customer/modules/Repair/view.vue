@@ -4,11 +4,12 @@ page
   p-history
     p-event(v-for='event in events' :key='event.id')
       template
-        p {{ event.datetime }} {{ event.who }} {{ event.do }}
+        p [{{ event.datetime|timestamp-to-text }}] {{ event.who }} {{ event.do }}
         p asfasdfaasdasdf
 </template>
 
 <script>
+import { timestampToText } from '@/filters'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
@@ -26,6 +27,9 @@ export default {
         }
       ]
     }
+  },
+  filters: {
+    timestampToText
   },
   computed: {
     ...mapState(['details'])

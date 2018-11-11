@@ -72,7 +72,7 @@ export default {
       let events = this.repairDetail.events
       if (!events || !events.length) return ''
       let event = this.repairDetail.events[0]
-      return timestampToText(event.datetime) + event.who + event.do
+      return '[' + timestampToText(event.datetime) + '] ' + event.who + ' ' + event.do
     }
   },
   methods: {

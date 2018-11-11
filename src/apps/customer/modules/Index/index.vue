@@ -1,6 +1,6 @@
 <template lang="pug">
 page
-  profile-header(:name='name' :desc='desc' :avatar='avatar')
+  profile-header(@click.native='$router.push({ name: "UserProfile"})' :name='name' :desc='desc' :avatar='avatar' link)
   grid(:data='gridData' :col-num="2" bg-color="#fff" @clickgrid="handleOnClickGrid")
   pannel(:gutter="10" :title="`订单数（${list.length}）`")
     order-list(style="margin: 10px 0 20px;" @clicklist="handleOnClickList" @clickbtn="handleOnClickBtn" :data="list" :privs="privs")
@@ -56,14 +56,21 @@ export default {
   mounted () {
     this.$peco.loading.show()
     this.$store.dispatch('user/read').then((user) => {
-      // eslint-disable-next-line
-      let { user_id, name, avatar, ip } = user
-      this.name = name
-      this.avatar = avatar
-      // eslint-disable-next-line
-      this.desc = user_id + '@' + ip
-
       this.$peco.loading.hide()
+      // eslint-disable-next-line
+      let { user_id, name, avatar, mobile, customer } = user
+      if (!mobile) {
+        // 手机号空 跳转用户注册页面
+        return this.$router.push({ name: 'UserRegister' })
+      }
+      this.avatar = avatar
+      if (customer) {
+        this.name = customer.name
+        this.desc = (customer.company && customer.company.name) || mobile
+      } else {
+        this.name = name
+        this.desc = mobile
+      }
       this.fetch()
     })
   }

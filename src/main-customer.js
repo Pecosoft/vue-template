@@ -5,6 +5,7 @@ import App from './App'
 import router from 'customer/router'
 import store from 'customer/store'
 import 'style/peco-ui.scss'
+import 'utils/polyfill'
 
 import Page from 'components/Page'
 import ProfileHeader from 'components/ProfileHeader'
@@ -24,6 +25,9 @@ import Progress from 'components/Progress'
 // Global plugins
 import LoadingPlugin from 'plugins/loading'
 import ToastPlugin from 'plugins/toast'
+
+import { AlertPlugin } from 'vux'
+Vue.use(AlertPlugin)
 
 Vue.use(Page)
 Vue.use(ProfileHeader)
