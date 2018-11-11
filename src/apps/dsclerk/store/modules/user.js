@@ -1,26 +1,28 @@
 /* eslint-disable */
-import { dsclerk } from '@/services'
 import auth from '@/services/auth'
-
-const user = auth.user()
+import { user, dsclerk } from '@/services'
 
 export default {
   namespaced: true,
   state: {
-    user: {
-      id: user.id,
-      name: user.name,
-      avatar: user.avatar
-    }
+    user: null,
   },
   mutations: {
   },
   actions: {
-    async read ({ state }, id) {
+    async read ({ state }, force=false) {
       let user = state.user
-      if (user) return user
-      let res = await dsclerk.read(id)
+      if (!force && user) return user
+      let res = await auth.user('dsclerk')
       state.user = res
+      return res
+    },
+    async login ({ state }, formData) {
+      let res = await user.login(formData)
+      return res
+    },
+    async register ({ state }, formData) {
+      let res = await user.update(state.user.user_id, formData)
       return res
     }
   }
