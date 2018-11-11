@@ -4,8 +4,12 @@ page
   p-history
     p-event(v-for='event in events' :key='event.id')
       template
-        p [{{ event.datetime|timestamp-to-text }}] {{ event.who }} {{ event.do }}
-        p asfasdfaasdasdf
+        p
+          span(style='margin-right: 5px;') [{{ event.datetime|timestamp-to-text }}]
+          a(v-if='event.mobile' :href='`tel://${event.mobile}`') {{ event.who }}
+          span(v-else) {{ event.who }}
+          span(style='margin-left: 5px;') {{ event.do }}
+        section(v-if='event.content' v-html='event.content')
 </template>
 
 <script>
