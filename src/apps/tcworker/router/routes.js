@@ -1,6 +1,7 @@
 import Index from 'tcworker/modules/Index'
 import RepairDetail from 'tcworker/modules/Repair/detail'
 import RepairComplete from 'tcworker/modules/Repair/complete'
+import UserLogin from 'tcworker/modules/User/login'
 
 export default [
   {
@@ -25,6 +26,14 @@ export default [
     component: RepairComplete,
     meta: {
       title: '结案'
+    }
+  },
+  {
+    name: 'UserLogin',
+    path: '/tcworker/login',
+    component: UserLogin,
+    meta: {
+      title: '用户登录'
     }
   }
 ]
