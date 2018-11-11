@@ -6,6 +6,7 @@ import Complain from 'manager/modules/Complain'
 import ComplainDetail from 'manager/modules/Complain/detail'
 import Suggest from 'manager/modules/Suggest'
 import SuggestDetail from 'manager/modules/Suggest/detail'
+import UserLogin from 'manager/modules/User/login'
 
 export default [
   {
@@ -70,6 +71,14 @@ export default [
     component: SuggestDetail,
     meta: {
       title: '建议详情'
+    }
+  },
+  {
+    name: 'UserLogin',
+    path: '/manager/login',
+    component: UserLogin,
+    meta: {
+      title: '用户登录'
     }
   }
 ]
