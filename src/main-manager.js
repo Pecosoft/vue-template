@@ -26,6 +26,8 @@ import List from 'components/List'
 // Global plugins
 import LoadingPlugin from 'plugins/loading'
 import ToastPlugin from 'plugins/toast'
+import { AlertPlugin } from 'vux'
+Vue.use(AlertPlugin)
 
 Vue.use(Page)
 Vue.use(ProfileHeader)

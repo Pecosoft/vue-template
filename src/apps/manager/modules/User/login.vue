@@ -62,8 +62,8 @@ export default {
       }).catch(error => {
         this.loading = false
         return this.$vux.alert.show({
-          title: '账号或密码错误',
-          content: '请正确填写账号密码'
+          title: error.errcode,
+          content: error.msg
         })
       })
     }
