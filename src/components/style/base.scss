@@ -112,6 +112,7 @@ textarea {
 }
 
 .tapable {
+  cursor: pointer;
   &:active {
     background-color: #ececec;
   }

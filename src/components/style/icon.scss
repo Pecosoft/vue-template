@@ -1,6 +1,50 @@
+$form-icon-size: 25px;
+
 .peco-icon {
   display: inline-block;
   background-repeat: no-repeat;
+}
+
+.peco-icon-account {
+  @include size($form-icon-size);
+  background-size: $form-icon-size $form-icon-size;
+  background-image: url(../../assets/account.png);
+}
+
+.peco-icon-passwd {
+  @include size($form-icon-size);
+  background-size: $form-icon-size $form-icon-size;
+  background-image: url(../../assets/passwd.png);
+}
+
+.peco-icon-location {
+  @include size($form-icon-size);
+  background-size: $form-icon-size $form-icon-size;
+  background-image: url(../../assets/location.png);
+}
+
+.peco-icon-mobile {
+  @include size($form-icon-size);
+  background-size: $form-icon-size $form-icon-size;
+  background-image: url(../../assets/mobile.png);
+}
+
+.peco-icon-key {
+  @include size($form-icon-size);
+  background-size: $form-icon-size $form-icon-size;
+  background-image: url(../../assets/key.png);
+}
+
+.peco-icon-user_cate {
+  @include size($form-icon-size);
+  background-size: $form-icon-size $form-icon-size;
+  background-image: url(../../assets/user_cate.png);
+}
+
+.peco-icon-company {
+  @include size($form-icon-size);
+  background-size: $form-icon-size $form-icon-size;
+  background-image: url(../../assets/company.png);
 }
 
 .peco-icon-searchx {

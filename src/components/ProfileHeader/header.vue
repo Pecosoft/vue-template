@@ -5,18 +5,18 @@
     .peco-profile-header_bd
       h3 {{ thisName }}
       p(style='margin-top: 10px;') {{ thisDesc }}
-    .peco-profile-header_ft
+    .peco-profile-header_ft(v-if='link')
       i.arrow-right
 </template>
 
 <script>
 export default {
   name: 'ProfileHeader',
-  props: ['name', 'desc', 'avatar'],
+  props: ['name', 'desc', 'avatar', 'link'],
   data () {
     return {
-      thisName: this.name || '派客软件',
-      thisDesc: this.desc || 'http://www.pecosoft.cn/',
+      thisName: this.name || '',
+      thisDesc: this.desc || '',
       thisAvatar: this.avatar || 'http://iph.href.lu/80x80?text=头像'
     }
   },

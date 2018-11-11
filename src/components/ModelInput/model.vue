@@ -45,12 +45,12 @@ export default {
   font-size: $font-size-primary;
   position: relative;
   &:before {
-      @include setTopLine($color-border);
-      z-index: 2;
+    @include setTopLine($color-border);
+    z-index: 2;
   }
   &:after {
-      @include setBottomLine($color-border);
-      z-index: 2;
+    @include setBottomLine($color-border);
+    z-index: 2;
   }
 }
 
@@ -79,32 +79,5 @@ export default {
   width: 30px;
   font-size: 2rem;
   text-align: center;
-}
-
-.peco-input {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  -webkit-appearance: none;
-  background-color: transparent;
-  font-size: inherit;
-  color: inherit;
-  height: 25px;
-  line-height: 25px;
-  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button{
-    -webkit-appearance: none;
-    margin: 0;
-  }
-}
-
-.peco-textarea {
-  display: block;
-  border: 0;
-  resize: none;
-  width: 100%;
-  color: inherit;
-  font-size: 1em;
-  line-height: inherit;
-  outline: 0;
 }
 </style>

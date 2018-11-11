@@ -37,6 +37,12 @@ export default {
     }
   },
   methods: {
+    reset () {
+      let storeModule = this.storeModule
+      if (storeModule) {
+        this.$store.commit(storeModule + '/CHANGE', new Maker(this.model).make())
+      }
+    },
     handleOnModelInput (e) {
       let storeModule = this.storeModule
       if (storeModule) {
@@ -62,6 +68,7 @@ export default {
       }
 
       this.loading = true
+      this.formData.user_id = this.$store.state.user.user.user_id
       let res = await this.rest.create(this.formData)
       this.loading = false
       return res

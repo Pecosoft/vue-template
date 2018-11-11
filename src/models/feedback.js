@@ -1,11 +1,4 @@
 export default {
-  user_id: {
-    name: '用户',
-    type: 'int',
-    input: false,
-    required: true,
-    required_tips: ''
-  },
   description: {
     name: '描述',
     type: 'string',

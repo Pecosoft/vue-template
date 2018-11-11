@@ -25,7 +25,8 @@ export default {
       let $loading = this.$peco && this.$peco.loading
       $loading && $loading.show()
       this.submit().then(res => {
-        console.log('创建%s成功，返回%o', this.resourceName, res)
+        this.reset()
+        this.$emit('oncreated', res)
         $loading && $loading.hide()
       }).catch(err => {
         console.log('verify: %o', err)

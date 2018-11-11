@@ -20,6 +20,11 @@ export default {
       thisInfos: this.infos || [],
       thisBgColor: this.bgColor || '#fff'
     }
+  },
+  watch: {
+    infos (newVal) {
+      this.thisInfos = newVal
+    }
   }
 }
 </script>

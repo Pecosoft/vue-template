@@ -7,6 +7,7 @@ import gpleader from './rests/gpleader'
 import tcworker from './rests/tcworker'
 import manager from './rests/manager'
 import customer from './rests/customer'
+import user from './rests/user'
 
 export {
   product,
@@ -17,5 +18,6 @@ export {
   gpleader,
   tcworker,
   manager,
-  customer
+  customer,
+  user
 }
