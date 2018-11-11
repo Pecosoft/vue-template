@@ -51,7 +51,7 @@ Vue.use(ToastPlugin)
 Vue.config.productionTip = false
 
 if (process.env.NODE_ENV !== 'production') {
-  require('./services/mock').default.bootstrap()
+  // require('./services/mock').default.bootstrap()
 }
 
 /* eslint-disable no-new */

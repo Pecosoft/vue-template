@@ -6,6 +6,7 @@ import RepairDispatch from 'gpleader/modules/Repair/dispatch'
 import Complain from 'gpleader/modules/Complain'
 import ComplainDetail from 'gpleader/modules/Complain/detail'
 import ComplainDispatch from 'gpleader/modules/Complain/dispatch'
+import UserLogin from 'gpleader/modules/User/login'
 
 export default [
   {
@@ -70,6 +71,14 @@ export default [
     component: ComplainDispatch,
     meta: {
       title: '投诉详情'
+    }
+  },
+  {
+    name: 'UserLogin',
+    path: '/gpleader/login',
+    component: UserLogin,
+    meta: {
+      title: '用户登录'
     }
   }
 ]

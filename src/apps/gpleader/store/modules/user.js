@@ -1,26 +1,24 @@
 /* eslint-disable */
-import { gpleader } from '@/services'
 import auth from '@/services/auth'
-
-const user = auth.user()
+import { user, gpleader } from '@/services'
 
 export default {
   namespaced: true,
   state: {
-    user: {
-      id: user.id,
-      name: user.name,
-      avatar: user.avatar
-    }
+    user: null,
   },
   mutations: {
   },
   actions: {
-    async read ({ state }, id) {
+    async read ({ state }, force=false) {
       let user = state.user
-      if (user) return user
-      let res = await gpleader.read(id)
+      if (!force && user) return user
+      let res = await auth.user('gpleader')
       state.user = res
+      return res
+    },
+    async login ({ state }, formData) {
+      let res = await user.login(formData)
       return res
     }
   }
