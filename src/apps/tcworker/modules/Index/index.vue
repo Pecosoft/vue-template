@@ -17,9 +17,9 @@ export default {
   name: 'index',
   data () {
     return {
-      name: this.$store.state.user.user.name,
-      desc: this.$store.state.user.user.id,
-      avatar: this.$store.state.user.user.avatar || 'static/logo.png',
+      name: '',
+      desc: '',
+      avatar: 'static/logo.png',
       tabIndex: 0,
       tabs: ['待处理', '已完成'],
       privs: [
@@ -72,8 +72,31 @@ export default {
   },
   mounted () {
     this.$peco.loading.show()
-    this.fetch().then(data => {
-      this.$peco.loading.hide()
+    this.$store.dispatch('user/read').then((user) => {
+      // eslint-disable-next-line
+      let { user_id, name, avatar, mobile, employee } = user
+      if (!employee) {
+        this.$peco.loading.hide()
+        // 未绑定员工账号
+        return this.$router.push({ name: 'UserLogin' })
+      }
+      this.avatar = avatar
+      if (employee) {
+        if (employee.name) {
+          this.name = employee.name + ' ' + employee.account + ' ' + (employee.mobile || mobile)
+        } else {
+          this.name = employee.account
+        }
+        // this.desc = '微信:' + name + ' 手机:' + (employee.mobile || mobile)
+        this.desc = employee.province + ' ' + employee.city + ' ' + employee.area
+      } else {
+        this.name = name
+        this.desc = mobile
+      }
+
+      this.fetch().then(data => {
+        this.$peco.loading.hide()
+      })
     })
   }
 }
