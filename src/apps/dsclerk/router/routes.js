@@ -11,6 +11,8 @@ import ComplainDispatch from 'dsclerk/modules/Complain/dispatch'
 import Suggest from 'dsclerk/modules/Suggest'
 import SuggestCreate from 'dsclerk/modules/Suggest/create'
 import SuggestDetail from 'dsclerk/modules/Suggest/detail'
+import UserRegister from 'dsclerk/modules/User/register'
+import UserLogin from 'dsclerk/modules/User/login'
 
 export default [
   {
@@ -115,6 +117,22 @@ export default [
     component: SuggestDetail,
     meta: {
       title: '建议详情'
+    }
+  },
+  {
+    name: 'UserRegister',
+    path: '/dsclerk/register',
+    component: UserRegister,
+    meta: {
+      title: '用户注册'
+    }
+  },
+  {
+    name: 'UserLogin',
+    path: '/dsclerk/login',
+    component: UserLogin,
+    meta: {
+      title: '用户登录'
     }
   }
 ]
