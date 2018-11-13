@@ -19,6 +19,7 @@ page
 <script>
 import TalkCard from 'components/Business/TalkCard'
 import Sender from 'components/Chat/sender'
+import { suggest } from '@/services'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('suggest')
 
@@ -31,6 +32,11 @@ export default {
   data () {
     return {
       id: this.$route.params.id,
+      user: {
+        name: '',
+        intro: '',
+        avatar: ''
+      },
       suggestDetail: {
       }
     }
@@ -42,15 +48,15 @@ export default {
     ...mapActions(['read']),
     handleOnSend (sendContent) {
       this.suggestDetail.reply = {
-        user: {
-          name: 'xxx',
-          intro: 'XXXX',
-          avatar: '/static/logo.png'
-        },
+        user: this.user,
         create_time: new Date().getTime(),
         content: sendContent
       }
       this.suggestDetail.status = 1
+      suggest.update(this.id, {
+        content: sendContent,
+        action: 'reply'
+      })
     }
   },
   mounted () {
@@ -58,6 +64,14 @@ export default {
     this.read(this.$route.params.id).then(res => {
       this.suggestDetail = res
       this.$peco.loading.hide()
+      this.$store.dispatch('user/read').then((user) => {
+        this.user = {
+          user_id: user.user_id,
+          name: user.employee.name,
+          intro: user.mobile,
+          avatar: user.avatar
+        }
+      })
     })
   }
 }

@@ -39,4 +39,3 @@ export default {
     }
   }
 }
-// action context: { state, commit, dispatch, getters }

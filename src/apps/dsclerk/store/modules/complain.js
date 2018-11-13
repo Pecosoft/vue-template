@@ -32,6 +32,13 @@ export default {
     },
     ['DISPATCH'] (state, { id, picked }) {
       let list = state.list
+      if (id && picked && picked.id) {
+        complain.update(id, {
+          receiver_id: picked.id,
+          step_id: 1,
+          action: 'dispatch'
+        })
+      }
       for (var i = 0, len = list.length; i < len; i++) {
         let item = list[i]
         if (item.id === id) {
