@@ -1,3 +1,5 @@
+import { repair } from '@/services'
+
 export default (action, data, { $router, $store }) => {
   // console.log('action: %s data: %o $router: %o', action, data, $router)
   switch (action) {
@@ -17,6 +19,11 @@ export default (action, data, { $router, $store }) => {
       $router.push({ name: 'RepairDispatch', params: { id: data.id } })
       break
     case 'revoke1': // 撤回已分配的维修主管
+      repair.update(data.id, {
+        receiver_id: 0,
+        step_id: 0,
+        action: 'revoke1'
+      })
       data.status = 0
       break
     case 'info1': // 已分配信息

@@ -4,11 +4,15 @@
       li(v-for='item in thisData' :class='{checked: isChecked(item), "has-avatar": item.avatar}' @click='$emit("onchecked", item)')
         div(v-if='item.avatar')
           img(:src='item.avatar')
-          p {{ item.name }}
+          section
+            p {{ item.name }}
+            p(v-if='item.province' style='font-size: 12px') {{ item.province + ' ' + item.city + ' ' + item.area }}
           i.peco-icon.peco-icon-checked
           i.peco-icon.peco-icon-uncheck
         div(v-else)
-          p {{ item.name }}
+          section
+            p {{ item.name }}
+            p(v-if='item.province' style='font-size: 12px') {{ item.province + ' ' + item.city + ' ' + item.area }}
           i.peco-icon.peco-icon-checked
           i.peco-icon.peco-icon-uncheck
     div(v-show='!thisData.length')
@@ -76,9 +80,12 @@ export default {
         height: 60px;
         object-fit: cover;
       }
-      p {
+      section {
         flex: 1;
         padding: 0 54px 0 10px;
+        p {
+          line-height: 30px;
+        }
       }
       .peco-icon {
         top: 28px;
