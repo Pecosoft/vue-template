@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { gpleader } from '@/services'
+import { tcworker } from '@/services'
 
 export default {
   namespaced: true,
@@ -15,7 +15,7 @@ export default {
   actions: {
     async fetch ({ state }) {
       if (state.list.length) return state.list
-      let res = await gpleader.fetch()
+      let res = await tcworker.fetch()
       state.list = res
       return res
     }
