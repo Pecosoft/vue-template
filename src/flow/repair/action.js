@@ -30,12 +30,22 @@ export default (action, data, { $router, $store }) => {
       window.location.href = 'tel://' + data.dispatch.mobile
       break
     case 'reject1': // 维修主管驳回
+      repair.update(data.id, {
+        receiver_id: 0,
+        step_id: 0,
+        action: 'reject1'
+      })
       data.status = 0
       break
     case 'dispatch2': // 分配维修师傅
       $router.push({ name: 'RepairDispatch', params: { id: data.id } })
       break
     case 'revoke2': // 撤回已分配的维修师傅
+      repair.update(data.id, {
+        receiver_id: 0,
+        step_id: 1,
+        action: 'revoke2'
+      })
       data.status = 1
       break
     case 'info2': // 已分配维修师傅信息
@@ -44,6 +54,11 @@ export default (action, data, { $router, $store }) => {
     case 'help1': // 维修主管协助
       break
     case 'reject2': // 维修师傅驳回
+      repair.update(data.id, {
+        receiver_id: 0,
+        step_id: 1,
+        action: 'reject2'
+      })
       data.status = 1
       break
     case 'help2': // 维修师傅协助

@@ -18,6 +18,11 @@ export default (action, data, { $router }) => {
       data.status = 0
       break
     case 'reject': // 维修组长和管理人员驳回
+      complain.update(data.id, {
+        receiver_id: 0,
+        step_id: 0,
+        action: 'reject'
+      })
       data.status = 0
       break
     case 'info': // 已分配
