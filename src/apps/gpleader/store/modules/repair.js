@@ -22,6 +22,13 @@ export default {
     },
     ['DISPATCH'] (state, { id, picked, status }) {
       let list = state.list
+      if (id && picked && picked.id) {
+        repair.update(id, {
+          receiver_id: picked.id,
+          step_id: 2,
+          action: 'dispatch2' // 分配维修师傅
+        })
+      }
       for (var i = 0, len = list.length; i < len; i++) {
         let item = list[i]
         if (item.id === id) {

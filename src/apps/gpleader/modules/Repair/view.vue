@@ -4,11 +4,16 @@ page
   p-history
     p-event(v-for='event in events' :key='event.id')
       template
-        p {{ event.datetime }} {{ event.who }} {{ event.do }}
-        p asfasdfaasdasdf
+        p
+          span(style='margin-right: 5px;') [{{ event.datetime|timestamp-to-text }}]
+          a(v-if='event.mobile' :href='`tel://${event.mobile}`') {{ event.who }}
+          span(v-else) {{ event.who }}
+          span(style='margin-left: 5px;') {{ event.do }}
+        section(v-if='event.content' v-html='event.content')
 </template>
 
 <script>
+import { timestampToText } from '@/filters'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
@@ -16,28 +21,19 @@ export default {
   data () {
     return {
       id: this.$route.params.id,
-      status: 3,
+      status: 0,
       events: [
         {
           id: 1,
-          who: '张三',
-          do: '受理订单',
-          datetime: new Date().getTime()
-        },
-        {
-          id: 2,
-          who: '张三',
-          do: '受理订单',
-          datetime: new Date().getTime()
-        },
-        {
-          id: 3,
-          who: '张三',
-          do: '受理订单',
-          datetime: new Date().getTime()
+          who: '',
+          do: '',
+          datetime: ''
         }
       ]
     }
+  },
+  filters: {
+    timestampToText
   },
   computed: {
     ...mapState(['details'])
