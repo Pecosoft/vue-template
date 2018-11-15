@@ -1,7 +1,7 @@
 <template lang="pug">
   page
-    search(:data='list' :checked='mappick[id]' @onchecked='handleOnPicked')
-    check-list(:data='list' :checked='mappick[id]' style='margin-top: 56px; margin-bottom: 20px;' @onchecked='handleOnPicked')
+    search(:data='list2' :checked='mappick2[id]' @onchecked='handleOnPicked')
+    check-list(:data='list2' :checked='mappick2[id]' style='margin-top: 56px; margin-bottom: 20px;' @onchecked='handleOnPicked')
 </template>
 
 <script>
@@ -15,13 +15,13 @@ export default {
     }
   },
   computed: {
-    ...mapState(['list', 'mappick'])
+    ...mapState(['list2', 'mappick2'])
   },
   methods: {
-    ...mapActions(['fetch']),
-    ...mapMutations({ dispatch: 'DISPATCH' }),
+    ...mapActions(['fetch2']),
+    ...mapMutations({ dispatch: 'DISPATCH2' }),
     handleOnPicked (item) {
-      let mappick = this.mappick
+      let mappick = this.mappick2
       let id = this.id
       if (mappick && mappick[id] && item.id === mappick[id].id) {
         this.dispatch({ id: this.id, picked: false })
@@ -37,7 +37,7 @@ export default {
   },
   mounted () {
     this.$peco.loading.show()
-    this.fetch().then(data => {
+    this.fetch2().then(data => {
       this.$peco.loading.hide()
     })
   }

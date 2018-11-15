@@ -1,7 +1,7 @@
 <template lang="pug">
 page
   h1(style='text-align: center; padding: 40px 0;')
-    img(style='display: inline-block; width: 120px; height: 120px' src='/static/logo.png')
+    img(style='display: inline-block; width: 120px; height: 120px' src='static/logo.png')
   p-group
     p-text(:disabled='loading' v-model='account' icon='account' placeholder='请输入账号')
   p-group
