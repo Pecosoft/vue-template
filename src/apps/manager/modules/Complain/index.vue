@@ -28,7 +28,7 @@ export default {
     list0 () {
       let list = this.list
       let list0 = list.filter(item => {
-        if (item.status === 1 && parseInt(item.ismy) === 1) {
+        if (parseInt(item.ismy) === 1) {
           return true
         }
         return false

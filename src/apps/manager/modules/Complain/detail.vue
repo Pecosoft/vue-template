@@ -15,21 +15,31 @@ page
     talk-card(:data='complainDetail.reply')
       p 回复：
         span.gray {{ complainDetail.reply.content }}
+
+  sender(v-if='complainDetail.status == 1' @onsend='handleOnSend')
 </template>
 
 <script>
 import TalkCard from 'components/Business/TalkCard'
+import Sender from 'components/Chat/sender'
+import { complain } from '@/services'
 import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapActions } = createNamespacedHelpers('complain')
 
 export default {
   name: 'index',
   components: {
-    TalkCard
+    TalkCard,
+    Sender
   },
   data () {
     return {
       id: this.$route.params.id,
+      user: {
+        name: '',
+        intro: '',
+        avatar: ''
+      },
       complainDetail: {
       }
     }
@@ -39,8 +49,18 @@ export default {
   },
   methods: {
     ...mapActions(['read']),
-    handleOnClickBtn (btn) {
-      console.log(btn)
+    handleOnSend (sendContent) {
+      this.complainDetail.reply = {
+        user: this.user,
+        create_time: new Date().getTime(),
+        content: sendContent
+      }
+      this.complainDetail.status = 2
+      complain.update(this.id, {
+        step_id: 2,
+        content: sendContent,
+        action: 'reply'
+      })
     }
   },
   mounted () {
@@ -48,6 +68,14 @@ export default {
     this.read(this.$route.params.id).then(res => {
       this.complainDetail = res
       this.$peco.loading.hide()
+      this.$store.dispatch('user/read').then((user) => {
+        this.user = {
+          user_id: user.user_id,
+          name: user.employee.name,
+          intro: user.mobile,
+          avatar: user.avatar
+        }
+      })
     })
   }
 }
