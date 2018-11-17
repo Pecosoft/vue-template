@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     process (action) {
-      repairAction(action, this.thisValue, { $router: this.$router })
+      repairAction(action, this.thisValue, { $router: this.$router, $store: this.$store })
     }
   }
 }

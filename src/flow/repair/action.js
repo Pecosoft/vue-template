@@ -10,6 +10,15 @@ export default (action, data, { $router, $store }) => {
       $router.push({ name: 'RepairView', params: { id: data.id } })
       break
     case 'rate':
+      repair.update(data.id, {
+        receiver_id: 0,
+        step_id: 6,
+        action: 'rate',
+        sudu: '',
+        taidu: '',
+        jishu: '',
+        content: ''
+      })
       data.status = 6
       break
     case 'contact':
@@ -64,15 +73,31 @@ export default (action, data, { $router, $store }) => {
     case 'help2': // 维修师傅协助
       break
     case 'take': // 维修师傅接单
-      data.status = 3
+      repair.update(data.id, {
+        receiver_id: 0,
+        step_id: 3,
+        action: 'take'
+      })
+      $store.commit('repair/UPDATE_STATUS', {
+        id: data.id,
+        status: 3
+      })
       break
     case 'process': // 维修师傅到场维修
-      data.status = 4
+      repair.update(data.id, {
+        receiver_id: 0,
+        step_id: 4,
+        action: 'process'
+      })
+      $store.commit('repair/UPDATE_STATUS', {
+        id: data.id,
+        status: 4
+      })
       break
     case 'continue': // 维修师傅继续维修
       break
     case 'complete': // 维修师傅结案
-      data.status = 5
+      $router.push({ name: 'RepairComplete', params: { id: data.id } })
       break
   }
 }
