@@ -26,8 +26,10 @@ import Progress from 'components/Progress'
 import LoadingPlugin from 'plugins/loading'
 import ToastPlugin from 'plugins/toast'
 
-import { AlertPlugin } from 'vux'
+import { AlertPlugin, TransferDom } from 'vux'
+
 Vue.use(AlertPlugin)
+Vue.directive('transfer-dom', TransferDom)
 
 Vue.use(Page)
 Vue.use(ProfileHeader)
