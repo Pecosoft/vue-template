@@ -17,7 +17,7 @@ page(:style='{paddingBottom: processAble ? "60px" : 0}')
       cell
         h3 报修描述：
         p.gray.gapt {{ repairDetail.description }}
-      cell
+      cell(v-if='repairDetail.imgs')
         div.img80-ftc
           img(v-for='img in repairDetail.imgs' :src='img')
       cell
@@ -25,12 +25,16 @@ page(:style='{paddingBottom: processAble ? "60px" : 0}')
           i.peco-icon.peco-icon-microphone
         p.primary 60秒‘’
     pannel(title='报修记录' :gutter='10')
-      p-status(v-model='repairDetail.status')
-      p-history(style='border-top: 1px solid #F6F6F6')
-        p-event(v-for='event in repairDetail.events' :key='event.id')
+      p-status(v-model='status')
+      p-history
+        p-event(v-for='event in events' :key='event.id')
           template
-            p {{ event.datetime }} {{ event.who }} {{ event.do }}
-            p asfasdfaasdasdf
+            p
+              span(style='margin-right: 5px;') [{{ event.datetime|timestamp-to-text }}]
+              a(v-if='event.mobile' :href='`tel://${event.mobile}`') {{ event.who }}
+              span(v-else) {{ event.who }}
+              span(style='margin-left: 5px;') {{ event.do }}
+            section(v-if='event.content' v-html='event.content')
     rate-view(v-if='repairDetail.status >= 5 && repairDetail.rate' :data='repairDetail.rate' style='margin-bottom: 10px')
     repair-process(v-if='processAble' v-model='repairDetail')
 </template>
@@ -46,7 +50,16 @@ export default {
   data () {
     return {
       id: this.$route.params.id,
-      repairDetail: {}
+      repairDetail: {},
+      status: 0,
+      events: [
+        {
+          id: 1,
+          who: '',
+          do: '',
+          datetime: ''
+        }
+      ]
     }
   },
   components: {
@@ -71,6 +84,8 @@ export default {
   mounted () {
     this.$peco.loading.show()
     this.read(this.id).then(res => {
+      this.status = res.status
+      this.events = res.events
       this.repairDetail = res
       this.$peco.loading.hide()
     })

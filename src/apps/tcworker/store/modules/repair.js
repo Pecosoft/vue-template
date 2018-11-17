@@ -19,6 +19,19 @@ export default {
   mutations: {
     ['CHANGE'] (state, formData) {
       updateObj(state.form, formData)
+    },
+    ['UPDATE_STATUS'] (state, { id, status }) {
+      let list = state.list
+      let idStr = String(id)
+      let details = state.details
+      let detail = details[idStr]
+      if (detail) detail.status = status
+      for (var i = 0, len = list.length; i < len; i++) {
+        let item = list[i]
+        if (item.id === id) {
+          item.status = status
+        }
+      }
     }
   },
   actions: {
