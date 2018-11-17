@@ -1,13 +1,13 @@
 <template lang="pug">
 page
   h1(style='text-align: center; padding: 40px 0;')
-    img(style='display: inline-block; width: 120px; height: 120px' src='/static/logo.png')
+    img(style='display: inline-block; width: 120px; height: 120px' src='static/logo.png?v=1.0')
   p-group
     p-text(:disabled='loading' v-model='account' icon='account' placeholder='请输入账号')
   p-group
     p-passwd(:disabled='loading' v-model='passwd')
   btn-area
-      btn-primary(:loading='loading' @click.native='handleOnSubmit') 登录
+    btn-primary(:loading='loading' @click.native='handleOnSubmit') 登录
 </template>
 
 <script>
