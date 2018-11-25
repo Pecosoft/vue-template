@@ -35,6 +35,8 @@ export default {
       })
     }
   },
+  created() {
+  },
   mounted () {
     let user = this.user
     let userId = user.user_id

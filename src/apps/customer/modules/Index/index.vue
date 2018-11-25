@@ -38,6 +38,7 @@ import repairAction from '@/flow/repair/action'
 import { createNamespacedHelpers } from 'vuex'
 import { Popup, PopupHeader, Group, Cell, Rater, XTextarea } from 'vux'
 import { repair } from '@/services'
+import { configWxsdk } from 'utils/wxsdk'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
 export default {
@@ -154,7 +155,11 @@ export default {
         this.name = name
         this.desc = mobile
       }
-      this.fetch()
+      this.fetch().then(_ => {
+        this.$store.dispatch('opendata/getWxjssdkConfig').then(config => {
+          configWxsdk(config)
+        })
+      })
     })
   }
 }
