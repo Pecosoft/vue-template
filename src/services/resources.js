@@ -19,3 +19,4 @@ export const authUser = prefix + '/auth_user'
 export const authLogin = '//login.taikan.pecosoft.cn/?app='
 // 省市区数据
 export const provinceCityArea = prefix + '/areas'
+export const wxjssdk = prefix + '/wxjssdk'
