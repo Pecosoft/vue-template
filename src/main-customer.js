@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import VConsole from 'vconsole'
 import App from './App'
 import router from 'customer/router'
 import store from 'customer/store'
@@ -55,6 +56,9 @@ Vue.config.productionTip = false
 if (process.env.NODE_ENV !== 'production') {
   // require('./services/mock').default.bootstrap()
 }
+
+/* eslint-disable no-new */
+new VConsole()
 
 /* eslint-disable no-new */
 new Vue({
