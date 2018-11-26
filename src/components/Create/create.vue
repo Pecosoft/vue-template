@@ -13,6 +13,9 @@ export default {
   name: 'Create',
   mixins: [create],
   props: {
+    beforeSubmit: {
+      type: Function
+    },
     formName: {
       type: String,
       default: 'form'
@@ -24,6 +27,20 @@ export default {
     handleOnSubmit () {
       let $loading = this.$peco && this.$peco.loading
       $loading && $loading.show()
+      if (typeof this.beforeSubmit === 'function') {
+        return this.beforeSubmit(this.formData).then(formData => {
+          this.submit(formData).then(res => {
+            this.reset()
+            this.$emit('oncreated', res)
+            $loading && $loading.hide()
+          }).catch(err => {
+            console.log('verify: %o', err)
+            $loading && $loading.hide()
+          })
+        }).catch(error => {
+          console.error('beforeSubmit error', error)
+        })
+      }
       this.submit().then(res => {
         this.reset()
         this.$emit('oncreated', res)

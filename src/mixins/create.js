@@ -52,7 +52,7 @@ export default {
     verify () {
       return this.validator.unvalid(this.formData)
     },
-    async submit () {
+    async submit (formData) {
       if (!this.rest) {
         if (!this.resourceName) {
           console.error('未配置资源')
@@ -68,8 +68,9 @@ export default {
       }
 
       this.loading = true
-      this.formData.user_id = this.$store.state.user.user.user_id
-      let res = await this.rest.create(this.formData)
+      let submitFormData = formData || this.formData
+      submitFormData.user_id = this.$store.state.user.user.user_id
+      let res = await this.rest.create(submitFormData)
       this.loading = false
       return res
     }

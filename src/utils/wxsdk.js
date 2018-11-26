@@ -11,6 +11,8 @@ let defaultConfig = {
   jsApiList: [] // 必填，需要使用的JS接口列表
 }
 
+let isReady = false
+
 const load = _ => {
   return new Promise((resolve, reject) => {
     if (!isWechat) {
@@ -25,14 +27,17 @@ const load = _ => {
 
 const ready = config => {
   return load().then(_ => {
-    let realConfig = Object.assign({}, defaultConfig, config)
-    wx.config(realConfig)
-    wx.error(error => {
-      console.error('wxsdk error!', realConfig, error)
-    })
-
     return new Promise((resolve, reject) => {
+      if (isReady) {
+        return resolve()
+      }
+      let realConfig = Object.assign({}, defaultConfig, config)
+      wx.config(realConfig)
+      wx.error(error => {
+        console.error('wxsdk error!', realConfig, error)
+      })
       wx.ready(_ => {
+        isReady = true
         console.log('wxsdk ready!', realConfig.jsApiList)
         resolve(realConfig.jsApiList)
       })
@@ -85,6 +90,29 @@ export const uploadImage = localId => {
   })
 }
 
+export const uploadImages = localIds => {
+  return new Promise((resolve, reject) => {
+    if (!localIds || !localIds.length) {
+      return reject('localIds is empty!')
+    }
+    let len = localIds.length
+    let idx = 0
+    let serverIds = []
+    upload()
+    function upload () {
+      uploadImage(localIds[idx]).then(serverId => {
+        serverIds.push(serverId)
+        idx++
+        if (idx < len) {
+          upload ()
+        } else {
+          resolve(serverIds)
+        }
+      })
+    }
+  })
+}
+
 export const getImgSrcByLocalId = localId => {
   return new Promise((resolve, reject) => {
     if (window.wxjs_is_wkwebview) {
@@ -103,7 +131,7 @@ export const getImgSrcByLocalId = localId => {
   })
 }
 
-export const startRecord = () => wx.startRecord()
+export const startRecord = () => ready().then(_ => { wx.startRecord() })
 
 export const stopRecord = () => new Promise((resolve, reject) => {
   wx.stopRecord({

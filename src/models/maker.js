@@ -13,6 +13,10 @@ export default class Maker {
           return 0
         case 'string':
           return ''
+        case 'images':
+          return []
+        case 'audio':
+          return ''
         default:
           return null
       }
