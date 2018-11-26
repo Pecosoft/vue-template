@@ -2,23 +2,24 @@
 page
   pannel
     info-card(:infos='infos' :editUrl='editUrl' style='border-bottom: 3px dashed #0769ad')
-  create(@oncreated='handleOnCreated' title='申请报修' btn-text='提交报修' resource-name='repair' :model='repair' store-module='repair')
+  create(@oncreated='handleOnCreated' :before-submit='beforeSubmit' title='申请报修' btn-text='提交报修' resource-name='repair' :model='repair' store-module='repair')
 </template>
 
 <script>
 /* eslint-disable */
 import { repair } from '@/models'
 import { mapState, mapActions } from 'vuex'
+import { uploadImages, uploadVoice } from 'utils/wxsdk'
 
 export default {
   data () {
     return {
       repair,
       infos: [
-        {style: 'color: #606266; height: 22px; line-height: 22px; margin-bottom: 10px', row: [{style: '', value: '张三'}, {style: 'margin-left: 10px', value: '15988888888'}]},
-        {style: 'color: #606266; height: 22px; line-height: 22px; margin-bottom: 10px', row: [{style: '', value: '深圳市XXXXxxxxxxxx公司'}]},
-        {style: 'color: #606266; height: 22px; line-height: 22px; ', row: [{style: '', value: '深圳市南山区高新科技园高新南四路'}]},
-        {style: 'color: #606266; height: 22px; line-height: 22px; ', row: [{style: '', value: 'T栋XXXXXX'}]}
+        {style: 'color: #606266; height: 22px; line-height: 22px; margin-bottom: 10px', row: [{style: '', value: ''}, {style: 'margin-left: 10px', value: ''}]},
+        {style: 'color: #606266; height: 22px; line-height: 22px; margin-bottom: 10px', row: [{style: '', value: ''}]},
+        {style: 'color: #606266; height: 22px; line-height: 22px; ', row: [{style: '', value: ''}]},
+        {style: 'color: #606266; height: 22px; line-height: 22px; ', row: [{style: '', value: ''}]}
       ],
       editUrl: {name: 'UserProfile'}
     }
@@ -33,6 +34,22 @@ export default {
       this.fetch(true).then(_ => {
         this.$router.go(-1)
       })
+    },
+    async beforeSubmit (formData) {
+      if ((!formData.avatar || !formData.avatar.length) && !formData.voice) {
+        return formData
+      }
+      let submitFormData = Object.assign({}, formData)
+      if (formData.avatar.length) {
+        // 上传图片
+        let serverIds = await uploadImages(formData.avatar)
+        submitFormData.avatar = serverIds
+      }
+      if (formData.voice) {
+        // 上传语音
+        submitFormData.voice = await uploadVoice(formData.voice)
+      }
+      return submitFormData
     }
   },
   created() {
