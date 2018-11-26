@@ -8,8 +8,8 @@ export default {
     form: {
       product_id: 0,
       description: '',
-      avatar: 0,
-      voice: 0
+      avatar: [],
+      voice: ''
     },
     list: [
     ],
