@@ -21,16 +21,16 @@ page
       p.gray.gapt {{ repairDetail.description }}
     cell(v-if='repairDetail.imgs')
       div.img80-ftc
-        img(v-for='img in repairDetail.imgs' :src='img')
-    cell
-      div(slot='prefix' style='padding: 10px 10px 10px 15px;')
-        i.peco-icon.peco-icon-microphone
-      p.primary 60秒‘’
+        img(v-for='img in repairDetail.imgs' :src='img' @click='onPreviewImage(img)')
+    cell(v-if='repairDetail.voice')
+      p.primary
+        audio(:src='repairDetail.voice' controls='true' preload)
 </template>
 
 <script>
 import { timestampToText, statusToText } from '@/filters'
 import { createNamespacedHelpers } from 'vuex'
+import { previewImage } from 'utils/wxsdk'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
 export default {
@@ -77,7 +77,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['read'])
+    ...mapActions(['read']),
+    onPreviewImage (img) {
+      previewImage('http:' + img, this.repairDetail.imgs.map(img => 'http:' + img))
+    }
   },
   mounted () {
     this.$peco.loading.show()
@@ -106,6 +109,7 @@ export default {
   img {
     width: 80px;
     height: 80px;
+    object-fit: cover;
     float: left;
     margin-right: 10px;
     margin-bottom: 10px;
