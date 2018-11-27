@@ -5,6 +5,8 @@ page
 </template>
 
 <script>
+import { configWxsdk } from 'utils/wxsdk'
+
 export default {
   name: 'index',
   data () {
@@ -42,6 +44,9 @@ export default {
         this.name = name
         this.desc = mobile
       }
+      this.$store.dispatch('weixin/getWxjssdkConfig').then(config => {
+        configWxsdk(config)
+      })
     })
   }
 }
