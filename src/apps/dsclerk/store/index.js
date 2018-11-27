@@ -6,6 +6,7 @@ import complain from './modules/complain'
 import suggest from './modules/suggest'
 import dispatch from './modules/dispatch'
 import user from './modules/user'
+import weixin from './modules/weixin'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,8 @@ const store = new Vuex.Store({
     complain,
     suggest,
     dispatch,
-    user
+    user,
+    weixin
   }
 })
 
