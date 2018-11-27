@@ -41,7 +41,7 @@ export default {
         return false
       })
       return list0.sort((a, b) => {
-        return b.create_time - b.create_time
+        return b.create_time - a.create_time
       })
     },
     list1 () {
