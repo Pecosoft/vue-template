@@ -11,6 +11,7 @@ page
 <script>
 import repairAction from '@/flow/repair/action'
 import { createNamespacedHelpers } from 'vuex'
+import { configWxsdk } from 'utils/wxsdk'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
 export default {
@@ -96,6 +97,9 @@ export default {
 
       this.fetch().then(data => {
         this.$peco.loading.hide()
+        this.$store.dispatch('weixin/getWxjssdkConfig').then(config => {
+          configWxsdk(config)
+        })
       })
     })
   }
