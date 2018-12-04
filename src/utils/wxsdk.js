@@ -79,7 +79,7 @@ export const uploadImage = localId => {
     return new Promise((resolve, reject) => {
       let realOpts = {
         localId, // 需要上传的图片的本地ID，由chooseImage接口获得
-        isShowProgressTips: 1 // 默认为1，显示进度提示
+        isShowProgressTips: 0 // 默认为1，显示进度提示
       }
       realOpts.success = function (res) {
         let serverId = res.serverId; // 返回图片的服务器端ID
@@ -177,7 +177,7 @@ export const onVoicePlayEnd = () => new Promise((resolve, reject) => {
 export const uploadVoice = localId => new Promise((resolve, reject) => {
   wx.uploadVoice({
     localId, // 需要上传的音频的本地ID，由stopRecord接口获得
-    isShowProgressTips: 1, // 默认为1，显示进度提示
+    isShowProgressTips: 0, // 默认为1，显示进度提示
     success: function (res) {
       let serverId = res.serverId // 返回音频的服务器端ID
       resolve(serverId, res)

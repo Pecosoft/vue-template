@@ -1,5 +1,5 @@
 <template lang="pug">
-  .peco-model-input.tapable
+  .peco-model-input
     .peco-model-input_bd
       .peco-uploader
         .peco-uploader__hd
@@ -82,5 +82,11 @@ export default {
   &.active {
     border: 2px solid #0769ad;
   }
+  -webkit-touch-callout: none;
+  -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
 }
 </style>
