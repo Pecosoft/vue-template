@@ -15,6 +15,7 @@ export default {
   data () {
     return {
       repair,
+      who: '',
       infos: [
         {style: 'color: #606266; height: 22px; line-height: 22px; margin-bottom: 10px', row: [{style: '', value: ''}, {style: 'margin-left: 10px', value: ''}]},
         {style: 'color: #606266; height: 22px; line-height: 22px; margin-bottom: 10px', row: [{style: '', value: ''}]},
@@ -49,6 +50,7 @@ export default {
         // 上传语音
         submitFormData.voice = await uploadVoice(formData.voice)
       }
+      submitFormData.who = this.who + '用户'
       return submitFormData
     }
   },
@@ -65,7 +67,7 @@ export default {
     let customer = user.customer || null
     let company = customer.company || null
 
-    this.infos[0].row[0].value = (customer && customer.name) || user.name
+    this.who = this.infos[0].row[0].value = (customer && customer.name) || user.name
     this.infos[0].row[1].value = (customer && customer.mobile) || user.mobile
 
     let company_name = ''
