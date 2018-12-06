@@ -47,7 +47,8 @@ const ready = config => {
 
 export const loadWxsdk = load
 export const configWxsdk = config => {
-  return defaultConfig = config
+  defaultConfig = config
+  return ready()
 }
 
 export const chooseImage = opts => {
@@ -199,14 +200,16 @@ export const uploadVoice = localId => new Promise((resolve, reject) => {
 export const openLocation = opts => wx.openLocation(opts)
 
 export const getLocation = () => new Promise((resolve, reject) => {
-  wx.getLocation({
+  ready().then(_ => {
+    wx.getLocation({
       type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
       success: function (res) {
         let latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
         let longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-        let speed = res.speed; // 速度，以米/每秒计
-        let accuracy = res.accuracy; // 位置精度
-        resolve(latitude, longitude)
+        // let speed = res.speed; // 速度，以米/每秒计
+        // let accuracy = res.accuracy; // 位置精度
+        resolve({latitude, longitude})
       }
+    })
   })
 })

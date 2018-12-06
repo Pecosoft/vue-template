@@ -23,6 +23,9 @@ export default {
   },
   methods: {
     process (action) {
+      if (action === 'process') {
+        return this.$emit('process')
+      }
       repairAction(action, this.thisValue, { $router: this.$router, $store: this.$store })
     }
   }

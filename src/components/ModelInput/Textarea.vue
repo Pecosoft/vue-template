@@ -1,6 +1,6 @@
 <template lang="pug">
   .peco-model-input
-    textarea.peco-textarea(:placeholder='label' :rows='attr.rows' v-model='thisValue')
+    textarea.peco-textarea(:placeholder='label' :rows='attr && attr.rows || 3' v-model='thisValue' @blur='$emit("blur")')
 </template>
 
 <script>

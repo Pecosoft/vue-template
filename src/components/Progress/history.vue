@@ -78,6 +78,36 @@ export default {
       }
     }
   }
+  section {
+    &:after {
+      display: block;
+      clear: both;
+      content: '';
+    }
+    & + & {
+      margin-top: 5px;
+    }
+  }
+  .event-title {
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .event-content {
+    color: #666;
+  }
+  .event-location {
+    color: $color-link;
+    font-size: 12px;
+  }
+  .event-img {
+    width: 80px;
+    height: 80px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
   .circle {
     display: inline-block;
     width: 12px;
