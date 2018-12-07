@@ -25,11 +25,32 @@ export default {
       let idStr = String(id)
       let details = state.details
       let detail = details[idStr]
-      if (detail) detail.status = status
+      if (detail) {
+        detail.status = status
+      }
       for (var i = 0, len = list.length; i < len; i++) {
         let item = list[i]
         if (item.id === id) {
           item.status = status
+          break
+        }
+      }
+    },
+    ['UPDATE_TAG'] (state, { id, tag, help }) {
+      let list = state.list
+      let idStr = String(id)
+      let details = state.details
+      let detail = details[idStr]
+      if (detail) {
+        detail.tag = tag
+        if (help) detail.help = help
+      }
+      for (var i = 0, len = list.length; i < len; i++) {
+        let item = list[i]
+        if (item.id === id) {
+          item.tag = tag
+          if(help) item.help = help
+          break
         }
       }
     }
