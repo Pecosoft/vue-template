@@ -27,9 +27,10 @@ import Tab from 'components/Tab'
 import LoadingPlugin from 'plugins/loading'
 import ToastPlugin from 'plugins/toast'
 
-import { AlertPlugin, TransferDom } from 'vux'
+import { AlertPlugin, TransferDom, ConfirmPlugin } from 'vux'
 
 Vue.use(AlertPlugin)
+Vue.use(ConfirmPlugin)
 Vue.directive('transfer-dom', TransferDom)
 Vue.use(Page)
 Vue.use(ProfileHeader)
