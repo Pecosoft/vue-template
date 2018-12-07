@@ -43,7 +43,7 @@ page(:style='{paddingBottom: processAble ? "60px" : 0}')
             template(v-if='event.cate == 4')
               p.event-location(@click='openWxMap(event)') 位置：{{ event.location }}
     rate-view(v-if='repairDetail.status >= 5 && repairDetail.rate' :data='repairDetail.rate' style='margin-bottom: 10px')
-  repair-process(v-if='processAble' v-model='repairDetail' @process='onProcess')
+  repair-process(v-if='processAble' v-model='repairDetail' @process='onProcess' @help='onHelp' @continue='onContinue')
   div(v-transfer-dom='true')
     popup(v-model='showProcess')
       popup-header(
@@ -151,6 +151,69 @@ export default {
         this.processForm.lat = latitude
         this.processForm.lng = longitude
         this.getGeo(latitude, longitude)
+      })
+    },
+    onHelp () {
+      let _this = this
+      let who = this.$store.state.user.user.employee.name + '师傅'
+      let repair_id = _this.id
+      let $loading = _this.$peco && _this.$peco.loading
+      this.$vux.confirm.prompt('输入协助原因', {
+        title: '协助',
+        'show-input': true,
+        onCancel () {},
+        onConfirm (help) {
+          $loading.show()
+          repair.update(repair_id, {
+            receiver_id: 0,
+            tag: 1,
+            help: help,
+            step_id: 4,
+            action: 'help2',
+            who: who
+          }).then(res => {
+            $loading && $loading.hide()
+            _this.$set(_this.repairDetail, 'tag', 1)
+            _this.$set(_this.repairDetail, 'help', help)
+            _this.$store.commit('repair/UPDATE_TAG', {
+              id: repair_id,
+              tag: 1,
+              help: help
+            })
+          }).catch(error => {
+            $loading && $loading.hide()
+          })
+        }
+      })
+    },
+    onContinue () {
+      let _this = this
+      let who = this.$store.state.user.user.employee.name + '师傅'
+      let repair_id = _this.id
+      let $loading = _this.$peco && _this.$peco.loading
+      this.$vux.confirm.show({
+        title: '继续维修?',
+        content: '继续维修将撤回协助',
+        onCancel () {},
+        onConfirm () {
+          $loading.show()
+          repair.update(repair_id, {
+            receiver_id: 0,
+            tag: 0,
+            step_id: 4,
+            action: 'continue',
+            who: who
+          }).then(res => {
+            $loading && $loading.hide()
+            _this.$set(_this.repairDetail, 'tag', 0)
+            _this.$store.commit('repair/UPDATE_TAG', {
+              id: repair_id,
+              tag: 0
+            })
+          }).catch(error => {
+            $loading && $loading.hide()
+          })
+        }
       })
     },
     getGeo (latitude, longitude) {
