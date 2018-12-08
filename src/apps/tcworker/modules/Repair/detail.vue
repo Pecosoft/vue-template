@@ -45,6 +45,13 @@ page(:style='{paddingBottom: processAble ? "60px" : 0}')
     rate-view(v-if='repairDetail.status >= 5 && repairDetail.rate' :data='repairDetail.rate' style='margin-bottom: 10px')
   repair-process(v-if='processAble' v-model='repairDetail' @process='onProcess' @help='onHelp' @continue='onContinue')
   div(v-transfer-dom='true')
+    confirm(
+      v-model='showHelpConfirm'
+      :close-on-confirm='false'
+      title='协助'
+      @on-confirm='onHelpConfirm')
+      input.peco-input(v-model='help' @blur='onTextareaBlur' placeholder='请输入协助原因')
+  div(v-transfer-dom='true')
     popup(v-model='showProcess')
       popup-header(
         left-text='取消'
@@ -70,7 +77,7 @@ import { timestampToText, statusToText } from '@/filters'
 import { createNamespacedHelpers } from 'vuex'
 import { previewImage, getLocation, openLocation, uploadImages } from 'utils/wxsdk'
 import toTop from 'utils/toTop'
-import { Popup, PopupHeader, Group, Cell, Rater, XTextarea } from 'vux'
+import { Popup, PopupHeader, Confirm, Group, Cell, Rater, XTextarea } from 'vux'
 import WxImagesPicker from 'components/ModelInput/WxImagesPicker'
 import PTextarea from 'components/ModelInput/Textarea'
 import jsonp from '@/services/jsonp'
@@ -92,6 +99,8 @@ export default {
         }
       ],
       showProcess: false,
+      showHelpConfirm: false,
+      help: '',
       processForm: {
         lng: '0',
         lat: '0',
@@ -102,6 +111,7 @@ export default {
     }
   },
   components: {
+    Confirm,
     RepairProcess,
     RateView,
     Popup,
@@ -154,37 +164,7 @@ export default {
       })
     },
     onHelp () {
-      let _this = this
-      let who = this.$store.state.user.user.employee.name + '师傅'
-      let repair_id = _this.id
-      let $loading = _this.$peco && _this.$peco.loading
-      this.$vux.confirm.prompt('输入协助原因', {
-        title: '协助',
-        'show-input': true,
-        onCancel () {},
-        onConfirm (help) {
-          $loading.show()
-          repair.update(repair_id, {
-            receiver_id: 0,
-            tag: 1,
-            help: help,
-            step_id: 4,
-            action: 'help2',
-            who: who
-          }).then(res => {
-            $loading && $loading.hide()
-            _this.$set(_this.repairDetail, 'tag', 1)
-            _this.$set(_this.repairDetail, 'help', help)
-            _this.$store.commit('repair/UPDATE_TAG', {
-              id: repair_id,
-              tag: 1,
-              help: help
-            })
-          }).catch(error => {
-            $loading && $loading.hide()
-          })
-        }
-      })
+      this.showHelpConfirm = true
     },
     onContinue () {
       let _this = this
@@ -214,6 +194,37 @@ export default {
             $loading && $loading.hide()
           })
         }
+      })
+    },
+    onHelpConfirm () {
+      let who = this.$store.state.user.user.employee.name + '师傅'
+      let repair_id = this.id
+      let $loading = this.$peco && this.$peco.loading
+      let help = this.help
+      if (!help) {
+        return
+      }
+      $loading.show()
+      repair.update(repair_id, {
+        receiver_id: 0,
+        tag: 1,
+        help: help,
+        step_id: 4,
+        action: 'help2',
+        who: who
+      }).then(res => {
+        $loading && $loading.hide()
+        this.showHelpConfirm = false
+        this.help = ''
+        this.$set(this.repairDetail, 'tag', 1)
+        this.$set(this.repairDetail, 'help', help)
+        this.$store.commit('repair/UPDATE_TAG', {
+          id: repair_id,
+          tag: 1,
+          help: help
+        })
+      }).catch(error => {
+        $loading && $loading.hide()
       })
     },
     getGeo (latitude, longitude) {
