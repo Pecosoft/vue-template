@@ -30,7 +30,7 @@ page
           span(slot='after-title')
             rater(v-model='rateForm.jishu' style='margin-left: 40px' :margin='10' active-color='#04BE02')
           p {{ rateForm.jishu|rate-text }}
-        x-textarea(v-model='rateForm.content' placeholder='写评论')
+        x-textarea(v-model='rateForm.content' placeholder='写评论' @on-blur='onTextareaBlur')
 </template>
 
 <script>
@@ -39,6 +39,7 @@ import { createNamespacedHelpers } from 'vuex'
 import { Popup, PopupHeader, Group, Cell, Rater, XTextarea } from 'vux'
 import { repair } from '@/services'
 import { configWxsdk } from 'utils/wxsdk'
+import toTop from 'utils/toTop'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
 export default {
@@ -97,6 +98,9 @@ export default {
   },
   methods: {
     ...mapActions(['fetch']),
+    onTextareaBlur () {
+      toTop()
+    },
     handleOnClickGrid: gd => {
     },
     handleOnClickList (d) {
@@ -110,7 +114,6 @@ export default {
     },
     handleOnClickBtn (d, btn) {
       if (btn.id === 'rate') {
-        console.log('rate')
         this.rateRepair = d
         this.resetRate()
         this.showRate = true
@@ -123,6 +126,7 @@ export default {
       repair.update(this.rateRepair.id, {
         receiver_id: 0,
         step_id: 6,
+        who: this.$store.state.user.user.customer.name + '用户',
         action: 'rate',
         ...this.rateForm
       }).then(res => {
