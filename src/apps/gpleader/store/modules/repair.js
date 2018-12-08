@@ -20,12 +20,13 @@ export default {
     ['CHANGE'] (state, formData) {
       updateObj(state.form, formData)
     },
-    ['DISPATCH'] (state, { id, picked, status }) {
+    ['DISPATCH'] (state, { id, picked, status, who }) {
       let list = state.list
       if (id && picked && picked.id) {
         repair.update(id, {
           receiver_id: picked.id,
           step_id: 2,
+          who,
           action: 'dispatch2' // 分配维修师傅
         })
       }
