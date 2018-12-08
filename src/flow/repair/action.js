@@ -4,7 +4,13 @@ export default (action, data, { $router, $store, $vm, playload }) => {
   // console.log('action: %s data: %o $router: %o', action, data, $router)
   switch (action) {
     case 'cancel':
-      $store.dispatch('repair/delete', data)
+      $vm.$vux.confirm.show({
+        title: '确认取消订单?',
+        content: '取消后，订单将丢失',
+        onConfirm () {
+          $store.dispatch('repair/delete', data)
+        }
+      })
       break
     case 'view':
       $router.push({ name: 'RepairView', params: { id: data.id } })

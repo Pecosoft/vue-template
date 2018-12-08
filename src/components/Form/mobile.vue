@@ -1,6 +1,6 @@
 <template lang="pug">
 p-input(type='text' icon='mobile' :disabled='thisDisabled' :placeholder='placeholder' v-model='thisValue')
-  div.peco-mobile-verify-btn(slot='after' @click='onclick' :class='{disabled: !mobileIsValid || seconds}') {{ seconds ? seconds + '秒' : '获取验证码' }}
+  //- div.peco-mobile-verify-btn(slot='after' @click='onclick' :class='{disabled: !mobileIsValid || seconds}') {{ seconds ? seconds + '秒' : '获取验证码' }}
 </template>
 
 <script>

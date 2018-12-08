@@ -37,6 +37,9 @@ export default {
     }
   },
   methods: {
+    set (key, val) {
+      this.formData[key] = val
+    },
     reset () {
       let storeModule = this.storeModule
       if (storeModule) {
