@@ -25,10 +25,10 @@ export default {
       let id = this.id
       if (mappick && mappick[id] && item.id === mappick[id].id) {
         this.dispatch({ id: this.id, picked: false })
-        this.$store.commit('repair/DISPATCH', { id: this.id, picked: false })
+        this.$store.commit('repair/DISPATCH', { id: this.id, picked: false, who: 0 })
       } else {
         this.dispatch({ id: this.id, picked: item })
-        this.$store.commit('repair/DISPATCH', { id: this.id, picked: item, status: 2 })
+        this.$store.commit('repair/DISPATCH', { id: this.id, picked: item, status: 2, who: this.$store.state.user.user.employee.name })
       }
       if (mappick[id]) {
         this.$router && this.$router.go(-1)
