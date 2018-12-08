@@ -8,8 +8,7 @@ export default {
     form: {
       product_id: 0,
       description: '',
-      avatar: 0,
-      voice: 0
+      contact: ''
     },
     list: [
     ],
@@ -21,6 +20,9 @@ export default {
     },
     ['PUT_USER_ID'] (state, user_id) {
       state.form.user_id = user_id
+    },
+    ['PUT_CONTACT'] (state, contact) {
+      state.form.contact = contact
     }
   },
   actions: {

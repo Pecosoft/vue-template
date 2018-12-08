@@ -27,9 +27,10 @@ import Progress from 'components/Progress'
 import LoadingPlugin from 'plugins/loading'
 import ToastPlugin from 'plugins/toast'
 
-import { AlertPlugin, TransferDom } from 'vux'
+import { AlertPlugin, ConfirmPlugin, TransferDom } from 'vux'
 
 Vue.use(AlertPlugin)
+Vue.use(ConfirmPlugin)
 Vue.directive('transfer-dom', TransferDom)
 
 Vue.use(Page)
