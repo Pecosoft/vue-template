@@ -21,10 +21,10 @@ export default {
       tabs: ['未分配', '已分配', '已完成'],
       privs: [
         [], // status: 0 待受理
-        [{id: 'dispatch2', name: '分配人员'}, {id: 'help1', name: '协助原因', _if: 'tag=1'}, {id: 'reject1', name: '驳回', _if: 'tag=0'}], // status: 1 已受理
+        [{id: 'dispatch2', name: '分配人员'}, {id: 'help1', template: '协助原因：[help]', _if: 'tag=1'}, {id: 'reject1', name: '驳回', _if: 'tag=0'}], // status: 1 已受理
         [{id: 'info2', name: '已分配XX', template: '已分配[dispatch.name]'}, {id: 'revoke2', name: '撤回'}], // status: 2 已派单
         [{id: 'info2', name: '已分配XX', template: '已分配[dispatch.name]'}], // status: 3 已接单
-        [{id: 'info2', name: '已分配XX', template: '已分配[dispatch.name]'}], // status: 4 维修中
+        [{id: 'info2', template: '已分配[dispatch.name]', _if: 'tag=0'}, {id: 'dispatch2', name: '重新分配人员', _if: 'tag=1'}, {id: 'help2', template: '协助原因：[help]', _if: 'tag=1'}], // status: 4 维修中
         [{id: 'view', name: '查看报修'}], // status: 5 已完成
         [{id: 'view', name: '查看报修'}] // status: 6 已评价
       ]
@@ -35,7 +35,7 @@ export default {
     list0 () {
       let list = this.list
       let list0 = list.filter(item => {
-        if (item.status === 1) {
+        if (item.status === 1 || item.tag === 1) {
           return true
         }
         return false
@@ -48,7 +48,7 @@ export default {
       let list = this.list
       let list1 = list.filter(item => {
         let status = item.status
-        if (status > 1 && status < 5) {
+        if (status > 1 && status < 5 && item.tag !== 1) {
           return true
         }
         return false
@@ -77,7 +77,7 @@ export default {
       this.$router.push({name: 'RepairDetail', params: {id: d.id}})
     },
     handleOnClickBtn (d, btn) {
-      repairAction(btn.id, d, { $router: this.$router })
+      repairAction(btn.id, d, { $router: this.$router, $store: this.$store, $vm: this })
     }
   },
   mounted () {
