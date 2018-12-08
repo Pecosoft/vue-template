@@ -27,8 +27,9 @@ import List from 'components/List'
 import LoadingPlugin from 'plugins/loading'
 import ToastPlugin from 'plugins/toast'
 
-import { AlertPlugin } from 'vux'
+import { AlertPlugin, ConfirmPlugin } from 'vux'
 Vue.use(AlertPlugin)
+Vue.use(ConfirmPlugin)
 
 Vue.use(Page)
 Vue.use(ProfileHeader)
