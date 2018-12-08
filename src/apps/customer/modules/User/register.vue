@@ -4,7 +4,7 @@ page
   p-group
     p-mobile(:disabled='loading' v-model='mobile')
   p-group
-    p-text(:disabled='loading' v-model='verify_code' icon='key' placeholder='请输入验证码')
+    //- p-text(:disabled='loading' v-model='verify_code' icon='key' placeholder='请输入验证码')
     p-passwd(:disabled='loading' v-model='passwd')
     p-passwd(:disabled='loading' v-model='passwd2' placeholder='请重复密码')
   btn-area
@@ -61,12 +61,12 @@ export default {
           content: '请正确填写手机号码'
         })
       }
-      if (!/^[1-9][0-9]{3}$/.test(verify_code)) {
-        return this.$vux.alert.show({
-          title: '验证码输入错误',
-          content: '请输入4位数字有效验证码'
-        })
-      }
+      // if (!/^[1-9][0-9]{3}$/.test(verify_code)) {
+      //   return this.$vux.alert.show({
+      //     title: '验证码输入错误',
+      //     content: '请输入4位数字有效验证码'
+      //   })
+      // }
       if (!passwd || passwd !== passwd2) {
         return this.$vux.alert.show({
           title: '密码未填写或不一致',

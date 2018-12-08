@@ -32,6 +32,10 @@ export default {
     ['PUT_USER_ID'] (state, user_id) {
       state.serviceForm.user_id = user_id
       state.productForm.user_id = user_id
+    },
+    ['PUT_CONTACT'] (state, contact) {
+      state.serviceForm.contact = contact
+      state.productForm.contact = contact
     }
   },
   actions: {

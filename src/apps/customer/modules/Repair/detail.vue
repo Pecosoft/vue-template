@@ -19,7 +19,7 @@ page
     cell
       h3 报修描述：
       p.gray.gapt {{ repairDetail.description }}
-    cell(v-if='repairDetail.imgs')
+    cell(v-if='repairDetail.imgs && repairDetail.imgs.length')
       div.img80-ftc
         img(v-for='img in repairDetail.imgs' :src='img' @click='onPreviewImage(img)')
     cell(v-if='repairDetail.voice')
@@ -69,9 +69,11 @@ export default {
   computed: {
     ...mapState(['details']),
     topEvent () {
-      let events = this.repairDetail.events
+      let events = this.repairDetail.events.filter(event => {
+        return event.cate !== 1 && event.cate !== 2 && event.action.indexOf('help') === -1 && event.action.indexOf('continue') === -1
+      })
       if (!events || !events.length) return ''
-      let event = this.repairDetail.events[0]
+      let event = events[0]
       return '[' + timestampToText(event.datetime) + '] ' + event.who + ' ' + event.do
     }
   },
