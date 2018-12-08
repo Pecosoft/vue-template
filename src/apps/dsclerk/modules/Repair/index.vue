@@ -77,7 +77,7 @@ export default {
       this.$router.push({name: 'RepairDetail', params: {id: d.id}})
     },
     handleOnClickBtn (d, btn) {
-      repairAction(btn.id, d, { $router: this.$router })
+      repairAction(btn.id, d, { $router: this.$router, $store: this.$store, $vm: this })
     }
   },
   mounted () {
