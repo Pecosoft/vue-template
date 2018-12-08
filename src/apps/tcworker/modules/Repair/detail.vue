@@ -37,7 +37,12 @@ page(:style='{paddingBottom: processAble ? "60px" : 0}')
                 a(:href='`tel://${event.contact}`') {{ event.contact }}
             section(v-if='event.content')
               h3.event-title(v-if='event.cate == 4') {{ event.action == 'process' ? '维修内容：': '协助原因：' }}
-              p.event-content {{ event.content }}
+                p.event-content {{ event.content }}
+              p.event-content(v-else-if='event.cate == 5')
+                span {{ event.content.split("[br]")[0] }}
+                br
+                span {{ event.content.split("[br]")[1] }}
+              p.event-content(v-else) {{ event.content }}
             section(v-if='event.imgs && event.imgs.length')
               img.event-img(v-for='img in event.imgs' :src='img' @click='previewImages(img, event.imgs)')
             template(v-if='event.cate == 4 && event.location')
