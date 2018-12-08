@@ -17,7 +17,7 @@ page(:style='{paddingBottom: processAble ? "60px" : 0}')
       cell
         h3 报修描述：
         p.gray.gapt {{ repairDetail.description }}
-      cell(v-if='repairDetail.imgs')
+      cell(v-if='repairDetail.imgs && repairDetail.imgs.length')
         div.img80-ftc
           img(v-for='img in repairDetail.imgs' :src='img' @click='onPreviewImage(img)')
       cell(v-if='repairDetail.voice')
@@ -36,11 +36,11 @@ page(:style='{paddingBottom: processAble ? "60px" : 0}')
               span(v-if='event.contact') ，电话
                 a(:href='`tel://${event.contact}`') {{ event.contact }}
             section(v-if='event.content')
-              h3.event-title(v-if='event.cate == 4') 维修内容：
+              h3.event-title(v-if='event.cate == 4') {{ event.action == 'process' ? '维修内容：': '协助原因：' }}
               p.event-content {{ event.content }}
             section(v-if='event.imgs && event.imgs.length')
               img.event-img(v-for='img in event.imgs' :src='img' @click='previewImages(img, event.imgs)')
-            template(v-if='event.cate == 4')
+            template(v-if='event.cate == 4 && event.location')
               p.event-location(@click='openWxMap(event)') 位置：{{ event.location }}
     rate-view(v-if='repairDetail.status >= 5 && repairDetail.rate' :data='repairDetail.rate' style='margin-bottom: 10px')
   repair-process(v-if='processAble' v-model='repairDetail' @process='onProcess' @help='onHelp' @continue='onContinue')

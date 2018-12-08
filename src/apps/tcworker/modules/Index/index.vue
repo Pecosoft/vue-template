@@ -28,7 +28,7 @@ export default {
         [],
         [{id: 'reject2', name: '驳回'}],
         [{id: 'reject2', name: '驳回'}],
-        [{id: 'help2', name: '协助原因'}],
+        [{id: 'help2', template: '协助原因：[help]', _if: 'tag=1'}],
         [],
         []
       ]
