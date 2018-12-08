@@ -19,7 +19,7 @@ page
     cell
       h3 报修描述：
       p.gray.gapt {{ repairDetail.description }}
-    cell(v-if='repairDetail.imgs')
+    cell(v-if='repairDetail.imgs && repairDetail.imgs.length')
       div.img80-ftc
         img(v-for='img in repairDetail.imgs' :src='img' @click='onPreviewImage(img)')
     cell(v-if='repairDetail.voice')
