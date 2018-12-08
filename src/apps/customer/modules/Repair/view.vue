@@ -14,6 +14,11 @@ page
         section(v-if='event.content')
           h3.event-title(v-if='event.cate == 4') {{ event.action == 'process' ? '维修内容：': '协助原因：' }}
             p.event-content {{ event.content }}
+          p.event-content(v-else-if='event.cate == 5')
+            span {{ event.content.split("[br]")[0] }}
+            br
+            span {{ event.content.split("[br]")[1] }}
+          p.event-content(v-else) {{ event.content }}
         section(v-if='event.imgs && event.imgs.length')
           img.event-img(v-for='img in event.imgs' :src='img' @click='previewImages(img, event.imgs)')
         template(v-if='event.cate == 4 && event.location')
@@ -31,14 +36,7 @@ export default {
     return {
       id: this.$route.params.id,
       status: 0,
-      events: [
-        {
-          id: 1,
-          who: '',
-          do: '',
-          datetime: ''
-        }
-      ]
+      events: []
     }
   },
   filters: {
@@ -65,9 +63,10 @@ export default {
     this.$peco.loading.show()
     this.read(this.id).then(res => {
       this.status = res.status
-      this.events = res.events.filter(event => {
+      let events = res.events.filter(event => {
         return event.cate !== 1 && event.cate !== 2 && event.action.indexOf('help') === -1 && event.action.indexOf('continue') === -1
       })
+      this.events = events
       this.$peco.loading.hide()
     })
   }
