@@ -53,13 +53,17 @@ export default (action, data, { $router, $store, $vm, playload }) => {
       window.location.href = 'tel://' + data.dispatch.mobile
       break
     case 'reject1': // 维修主管驳回
-      $vm.$vux.confirm.show({
+      $vm.$vux.confirm.prompt('驳回理由', {
         title: '确认驳回?',
         content: '驳回后，派单文员将重新分配此次维修',
-        onConfirm () {
+        onConfirm (content) {
+          if (!content) {
+            return $vm.$vux.alert.show({ title: '驳回理由未填写', content: '请填写驳回理由' })
+          }
           repair.update(data.id, {
             receiver_id: 0,
             step_id: 0,
+            content,
             action: 'reject1',
             who: $store.state.user.user.employee.name
           })
@@ -91,13 +95,17 @@ export default (action, data, { $router, $store, $vm, playload }) => {
     case 'help1': // 维修主管协助
       break
     case 'reject2': // 维修师傅驳回
-      $vm.$vux.confirm.show({
+      $vm.$vux.confirm.prompt('驳回理由', {
         title: '确认驳回?',
         content: '驳回后，维修组长将重新分配此次维修',
-        onConfirm () {
+        onConfirm (content) {
+          if (!content) {
+            return $vm.$vux.alert.show({ title: '驳回理由未填写', content: '请填写驳回理由' })
+          }
           repair.update(data.id, {
             receiver_id: 0,
             step_id: 1,
+            content,
             action: 'reject2',
             who: $store.state.user.user.employee.name
           })
