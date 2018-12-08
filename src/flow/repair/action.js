@@ -1,6 +1,6 @@
 import { repair } from '@/services'
 
-export default (action, data, { $router, $store, playload }) => {
+export default (action, data, { $router, $store, $vm, playload }) => {
   // console.log('action: %s data: %o $router: %o', action, data, $router)
   switch (action) {
     case 'cancel':
@@ -29,37 +29,55 @@ export default (action, data, { $router, $store, playload }) => {
       $router.push({ name: 'RepairDispatch', params: { id: data.id } })
       break
     case 'revoke1': // 撤回已分配的维修主管
-      repair.update(data.id, {
-        receiver_id: 0,
-        step_id: 0,
-        action: 'revoke1',
-        who: $store.state.user.user.employee.name
+      $vm.$vux.confirm.show({
+        title: '确认撤回?',
+        content: '撤回后，将重新分配此次维修',
+        onConfirm () {
+          repair.update(data.id, {
+            receiver_id: 0,
+            step_id: 0,
+            action: 'revoke1',
+            who: $store.state.user.user.employee.name
+          })
+          data.status = 0
+        }
       })
-      data.status = 0
       break
     case 'info1': // 已分配信息
       window.location.href = 'tel://' + data.dispatch.mobile
       break
     case 'reject1': // 维修主管驳回
-      repair.update(data.id, {
-        receiver_id: 0,
-        step_id: 0,
-        action: 'reject1',
-        who: $store.state.user.user.employee.name
+      $vm.$vux.confirm.show({
+        title: '确认驳回?',
+        content: '驳回后，派单文员将重新分配此次维修',
+        onConfirm () {
+          repair.update(data.id, {
+            receiver_id: 0,
+            step_id: 0,
+            action: 'reject1',
+            who: $store.state.user.user.employee.name
+          })
+          data.status = 0
+        }
       })
-      data.status = 0
       break
     case 'dispatch2': // 分配维修师傅
       $router.push({ name: 'RepairDispatch', params: { id: data.id } })
       break
     case 'revoke2': // 撤回已分配的维修师傅
-      repair.update(data.id, {
-        receiver_id: 0,
-        step_id: 1,
-        action: 'revoke2',
-        who: $store.state.user.user.employee.name
+      $vm.$vux.confirm.show({
+        title: '确认撤回?',
+        content: '撤回后，重新分配此次维修',
+        onConfirm () {
+          repair.update(data.id, {
+            receiver_id: 0,
+            step_id: 1,
+            action: 'revoke2',
+            who: $store.state.user.user.employee.name
+          })
+          data.status = 1
+        }
       })
-      data.status = 1
       break
     case 'info2': // 已分配维修师傅信息
       window.location.href = 'tel://' + data.dispatch.mobile
@@ -67,13 +85,19 @@ export default (action, data, { $router, $store, playload }) => {
     case 'help1': // 维修主管协助
       break
     case 'reject2': // 维修师傅驳回
-      repair.update(data.id, {
-        receiver_id: 0,
-        step_id: 1,
-        action: 'reject2',
-        who: $store.state.user.user.employee.name
+      $vm.$vux.confirm.show({
+        title: '确认驳回?',
+        content: '驳回后，维修组长将重新分配此次维修',
+        onConfirm () {
+          repair.update(data.id, {
+            receiver_id: 0,
+            step_id: 1,
+            action: 'reject2',
+            who: $store.state.user.user.employee.name
+          })
+          data.status = 1
+        }
       })
-      data.status = 1
       break
     case 'help2': // 维修师傅协助
       break

@@ -5,8 +5,8 @@
     .peco-repair-btn(@click='process("process")') 到场维修
     .peco-repair-btn(@click='process("reject2")') 驳回
   template(v-else-if='status==4')
-    .peco-repair-help(@click='process("help2")') 我要协助
-    .peco-repair-btn(@click='process("continue")') 继续维修
+    .peco-repair-btn(v-if='tag==1' @click='process("continue")') 继续维修
+    .peco-repair-help(v-else @click='process("help2")') 我要协助
     .peco-repair-btn(@click='process("complete")') 结案
 </template>
 
@@ -19,6 +19,9 @@ export default {
   computed: {
     status () {
       return this.thisValue.status
+    },
+    tag () {
+      return this.thisValue.tag || 0
     }
   },
   methods: {
@@ -26,7 +29,13 @@ export default {
       if (action === 'process') {
         return this.$emit('process')
       }
-      repairAction(action, this.thisValue, { $router: this.$router, $store: this.$store })
+      if (action === 'help1' || action === 'help2') {
+        return this.$emit('help')
+      }
+      if (action === 'continue') {
+        return this.$emit('continue')
+      }
+      repairAction(action, this.thisValue, { $router: this.$router, $store: this.$store, $vm: this })
     }
   }
 }
