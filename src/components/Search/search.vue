@@ -15,10 +15,12 @@ div
         div(v-if='item.avatar')
           img(:src='item.avatar')
           p {{ item.cnPathName || item.name }}
+            span(v-if='item.onwork !== undefined' style='margin-left: 5px') (处理中: {{ item.onwork }}单)
           i.peco-icon.peco-icon-checked
           i.peco-icon.peco-icon-uncheck
         div(v-else)
           p {{ item.cnPathName || item.name }}
+            span(v-if='item.onwork !== undefined' style='margin-left: 5px') (处理中: {{ item.onwork }}单)
           i.peco-icon.peco-icon-checked
           i.peco-icon.peco-icon-uncheck
     div(v-show='!searchResults.length')

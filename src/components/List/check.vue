@@ -6,12 +6,14 @@
           img(:src='item.avatar')
           section
             p {{ item.name }}
+              span(v-if='item.onwork !== undefined' style='margin-left: 5px') (处理中: {{ item.onwork }}单)
             p(v-if='item.province' style='font-size: 12px') {{ item.province + ' ' + item.city + ' ' + item.area }}
           i.peco-icon.peco-icon-checked
           i.peco-icon.peco-icon-uncheck
         div(v-else)
           section
             p {{ item.name }}
+              span(v-if='item.onwork !== undefined' style='margin-left: 5px') (处理中: {{ item.onwork }}单)
             p(v-if='item.province' style='font-size: 12px') {{ item.province + ' ' + item.city + ' ' + item.area }}
           i.peco-icon.peco-icon-checked
           i.peco-icon.peco-icon-uncheck
