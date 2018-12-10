@@ -48,7 +48,7 @@ page(:style='{paddingBottom: processAble ? "60px" : 0}')
             template(v-if='event.cate == 4 && event.location')
               p.event-location(@click='openWxMap(event)') 位置：{{ event.location }}
     rate-view(v-if='repairDetail.status >= 5 && repairDetail.rate' :data='repairDetail.rate' style='margin-bottom: 10px')
-  repair-process(v-if='processAble' v-model='repairDetail' @process='onProcess' @help='onHelp' @continue='onContinue')
+  repair-process(v-if='processAble && !forhelp' v-show='showProcessBar' v-model='repairDetail' @process='onProcess' @help='onHelp' @continue='onContinue')
   div(v-transfer-dom='true')
     confirm(
       v-model='showHelpConfirm'
@@ -95,6 +95,7 @@ export default {
       id: this.$route.params.id,
       repairDetail: {},
       status: 0,
+      showProcessBar: true,
       events: [
         {
           id: 1,
@@ -131,7 +132,11 @@ export default {
     timestampToText
   },
   computed: {
-    ...mapState(['details']),
+    ...mapState(['list', 'details']),
+    forhelp () {
+      let d = this.list.find(item => item.id == this.id)
+      return d && d.forhelp == 1
+    },
     processAble () {
       let repairDetail = this.repairDetail
       if (!repairDetail || !repairDetail.status) return false
@@ -221,11 +226,13 @@ export default {
         $loading && $loading.hide()
         this.showHelpConfirm = false
         this.help = ''
+        this.showProcessBar = false
         this.$set(this.repairDetail, 'tag', 1)
         this.$set(this.repairDetail, 'help', help)
         this.$store.commit('repair/UPDATE_TAG', {
           id: repair_id,
           tag: 1,
+          forhelp: 1,
           help: help
         })
       }).catch(error => {
