@@ -26,8 +26,8 @@ export default {
       privs: [
         [],
         [],
-        [{id: 'reject2', name: '驳回'}],
-        [{id: 'reject2', name: '驳回'}],
+        [{id: 'reject2', name: '驳回', _if: 'forhelp=0'}],
+        [{id: 'reject2', name: '驳回', _if: 'forhelp=0'}],
         [{id: 'help2', template: '协助原因：[help]', _if: 'tag=1'}],
         [],
         []

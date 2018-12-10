@@ -36,7 +36,7 @@ export default {
         }
       }
     },
-    ['UPDATE_TAG'] (state, { id, tag, help }) {
+    ['UPDATE_TAG'] (state, { id, tag, help, forhelp }) {
       let list = state.list
       let idStr = String(id)
       let details = state.details
@@ -49,6 +49,9 @@ export default {
         let item = list[i]
         if (item.id === id) {
           item.tag = tag
+          if (forhelp) {
+            item = Object.assign(item, { forhelp })
+          }
           if(help) item.help = help
           break
         }
