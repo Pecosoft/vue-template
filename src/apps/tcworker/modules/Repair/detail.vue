@@ -76,6 +76,7 @@ page(:style='{paddingBottom: processAble ? "60px" : 0}')
 
 <script>
 /* eslint-disable */
+import android from 'mixins/android'
 import RepairProcess from 'components/Business/RepairProcess'
 import RateView from 'components/Rate/view'
 import { timestampToText, statusToText } from '@/filters'
@@ -90,6 +91,7 @@ import { repair } from '@/services'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
 export default {
+  mixins: [android],
   data () {
     return {
       id: this.$route.params.id,
