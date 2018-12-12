@@ -68,7 +68,11 @@ export default {
     this.read(this.id).then(res => {
       this.status = res.status
       let events = res.events.filter(event => {
-        return event.cate !== 1 && event.cate !== 2 && event.action.indexOf('help') === -1 && event.action.indexOf('continue') === -1
+        return event.cate !== 1 && event.cate !== 2
+                 && event.action.indexOf('help') === -1
+                 && event.action.indexOf('continue') === -1
+                 && event.action.indexOf('reject') === -1
+                 && event.action.indexOf('revoke') === -1
       })
       this.events = events
       this.$peco.loading.hide()
