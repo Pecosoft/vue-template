@@ -15,6 +15,7 @@ export default {
   props: ['value'],
   data () {
     return {
+      thisValue: 0,
       lineStyle: {
         left: '0',
         right: '0'
@@ -37,15 +38,20 @@ export default {
           text: '已完成'
         },
         {
-          value: 7,
+          value: 6,
           text: '已评价'
         }
       ]
     }
   },
+  watch: {
+    value (newVal) {
+      this.thisValue = newVal
+    }
+  },
   computed: {
     statusIdx () {
-      let value = this.value
+      let value = this.thisValue
       if (!value) value = 0
       let statusSets = this.statusSets
       for (let i = 0, len = statusSets.length; i < len; i++) {
