@@ -7,11 +7,15 @@ page
 
 <script>
 /* eslint-disable */
+import android from 'mixins/android'
 import { repair } from '@/models'
 import { mapState, mapActions } from 'vuex'
 import { uploadImages, uploadVoice } from 'utils/wxsdk'
 
 export default {
+  mixins: [
+    android
+  ],
   data () {
     return {
       repair,

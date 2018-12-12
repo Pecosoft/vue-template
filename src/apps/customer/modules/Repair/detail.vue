@@ -28,12 +28,16 @@ page
 </template>
 
 <script>
+import android from 'mixins/android'
 import { timestampToText, statusToText } from '@/filters'
 import { createNamespacedHelpers } from 'vuex'
 import { previewImage } from 'utils/wxsdk'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
 export default {
+  mixins: [
+    android
+  ],
   data () {
     return {
       id: this.$route.params.id,
