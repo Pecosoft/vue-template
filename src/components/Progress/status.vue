@@ -15,7 +15,7 @@ export default {
   props: ['value'],
   data () {
     return {
-      thisValue: 0,
+      thisValue: this.value,
       lineStyle: {
         left: '0',
         right: '0'
