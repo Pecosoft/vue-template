@@ -38,7 +38,7 @@ import repairAction from '@/flow/repair/action'
 import { createNamespacedHelpers } from 'vuex'
 import { Popup, PopupHeader, Group, Cell, Rater, XTextarea } from 'vux'
 import { repair } from '@/services'
-import { configWxsdk } from 'utils/wxsdk'
+import { configWxsdk, closeWindow } from 'utils/wxsdk'
 import toTop from 'utils/toTop'
 const { mapState, mapActions } = createNamespacedHelpers('repair')
 
@@ -64,7 +64,7 @@ export default {
       avatar: 'static/logo.png',
       gridData: [
         {id: 1, name: '报修', icon: 'repaire', url: '/customer/repair'},
-        {id: 2, name: '咨询', icon: 'consult', url: '/customer/consult'},
+        {id: 2, name: '咨询', icon: 'consult' },
         {id: 3, name: '投诉', icon: 'complain', url: '/customer/complain'},
         {id: 4, name: '产品建议', icon: 'suggest', url: '/customer/suggest'}
       ],
@@ -101,7 +101,10 @@ export default {
     onTextareaBlur () {
       toTop()
     },
-    handleOnClickGrid: gd => {
+    handleOnClickGrid (gd) {
+      if (gd.id === 2) {
+        closeWindow()
+      }
     },
     handleOnClickList (d) {
       this.$router.push({name: 'RepairDetail', params: {id: d.id}})
