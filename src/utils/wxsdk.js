@@ -220,3 +220,5 @@ export const getLocation = () => new Promise((resolve, reject) => {
     })
   })
 })
+
+export const closeWindow = () => wx.closeWindow()
