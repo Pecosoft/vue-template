@@ -1,11 +1,11 @@
 <template lang="pug">
 page
   profile-header(:name='name' :desc='desc' :avatar='avatar')
-  grid(:data='gridData' :col-num="2" bg-color="#fff")
+  grid(:data='gridData' :col-num="2" bg-color="#fff" @clickgrid='handleOnClickGrid')
 </template>
 
 <script>
-import { configWxsdk } from 'utils/wxsdk'
+import { configWxsdk, closeWindow } from 'utils/wxsdk'
 
 export default {
   name: 'index',
@@ -16,10 +16,17 @@ export default {
       avatar: 'static/logo.png',
       gridData: [
         {id: 1, name: '报修', icon: 'repaire', url: '/dsclerk/repair'},
-        {id: 2, name: '咨询', icon: 'consult', url: '/dsclerk/consult'},
+        {id: 2, name: '咨询', icon: 'consult' },
         {id: 3, name: '投诉', icon: 'complain', url: '/dsclerk/complain'},
         {id: 4, name: '建议', icon: 'suggest', url: '/dsclerk/suggest'}
       ]
+    }
+  },
+  methods: {
+    handleOnClickGrid (gd) {
+      if (gd.id === 2) {
+        closeWindow()
+      }
     }
   },
   mounted () {
