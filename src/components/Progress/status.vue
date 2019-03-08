@@ -12,7 +12,12 @@ import isArray from 'utils/isArray'
 
 export default {
   name: 'PStatus',
-  props: ['value'],
+  props: {
+    value: {
+      type: Number,
+      default: 0
+    }
+  },
   data () {
     return {
       thisValue: this.value,
