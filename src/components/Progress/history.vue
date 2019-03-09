@@ -17,8 +17,10 @@ export default {
     }
   },
   mounted () {
-    this.updateIndex()
-    this.updateLinePosition()
+    setTimeout(_ => {
+      this.updateIndex()
+      this.updateLinePosition()
+    }, 100)
   },
   methods: {
     updateIndex () {
