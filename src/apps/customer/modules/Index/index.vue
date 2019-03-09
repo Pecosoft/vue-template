@@ -63,10 +63,10 @@ export default {
       desc: '',
       avatar: 'static/logo.png',
       gridData: [
-        {id: 1, name: '报修', icon: 'repaire', url: '/customer/repair'},
-        {id: 2, name: '咨询', icon: 'consult' },
-        {id: 3, name: '投诉', icon: 'complain', url: '/customer/complain'},
-        {id: 4, name: '产品建议', icon: 'suggest', url: '/customer/suggest'}
+        { id: 1, name: '报修', icon: 'repaire', url: '/customer/repair' },
+        { id: 2, name: '咨询', icon: 'consult' },
+        { id: 3, name: '投诉', icon: 'complain', url: '/customer/complain' },
+        { id: 4, name: '产品建议', icon: 'suggest', url: '/customer/suggest' }
       ],
       privs: [
         [{id: 'view', name: '查看报修'}, {id: 'cancel', name: '取消订单'}], // status: 0 待受理
@@ -155,12 +155,11 @@ export default {
         return this.$router.push({ name: 'UserRegister' })
       }
       this.avatar = avatar
-      if (customer) {
+      if (customer && customer.company && customer.company.name) {
         this.name = customer.name
-        this.desc = (customer.company && customer.company.name) || mobile
+        this.desc = customer.company.name
       } else {
-        this.name = name
-        this.desc = mobile
+        return this.$router.push({ name: 'UserProfile' })
       }
       this.fetch().then(_ => {
         this.$store.dispatch('opendata/getWxjssdkConfig').then(config => {
