@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     ul.peco-checklist
-      li(v-for='item in thisData' :class='{checked: isChecked(item), "has-avatar": item.avatar}' @click='$emit("onchecked", item)')
+      li(v-for='item in thisData' class="has-avatar" :class='{checked: isChecked(item)}' @click='$emit("onchecked", item)')
         div(v-if='item.avatar')
           img(:src='item.avatar')
           section
@@ -10,6 +10,7 @@
           i.peco-icon.peco-icon-checked
           i.peco-icon.peco-icon-uncheck
         div(v-else)
+          img(src='http://static.taikan.fvtools.com/logo.png' style="object-fit: contain")
           section
             p {{ item.name }}
             p(v-if='item.province' style='font-size: 12px') {{ item.province + ' ' + item.city + ' ' + item.area }}
