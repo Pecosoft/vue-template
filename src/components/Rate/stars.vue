@@ -4,6 +4,7 @@
   star(:active='thisData > 1')
   star(:active='thisData > 2')
   star(:active='thisData > 3')
+  star(:active='thisData > 4')
 </template>
 
 <script>
